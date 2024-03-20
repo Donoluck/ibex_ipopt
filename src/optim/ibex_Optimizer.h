@@ -13,7 +13,7 @@
 
 #include "ibex_OptimizerConfig.h"
 #include "ibex_CovOptimData.h"
-#include "ibex_ExtendedSystem.h"
+//#include "ibex_ExtendedSystem.h"
 
 #include <utility>
 //#include "ibex_NormalizedSystem.h"
@@ -145,7 +145,7 @@ public:
 
   
         /** IpoptPreprocessing; */
-         void  ipopt_preprocessing(System& sys, const System& normsys, const ExtendedSystem & extsys);
+  //         void  ipopt_preprocessing(System& sys, const System& normsys, const ExtendedSystem & extsys);
 	/* =========================== Output ============================= */
 
 	/**
@@ -336,9 +336,10 @@ public:
 	 */
         bool integerobj=false;
 
-  
+  /*
         double preprocampltime=0.0;   // time due to ampl in preprocessing
         double preprocipopttime=0.0; //  time due to ipopt in preprocessing
+  */
   
 protected:
         /** \brief Initialize the optimizer from a single box.
@@ -486,7 +487,7 @@ protected:
 	 * \brief Check the solution returned by ipopt
          * return its objective value if it is feasible 
 	 */
-        double check_ipopt_solution(LoupFinder& loup_finder, Vector& v);
+  //        double check_ipopt_solution(LoupFinder& loup_finder, Vector& v);
 };
 
 inline Optimizer::Status Optimizer::get_status() const { return status; }
