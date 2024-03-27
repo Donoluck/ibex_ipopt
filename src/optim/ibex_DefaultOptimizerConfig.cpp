@@ -241,14 +241,14 @@ Bsc& DefaultOptimizerConfig::get_bsc() {
         if (get_bisector()=="minlpsmearsumnoobj"){
 	  return  rec(new MinlpSmearSum(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),
 			false),
 			BSC_TAG);
 	}
 	else if (get_bisector()=="minlpsmearsum"){
 	     return  rec(new MinlpSmearSum(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),
 			true),
 			 BSC_TAG);
 	}
@@ -256,7 +256,7 @@ Bsc& DefaultOptimizerConfig::get_bsc() {
 	else if (get_bisector()=="minlpsmearsumrelnoobj"){
 	  return rec(new MinlpSmearSumRelative(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),false),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),false),
 			BSC_TAG);
 	}
 
@@ -264,19 +264,19 @@ Bsc& DefaultOptimizerConfig::get_bsc() {
 	else if (get_bisector()=="minlpsmearsumrel"){
 	  return rec(new MinlpSmearSumRelative(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),true),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),true),
 			BSC_TAG);
 	}
         else if (get_bisector() == "minlplsmearmg"){
 	   return rec(new MinlpLSmear(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),true),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,eps_x_extended,default_bisect_ratio)),true),
 			BSC_TAG);
 	}
 	else if (get_bisector() == "minlplsmearmgnoobj"){
 	   return rec(new MinlpLSmear(
 			ext_sys,eps_x_extended,
-			rec(new OptimLargestFirst(ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),false),
+			rec(new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,eps_x_extended,default_bisect_ratio)),false),
 			BSC_TAG);
 	}
   
