@@ -364,7 +364,7 @@ protected:
 	 * </ul>
 	 *
 	 */
-	void handle_cell(Cell& c);
+  void handle_cell(Cell& c, bool direction);
 
 	/**
 	 * \brief Contract and bound procedure for processing a box.
@@ -377,7 +377,7 @@ protected:
 	 * </ul>
 	 *
 	 */
-	void contract_and_bound(Cell& c);
+  void contract_and_bound(Cell& c, bool direction);
 
 	/**
 	 * \brief Contract : call the contractor 
@@ -417,6 +417,9 @@ protected:
 	 * \brief Check time is not out.
 	 */
 	void time_limit_check();
+        void init_pseudocosts(const Cell& c);
+        void update_pseudocosts(const Cell& c, double ymin, double diam, int var, bool direction);
+        void update_pseudocosts_score(int var);
 
 	/*=======================================================================================================*/
 	/*                                Functions to manage the extended CSP                                   */
@@ -487,7 +490,13 @@ protected:
 	 * \brief Check the solution returned by ipopt
          * return its objective value if it is feasible 
 	 */
-  //        double check_ipopt_solution(LoupFinder& loup_finder, Vector& v);
+    //        double check_ipopt_solution(LoupFinder& loup_finder, Vector& v);
+  std::vector<int> bisection_count_left;
+  std::vector<double> bisection_pseudocosts_left;
+  std::vector<int> bisection_count_right;
+  std::vector<double> bisection_pseudocosts_right;
+  std::vector<double> bisection_pseudocosts_score;
+ 
 };
 
 inline Optimizer::Status Optimizer::get_status() const { return status; }

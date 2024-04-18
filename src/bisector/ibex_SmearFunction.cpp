@@ -15,7 +15,7 @@ using namespace std;
 
 namespace ibex {
 
-
+  
   void SmearFunction::add_property(const IntervalVector& init_box, BoxProperties& map) {
 	lf->add_property(init_box, map);
   }
@@ -59,9 +59,28 @@ namespace ibex {
     else return true;
   }
 
-    
+   int SmearFunction::pseudocost_int_var_to_bisect  (const Cell & c) const{
+    int var=-1;
+    const IntervalVector& box=c.box;
+    double max_pseudo_cost=0;
+    BitSet& b= *(sys.get_integer_variables());
+    for (int i =0; i< box.size()-1; i++){
+      if (b[i] && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
+	  max_pseudo_cost=(*pseudo_costs)[i];
+	  var=i;}
+    }
+    if (var==c.bisected_var) var=-1;
+    return var;
+   }
+  
   BisectionPoint SmearFunction::choose_var(const Cell& cell) {
+    int var=-1;
     const IntervalVector& box=cell.box;
+    if (pseudocost)
+      var= pseudocost_int_var_to_bisect (cell);
+    if (var==-1){
+	    
+
     
     IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);
 
@@ -70,19 +89,21 @@ namespace ibex {
 
     for (int i=0; i<sys.f_ctrs.image_dim(); i++){
       for (int j=0; j<sys.nb_var; j++)
-	if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY ))
-	  return lf->choose_var(cell);
+	if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY )) {// cout << "lf " << endl ; 
+	  return lf->choose_var(cell);}
       // check if the goal is to be considered
       if (i==goal_ctr()){
 	_goal_to_consider=goal_to_consider(J,i);
       }
     }
     
-    int var = var_to_bisect (J,box);
+    var = var_to_bisect (J,box);
 	
     // in case of selected var with infinite domain, change to largestfirst bisection
     if (var == -1 || !(box[var].is_bisectable()))
+      {// cout << "appel lf" << endl;
 	return lf->choose_var(cell);
+      }
     else
       return BisectionPoint(var,lf->ratio,true);
   }

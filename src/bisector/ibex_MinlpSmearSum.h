@@ -31,7 +31,7 @@ public:
 	 * \brief Create a bisector with smearsum heuristic for minlp
 	 *
 	 */
-  MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb=true);
+  MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb=true, bool pseudocost=false);
 
 	/**
 	 * \brief Create a bisector with SmearSum heuristic (choosing first among the integer variables, and if
@@ -45,7 +45,7 @@ public:
 
 	 */
 
-   MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb=true);
+  MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb=true, bool pseudocost=false);
 
 	/**
 	 * \brief Return next variable to be bisected.
@@ -53,8 +53,6 @@ public:
 	 * called by Bsc::bisect(...)
 	 */
   int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const;
-	
-
 
 	  
 };

@@ -38,12 +38,12 @@ public:
 	 *  \param ratio (optional)  - the ratio between the diameters of the left and the right parts of the
 	 *                             bisected interval. Default value is #Bsc::default_ratio().
 	 */
-	SmearFunction(System& sys, double prec, double ratio=Bsc::default_ratio());
+  SmearFunction(System& sys, double prec, double ratio=Bsc::default_ratio());
 
         /** Variant with a LargestFirst bisector, called when no variable could be chosen,
          *\param gb :  boolean indicating if the goal variable can be bisected : default true.
 	 */
-        SmearFunction(System& sys, double prec, LargestFirst& lf, bool gb=true);
+  SmearFunction(System& sys, double prec, LargestFirst& lf, bool gb=true, bool ps=false);
 
 	/**
 	 * \brief Create a bisector with Smear function heuristic.
@@ -54,8 +54,8 @@ public:
 	 */
 	SmearFunction(System& sys, const Vector& prec, double ratio=Bsc::default_ratio());
 
-         SmearFunction(System& sys, const Vector& prec,LargestFirst& lf);
-  SmearFunction(System& sys, const Vector& prec,LargestFirst& lf, bool gb);
+  SmearFunction(System& sys, const Vector& prec,LargestFirst& lf);
+  SmearFunction(System& sys, const Vector& prec,LargestFirst& lf, bool gb, bool ps=false);
 	~SmearFunction();
 	/**
 	 * \brief Return next variable to be bisected.
@@ -80,7 +80,7 @@ public:
 	 * \brief Add backtrackable data 
 	 */
 	virtual void add_property(const IntervalVector& init_box, BoxProperties& map);
-
+  void set_pseudocost(bool ps);
 	
 protected :
 	LargestFirst* lf; // the bisector by default when smear function strategy does not apply: 
@@ -94,6 +94,9 @@ protected :
 	bool constraint_to_consider(int i, const IntervalVector & box) const;
 	bool goal_to_consider( const IntervalMatrix& J, int i) const;
         bool goal_to_bisect;
+        bool pseudocost=false; // boolean indicating if pesudocosts are taken into account for bisection
+  // return the integer variable with maximal pseudocost (for MinlpSmearSum and MinlpSmearSumRelative if 
+        int pseudocost_int_var_to_bisect  (const Cell & c) const;
  private :
         bool lftodelete; // = true means that  default bisector has to be deleted by the destuctor when the it has been allocated by the constructor.
 	bool _goal_to_consider;
@@ -119,7 +122,7 @@ public :
      *
 	 */
 	SmearMax (System& sys,  double prec, double ratio=Bsc::default_ratio());
-  SmearMax(System& sys,  double prec, LargestFirst& lf, bool gb=true );
+        SmearMax(System& sys,  double prec, LargestFirst& lf, bool gb=true );
 	/*
 	 * \brief Create a bisector using the Smear function heuristic
 	 *
@@ -128,7 +131,7 @@ public :
 	 * \see #SmearMax(System&, double, double)
 	 */
 	SmearMax (System& sys,  const Vector& prec, double ratio=Bsc::default_ratio());
-  SmearMax (System& sys,  const Vector& prec, LargestFirst& lf, bool gb=true);
+        SmearMax (System& sys,  const Vector& prec, LargestFirst& lf, bool gb=true);
 
 	/**
 	 * \brief Returns the variable to bisect.
@@ -141,6 +144,7 @@ public :
 	 */
 	int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const;
 };
+
 
 /**
  * \ingroup bisector
@@ -160,7 +164,7 @@ public :
      * For the parameters, see #SmearFunction::SmearFunction(System&, double, double).
 	 */
 	SmearSum (System& sys, double prec, double ratio=Bsc::default_ratio());
-  SmearSum (System& sys,  double prec, LargestFirst& lf, bool gb=true );
+        SmearSum (System& sys,  double prec, LargestFirst& lf, bool gb=true );
 	 /*
 	 * \brief Create a bisector using Hansen's variant of the Smear function heuristic.
 	 *
@@ -171,7 +175,7 @@ public :
 
 	
 	SmearSum (System& sys, const Vector& prec, double ratio=Bsc::default_ratio());
-  SmearSum (System& sys, const Vector& prec, LargestFirst& lf, bool gb=true);
+        SmearSum (System& sys, const Vector& prec, LargestFirst& lf, bool gb=true);
 
 	/**
 	 * \brief Returns the variable to bisect.
@@ -205,7 +209,7 @@ public :
 	 */
 	SmearSumRelative (System& sys,  double prec, double ratio=Bsc::default_ratio());
 
-  SmearSumRelative (System& sys,  double prec, LargestFirst& lf, bool gb=true );
+        SmearSumRelative (System& sys,  double prec, LargestFirst& lf, bool gb=true );
 
 	 /*
 	 * Variant with a vector of precisions.
@@ -214,7 +218,7 @@ public :
 	 */
 	SmearSumRelative (System& sys, const Vector& prec, double ratio=Bsc::default_ratio());
 
-  SmearSumRelative (System& sys, const Vector& prec, LargestFirst& lf, bool gb=true);
+        SmearSumRelative (System& sys, const Vector& prec, LargestFirst& lf, bool gb=true);
  
 	/**
 	 * \brief Returns the variable to bisect.
@@ -265,33 +269,35 @@ public :
 
 /*============================================ inline implementation ============================================ */
 
-inline SmearFunction::SmearFunction(System& sys, double prec, double ratio) : Bsc(prec), sys(sys) {
+  inline SmearFunction::SmearFunction(System& sys, double prec, double ratio) : Bsc(prec), sys(sys) {
         lf = new LargestFirst(prec,ratio);
 	lftodelete=true;
 	nbvars=sys.nb_var;
 }
 
-  inline SmearFunction::SmearFunction(System& sys, double prec, LargestFirst& lf1, bool gb) : Bsc(prec), sys(sys) {
+  inline SmearFunction::SmearFunction(System& sys, double prec, LargestFirst& lf1, bool gb, bool ps) : Bsc(prec), sys(sys) {
    lf= &lf1;
    lftodelete=false;
    nbvars=sys.nb_var;
    goal_to_bisect=gb;
+   pseudocost=ps;
 }
 
- inline SmearFunction::SmearFunction(System& sys, const Vector& prec, LargestFirst& lf1, bool gb) : Bsc(prec), sys(sys) {
+  inline SmearFunction::SmearFunction(System& sys, const Vector& prec, LargestFirst& lf1, bool gb, bool ps) : Bsc(prec), sys(sys) {
    lf= &lf1;
    lftodelete=false;
    nbvars=sys.nb_var;
    goal_to_bisect=gb;
+   pseudocost=ps;
  }
 
-inline SmearFunction::SmearFunction(System& sys, const Vector& prec, double ratio) : Bsc(prec), sys(sys) {
+  inline SmearFunction::SmearFunction(System& sys, const Vector& prec, double ratio) : Bsc(prec), sys(sys) {
         lf = new LargestFirst(prec,ratio);
 	lftodelete=true;
         nbvars=sys.nb_var;
 }
 
- inline SmearFunction::SmearFunction(System& sys, const Vector& prec, LargestFirst& lf1) : Bsc(prec), sys(sys) {
+  inline SmearFunction::SmearFunction(System& sys, const Vector& prec, LargestFirst& lf1) : Bsc(prec), sys(sys) {
    lf= &lf1;
    lftodelete=false;
    nbvars=sys.nb_var;

@@ -16,24 +16,23 @@ using namespace std;
 
 namespace ibex {
 
+
+  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {}
+
+
+
+  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb,bool ps) : SmearFunction (sys,prec, lf, gb,ps)  {}
  
-  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb) : SmearFunction(sys,prec, lf,gb)  {
-}
-
-
-
-  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb) : SmearFunction (sys,prec, lf, gb)  {
-}
-
-
-
    int MinlpSmearSumRelative::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
     double max_magn = NEG_INFINITY;
     int var = -1;
+    BitSet& b= *(sys.get_integer_variables());
+  
     int image_dim=sys.f_ctrs.image_dim();
     vector<double> ctrjsum;
     for (int i=0; i<sys.f_ctrs.image_dim(); i++) {ctrjsum.push_back(0);}
-    BitSet& b= *(sys.get_integer_variables());
+
+    
     //    cout << "integers " << b <<  " nbvars " << nbvars << endl;
     for (int i=0; i<sys.f_ctrs.image_dim(); i++) {
       // not an extended system or constraint is active or it is the objective 

@@ -171,12 +171,12 @@ int main(int argc, char** argv){
 
 	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel"  || bisection=="lsmearmg" || bisection=="lsmearss" || bisection=="lsmearmgss")
 	  bs1=  new OptimLargestFirst(ext_sys.goal_var(),true,prec);
-	else if  (bisection == "minlpsmearsumrel" ||  bisection == "minlpsmearsum" || bisection== "minlplsmear" || bisection== "minlplsmearmg" )
+	else if  (bisection == "minlpsmearsumrel" ||  bisection == "minlpsmearsum" || bisection== "minlplsmear" || bisection== "minlplsmearmg" ||  bisection == "minlpsmearsumrelpseudocost" || bisection == "minlpsmearsumpseudocost")
 	  bs1= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,prec);
         else if
-	  (bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj" )
+	  (bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj"  )
 	  bs1=  new OptimLargestFirst(ext_sys.goal_var(),false,prec);
-	else if  (bisection == "minlpsmearsumnoobj" ||  bisection == "minlpsmearsumrelnoobj" || bisection == "minlplsmearmgnoobj" || bisection == "minlplsmearnoobj")
+	else if  (bisection == "minlpsmearsumnoobj" ||  bisection == "minlpsmearsumrelnoobj" || bisection == "minlplsmearmgnoobj" || bisection == "minlplsmearnoobj" || bisection == "minlpsmearsumpseudocostnoobj" || bisection == "minlpsmearsumrelpseudocostnoobj" )
 	  bs1= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,prec);
 	  
 	if (bisection=="roundrobin")
@@ -201,29 +201,34 @@ int main(int argc, char** argv){
 	  bs = new SmearMax(ext_sys,prec,*bs1,false);
 	else if (bisection=="smearsumrel")
 	  bs = new SmearSumRelative(ext_sys,prec,*bs1,true);
+	
 	else if ( bisection=="smearsumrelnoobj")
 	  bs = new SmearSumRelative(ext_sys,prec,*bs1,false);
 	else if (bisection=="minlpsmearsumrel")
           bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,true);
+	else if (bisection=="minlpsmearsumrelpseudocost")
+	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,true,true);
 	else if (bisection=="minlpsmearsumrelnoobj")
 	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,false);
+	else if (bisection=="minlpsmearsumrelnoobjpseudocost")
+	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,false,true);
 	else if (bisection=="minlpsmearsum")
           bs = new MinlpSmearSum(ext_sys,prec,*bs1,true);
+	else if (bisection=="minlpsmearsumpseudocost")
+	  bs = new MinlpSmearSum(ext_sys,prec,*bs1,true,true);
 	else if  (bisection=="minlpsmearsumnoobj")
 	  bs = new MinlpSmearSum(ext_sys,prec,*bs1,false);
-	
-	
+	else if  (bisection=="minlpsmearsumpseudocostnoobj")
+	  bs = new MinlpSmearSum(ext_sys,prec,*bs1,false,true);
 	else if (bisection=="smearmaxrel") 
 	  bs = new SmearMaxRelative(ext_sys,prec,*bs1,true);
 	else if (bisection=="smearmaxrelnoobj")
 	  bs = new SmearMaxRelative(ext_sys,prec,*bs1,false);
-	
-	else if  (bisection=="lsmear" || bisection=="lsmearnoobj"){
+	else if  (bisection=="lsmear" || bisection=="lsmearnoobj")
 	  bs = new LSmear(ext_sys,prec,*bs1,LSMEAR);
-	  }
-	else if (bisection=="lsmearmg"|| bisection=="lsmearmgnoobj"){
+	else if (bisection=="lsmearmg"|| bisection=="lsmearmgnoobj")
 	  bs = new LSmear(ext_sys,prec,*bs1);
-	  }
+
 
 
 	
@@ -381,7 +386,7 @@ int main(int argc, char** argv){
 
 	delete bs;
 
-	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel" || bisection=="lsmearmg" ||bisection =="minlpsmearsumrel" ||bisection =="minlpsmearsum" || bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection =="minlpsmearsumnoobj" || bisection == "minlpsmearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj" )
+	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel" || bisection=="lsmearmg" ||bisection =="minlpsmearsumrel" ||bisection =="minlpsmearsum" || bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection =="minlpsmearsumnoobj" || bisection == "minlpsmearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj" || bisection =="minlpsmearsumpseudocost" ||  bisection =="minlpsmearsumpseudocostnoobj" ||  bisection =="minlpsmearsumrelpseudocost" ||  bisection =="minlpsmearsumrelpseudocostnoobj" )
 
 	  delete bs1;
 	

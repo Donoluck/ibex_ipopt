@@ -5,7 +5,7 @@
 // Copyright   : IMT Atlantique (France)
 // License     : See the LICENSE file
 // Created     : Dec 3, 2018
-// Last Update : Oct 17, 2019
+// Last Update : Apr 3, 2024
 //============================================================================
 #include "float.h"
 #include "ibex_BitSet.h"
@@ -17,19 +17,20 @@ using namespace std;
 namespace ibex {
 
  
-  MinlpSmearSum::MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb) : SmearFunction(sys,prec, lf,gb)  {
+  MinlpSmearSum::MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {
+
 }
-    MinlpSmearSum::MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb) : SmearFunction(sys,prec, lf,gb)  {
-}
+  MinlpSmearSum::MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb,bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {
+
+    }
 
 
-
-
+  
    int MinlpSmearSum::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
     double max_magn = NEG_INFINITY;
     int var = -1;
     BitSet& b= *(sys.get_integer_variables());
-
+   
     for (int j=0; j<nbvars; j++) {
       
       if ((!too_small(box,j))&&  (j!= goal_var() && b[j])) {
@@ -45,7 +46,7 @@ namespace ibex {
 	}
       }
     }
-    //    cout << " var " << var << endl;
+    // cout << " integer var " << var << endl;
     if (var==-1)  // no integer variable was chosen
       {
 	max_magn = NEG_INFINITY;
@@ -65,7 +66,7 @@ namespace ibex {
 	  
       }
 
-    //    cout << " var " << var << endl;
+    // cout << " var " << var << endl;
     return var;
    }
 

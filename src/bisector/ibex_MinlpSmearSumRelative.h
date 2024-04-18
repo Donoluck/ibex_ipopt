@@ -31,7 +31,7 @@ public:
 	 * \brief Create a bisector with SmearSumRelative heuristic choosing first among the integer variables
 	 *
 	 */
-  MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb=true);
+  MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb=true, bool ps=false);
 
 	/**
 	 * \brief Create a bisector with SmearSumRelative heuristic (choosing first among the integer variables, and if
@@ -41,10 +41,11 @@ public:
 	 * \param prec             - see #Bsc::Bsc(double).
 	 * \param lf : a largest first bisector to be used when the Smear based heuristic could not choose any variable
          * \param gb : boolean indicating if the goal variable can be bisected : default true.
+         * \param ps : boolean indicating if the pseudocosts are taken into account for bisection : default false.
          * TODO . reintroduce param ratio . It is now set to its default value 0.45
 	 */
 
-  MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb=true);
+  MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb=true, bool ps=false);
 
 	/**
 	 * \brief Return next variable to be bisected.
@@ -53,7 +54,6 @@ public:
 	 */
   int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const;
 	
-
 
 	  
 };

@@ -20,6 +20,7 @@
 #include <iomanip>
 
 
+
 using namespace std;
 
 namespace ibex {
@@ -205,27 +206,33 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	}
 }
 
-void Optimizer::handle_cell(Cell& c) {
+  void Optimizer::handle_cell(Cell& c, bool direction) {
   //  cout << " before contraction " << c.box << endl;
-	contract_and_bound(c);
+       contract_and_bound(c,direction);
 	//	cout << " after contraction " << c.box << endl;
-	if (c.box.is_empty()) { // cout << "box empty " << endl;
-		delete &c;
-	}
-	else {
+       if (c.box.is_empty()) {
+	 delete &c;
+       }
+       else {
 	  
 	  if (integerobj) {
 	    c.box[goal_var]=integer( c.box[goal_var]);
 	    if (c.box[goal_var].is_empty()) {delete&c ; return;}
 	  }
 	  buffer.push(&c);
-	}
-}
+       }
+  }
 
-void Optimizer::contract_and_bound(Cell& c) {
+  void Optimizer::contract_and_bound(Cell& c, bool direction) {
 
 	/*======================== contract y with y<=loup ========================*/
+
 	Interval& y=c.box[goal_var];
+	double ymin=y.lb();
+        double diam=0;
+	if (c.bisected_var !=-1)
+	  diam=c.box[c.bisected_var].diam();
+	if (diam==0) diam=1;
 	//	cout << " box before contract " << c.box << endl;
 	double ymax;
 	if (loup==POS_INFINITY) ymax = POS_INFINITY;
@@ -277,7 +284,7 @@ void Optimizer::contract_and_bound(Cell& c) {
 		c.box.set_empty();
 		return;
 	}
-
+	
 	/*====================================================================*/
 	// Note: there are three different cases of "epsilon" box,
 	// - NoBisectableVariableException raised by the bisector (---> see optimize(...)) which
@@ -306,9 +313,86 @@ void Optimizer::contract_and_bound(Cell& c) {
 	  		write_ext_box(tmp_box,c.box);
 	}
 	*/
+        if (c.bisected_var!=-1)
+	  update_pseudocosts(c,ymin,diam, c.bisected_var,direction);
+
+
 }
+	
+  void Optimizer::update_pseudocosts(const Cell& c, double ymin, double diam, int var,bool direction){
+    double gain =c.box[goal_var].lb()-ymin;
+    // cout << "var " << var << " gain " << gain << " rel gain " << gain /fabs(ymin) << endl;
+    if (gain > abs_eps_f && gain /fabs(ymin) >  rel_eps_f){
+      double pseudocost=gain/diam;
+      
+      if (pseudocost < 1.e-4)
+	pseudocost=0;
 
+      if (direction){
+	bisection_count_left[var]++;
+        if (pseudocost)
+	  //	  cout << " var0 " << var << " gain " << gain << " diam " << diam << " pseudocost " << pseudocost << endl;
+	  bisection_pseudocosts_left[var]=( pseudocost + ( bisection_count_left[var]-1) *bisection_pseudocosts_left[var] )/ bisection_count_left[var];
+      }
+      else{
+	bisection_count_right[var]++;
+	if (pseudocost)
+	  //	  cout << " var1 " << var << " gain " << gain << " diam " << diam << " pseudocost " << pseudocost << endl;
+	  bisection_pseudocosts_right[var]=( pseudocost + ( bisection_count_right[var]-1) *bisection_pseudocosts_right[var] )/ bisection_count_right[var];
+      }
+    }
+  }
 
+  void Optimizer::init_pseudocosts(const Cell& c){
+    double ymin=c.box[goal_var].lb();
+    for (int i=0; i< c.box.size()-1; i++){
+      Cell c1(c);
+      //  cout << " box1 " << c1.box[i] << endl;
+      double diam=c1.box[i].diam();
+      //  cout << i << " diam " << diam << endl;
+      c1.box[i]=Interval(c1.box[i].lb(), (c1.box[i].ub()+c1.box[i].lb())/2);
+      contract(c1);
+      if (!(c1.box.is_empty())) update_pseudocosts(c1,ymin,diam,i,true);
+    }
+    for (int i=0; i< c.box.size()-1; i++){
+      Cell c1(c);
+      //  cout << " box2 " << c1.box[i] << endl;
+      double diam=c1.box[i].diam();
+      c1.box[i]=Interval ((c1.box[i].ub()+c1.box[i].lb())/2,c1.box[i].ub());
+      contract(c1);
+      if (!(c1.box.is_empty())) update_pseudocosts(c1,ymin,diam,i,false);
+    }
+  }
+      
+    
+    
+  /*
+  void Optimizer::update_pseudocosts_score(int var){
+  	if (var  != -1){
+	  double epsilon=1.e-6;
+	  bisection_pseudocosts_score[var]=
+	    std::max(epsilon,bisection_pseudocosts_left[var])*
+	    std::max(epsilon,bisection_pseudocosts_right[var]);
+	}
+  }
+  */
+  /*
+void Optimizer::update_pseudocosts_score(int var){
+  	if (var  != -1){
+	  double mu=1.0/6.0;
+	  bisection_pseudocosts_score[var]=
+	    mu* std::max(bisection_pseudocosts_right[var],bisection_pseudocosts_left[var])  +
+	    (1-mu)* std::min(bisection_pseudocosts_right[var],bisection_pseudocosts_left[var]) ;
+	    }
+}
+  */
+void Optimizer::update_pseudocosts_score(int var){
+       if (var  != -1 && bisection_count_right[var]+bisection_count_left[var] >0)
+	 bisection_pseudocosts_score[var]=
+	   (bisection_pseudocosts_right[var]*bisection_count_right[var]
+	    +bisection_pseudocosts_left[var]*bisection_count_left[var])/
+	   (bisection_count_right[var]+bisection_count_left[var]);
+}
 void  Optimizer::contract(Cell & c){
   	/*================ contract x with f(x)=y and g(x)<=0 ================*/
 	//cout << " [contract]  x before=" << c.box << endl;
@@ -347,7 +431,7 @@ Optimizer::Status Optimizer::optimize(const char* cov_file, double obj_init_boun
  void Optimizer::start(const IntervalVector& init_box, double obj_init_bound) {
 
 	loup=obj_init_bound;
-
+        
 	// Just to initialize the "loup" for the buffer
 	// TODO: replace with a set_loup function
 	buffer.contract(loup);
@@ -381,7 +465,13 @@ Optimizer::Status Optimizer::optimize(const char* cov_file, double obj_init_boun
 
 	loup_changed=false;
 	initial_loup=obj_init_bound;
-
+        for (int i=0 ; i< init_box.size()+1;i++){
+	  bisection_count_right.push_back(0);
+	  bisection_pseudocosts_right.push_back(0);
+	  bisection_count_left.push_back(0);
+	  bisection_pseudocosts_left.push_back(0);
+	  bisection_pseudocosts_score.push_back(0);
+	}
 
 	time=0;
 
@@ -392,7 +482,8 @@ Optimizer::Status Optimizer::optimize(const char* cov_file, double obj_init_boun
         Timer timer;
 	timer.start();
 
-	handle_cell(*root);
+	handle_cell(*root,true);
+
 	timer.stop();
 	time+= timer.get_time();
 	if (trace) cout << " root time " << timer.get_time() << endl;
@@ -467,29 +558,42 @@ Optimizer::Status Optimizer::optimize() {
 	timer.start();
 
 	update_uplo();
-
+	/*
+        if (!buffer.empty())
+	  init_pseudocosts(*(buffer.top()));
+	*/
 	try {
+	  
 	     while (!buffer.empty()) {
 
 			loup_changed=false;
 			// for double heap , choose randomly the buffer : top  has to be called before pop
 			Cell *c = buffer.top();
+			
 			if (trace >= 2) cout << " current box " << c->box << endl;
 
 			try {
 			  //			  cout << " before bisection " << endl;
+			  //			  bsc.pseudo_cost_var_to_bisect=pseudo_cost_var_to_bisect(*c);
+			  
+                 	  bsc.set_pseudo_costs (&bisection_pseudocosts_score);
 				pair<Cell*,Cell*> new_cells=bsc.bisect(*c);
 				buffer.pop();
 				delete c; // deletes the cell.
-				//	cout << " after bisection" << c->box << endl;
+				//				cout << " after bisection" << c->box << endl;
 				nb_cells+=1;  // counting the cells handled ( in previous versions nb_cells was the number of cells put into the buffer after being handled)
-				handle_cell(*new_cells.first);
+				int var=(new_cells.first)->bisected_var;
+				handle_cell(*(new_cells.first), true);
+				
+				//				cout << "bis var " << (new_cells.first)->bisected_var << endl;
 				nb_cells+=1;  
-				handle_cell(*new_cells.second);
+				handle_cell(*(new_cells.second), false);
 
 				if (uplo_of_epsboxes == NEG_INFINITY) {
 					break;
 				}
+				
+                                update_pseudocosts_score(var);
 
 				if (loup_changed) {
 					// In case of a new upper bound (loup_changed == true), all the boxes

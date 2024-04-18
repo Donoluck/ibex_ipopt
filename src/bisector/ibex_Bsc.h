@@ -121,6 +121,16 @@ public:
 	 */
 	bool too_small(const IntervalVector& box, int i) const;
 
+        /**
+         * \brief  set the pseudocosts pointer (called by Optimizer)
+	 */
+        void set_pseudo_costs(std::vector<double>* pseudocosts);
+        
+protected:
+  /** The pseudocosts used by MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
+  */
+        std::vector<double>* pseudo_costs=nullptr;
+
 
 private:
 	/*
@@ -143,6 +153,8 @@ inline double Bsc::prec(int i) const {
 	                      : _prec[i]; // specific precision
 }
 
+  
+
 inline bool Bsc::too_small(const IntervalVector& box, int i) const {
 	return (box[i].diam()<prec(i)
 		|| !box[i].is_bisectable() // test for avoiding to bisect infinite intervals BNE
@@ -153,6 +165,7 @@ inline std::pair<Cell*,Cell*> Bsc::bisect(const Cell& cell) {
 	return cell.bisect(choose_var(cell));
 }
 
+    
 } // end namespace ibex
 
 #endif // __IBEX_BISECTOR_H__
