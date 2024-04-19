@@ -187,6 +187,8 @@ int main(int argc, char** argv){
 	  bs= new OptimLargestFirst(ext_sys.goal_var(),false,prec);
 	else if (bisection== "minlplargestfirst")
 	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,prec);
+	else if (bisection== "minlplargestfirstpseudocost")
+	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,prec,true);
 	else if (bisection== "minlplargestfirstnoobj")
 	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,prec);
 
@@ -247,6 +249,7 @@ int main(int argc, char** argv){
 	CtcInteger integ (ext_sys.nb_var,*(ext_sys.get_integer_variables()));
 
 	// the first contractor called
+	//	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcCompo hc4integ (integ, hc4, integ);
 	// hc4 inside acid and 3bcid : incremental propagation beginning with the shaved variable

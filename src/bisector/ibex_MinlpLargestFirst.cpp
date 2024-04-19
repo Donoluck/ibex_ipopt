@@ -19,21 +19,43 @@ namespace ibex {
   // to not bisect very big objectives 
   double objectivebisect_ratiolimit0=1.e10;
 
-  MinlpLargestFirst::MinlpLargestFirst(System& sys, int goal_var,bool choose_obj, double prec,  double ratio) : OptimLargestFirst(goal_var,choose_obj,prec, ratio), sys(sys)  {
+  MinlpLargestFirst::MinlpLargestFirst(System& sys, int goal_var,bool choose_obj, double prec, bool ps,  double ratio) : OptimLargestFirst(goal_var,choose_obj,prec, ratio), pseudocost(ps), sys(sys)  {
 }
 
-  MinlpLargestFirst::MinlpLargestFirst(System& sys,int goal_var, bool choose_obj,const Vector& prec,double ratio) :OptimLargestFirst(goal_var,choose_obj,prec, ratio), sys(sys) {
+  MinlpLargestFirst::MinlpLargestFirst(System& sys,int goal_var, bool choose_obj,const Vector& prec, bool ps, double ratio) :OptimLargestFirst(goal_var,choose_obj,prec, ratio), pseudocost(ps), sys(sys) {
 
 }
 
-
+ int MinlpLargestFirst::pseudocost_int_var_to_bisect  (const Cell & c) const{
+    int var=-1;
+    const IntervalVector& box=c.box;
+    double max_pseudo_cost=0;
+    BitSet& b= *(sys.get_integer_variables());
+    
+    for (int i =0; i< box.size()-1; i++){
+      if (b[i] && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
+	  max_pseudo_cost=(*pseudo_costs)[i];
+	  var=i;}
+    }
+    if (var==c.bisected_var) var=-1;
+    return var;
+   }
+  
 BisectionPoint MinlpLargestFirst::choose_var(const Cell& cell) {
         const IntervalVector& box=cell.box;
 	int var =-1;
-	double l=0.0;
+	//	cout << "pseudocost " << pseudocost << endl;
+	if (pseudocost)
+	  var= pseudocost_int_var_to_bisect (cell);
+	//	cout << " var " << var << " bisected var " << cell.bisected_var << endl;
 	BitSet& b= *(sys.get_integer_variables());
+	double l=0.0;
+	if (var==-1){
+	
+
+
 	//	cout << " b" << b << endl ;
-	for (int i=0; i< box.size(); i++){
+	  for (int i=0; i< box.size(); i++){
 
 	  if (i!= goal_var && b[i]){
 	    if ( ! nobisectable (box,i)){
@@ -49,6 +71,7 @@ BisectionPoint MinlpLargestFirst::choose_var(const Cell& cell) {
 		}
 	      }
 	    }
+	  }
 	  }
 	}
 	//	cout << " bisected var " << var  << " l " << l << endl ;
@@ -73,7 +96,7 @@ BisectionPoint MinlpLargestFirst::choose_var(const Cell& cell) {
 	      }
 	    }
 	  }
-	}
+	  }
 	}
 	if ((choose_obj == true)
 	      &&  !(nobisectable (box,goal_var))
@@ -87,8 +110,6 @@ BisectionPoint MinlpLargestFirst::choose_var(const Cell& cell) {
 	else {
 	  throw NoBisectableVariableException();
 	}
-	
 }
-  
- 
+	   
 } // end namespace ibex

@@ -62,7 +62,7 @@ namespace ibex {
    int SmearFunction::pseudocost_int_var_to_bisect  (const Cell & c) const{
     int var=-1;
     const IntervalVector& box=c.box;
-    double max_pseudo_cost=0;
+    double max_pseudo_cost=0.0;
     BitSet& b= *(sys.get_integer_variables());
     for (int i =0; i< box.size()-1; i++){
       if (b[i] && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
@@ -82,23 +82,23 @@ namespace ibex {
 	    
 
     
-    IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);
+      IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);
 
-    sys.f_ctrs.jacobian(box,J);
+      sys.f_ctrs.jacobian(box,J);
     // in case of infinite derivatives  changing to largestfirst  bisection
 
-    for (int i=0; i<sys.f_ctrs.image_dim(); i++){
-      for (int j=0; j<sys.nb_var; j++)
-	if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY )) {// cout << "lf " << endl ; 
-	  return lf->choose_var(cell);}
+      for (int i=0; i<sys.f_ctrs.image_dim(); i++){
+	for (int j=0; j<sys.nb_var; j++)
+	  if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY )) {// cout << "lf " << endl ; 
+	    return lf->choose_var(cell);}
       // check if the goal is to be considered
-      if (i==goal_ctr()){
-	_goal_to_consider=goal_to_consider(J,i);
+	if (i==goal_ctr()){
+	  _goal_to_consider=goal_to_consider(J,i);
+	}
       }
-    }
     
-    var = var_to_bisect (J,box);
-	
+      var = var_to_bisect (J,box);
+    }	
     // in case of selected var with infinite domain, change to largestfirst bisection
     if (var == -1 || !(box[var].is_bisectable()))
       {// cout << "appel lf" << endl;
@@ -107,6 +107,7 @@ namespace ibex {
     else
       return BisectionPoint(var,lf->ratio,true);
   }
+
 
 
   // computes the variable with the greatest maximal impact

@@ -34,7 +34,7 @@ public:
 	 * \param ratio (optional) - the ratio between the diameters of the left and the right parts of the
 	 *                           bisected interval. Default value is 0.45.
 	 */
-  MinlpLargestFirst( System& sys, int goal_var,bool choose_obj,double prec=0, double ratio=Bsc::default_ratio());
+  MinlpLargestFirst( System& sys, int goal_var,bool choose_obj,double prec=0, bool ps=false, double ratio=Bsc::default_ratio());
 
 	/**
 	 * \brief Create a bisector with largest first heuristic.
@@ -44,7 +44,7 @@ public:
 	 * \param ratio (optional) - the ratio between the diameters of the left and the right parts of the
 	 *                           bisected interval. Default value is 0.45.
 	 */
-  MinlpLargestFirst( System& sys, int goal_var,bool choose_obj,const Vector& prec, double ratio=Bsc::default_ratio());
+  MinlpLargestFirst( System& sys, int goal_var,bool choose_obj,const Vector& prec, bool ps=false, double ratio=Bsc::default_ratio());
 
 	/**
 	 * \brief Return the bisection point (next variable and point to be bisected).
@@ -61,7 +61,8 @@ public:
 
  protected :
     System& sys;
-       
+  bool pseudocost=false;
+  int pseudocost_int_var_to_bisect (const Cell & c) const;
 	  
 };
 
