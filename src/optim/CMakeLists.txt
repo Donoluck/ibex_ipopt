@@ -10,7 +10,6 @@ target_sources (ibex PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_DefaultOptimizerMinlpConfig.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_DefaultOptimizerMinlpConfig.h
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_DefaultOptimizer.h
-#  ${CMAKE_CURRENT_SOURCE_DIR}/ibex_IpoptPreprocessing.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_LineSearch.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_LineSearch.h
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_Optimizer04Config.cpp
@@ -18,6 +17,7 @@ target_sources (ibex PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_OptimizerConfig.h
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_Optimizer.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_Optimizer.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/ibex_Pseudocosts.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_OptimMemory.h
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_UnconstrainedLocalSearch.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/ibex_UnconstrainedLocalSearch.h

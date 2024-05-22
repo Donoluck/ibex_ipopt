@@ -13,10 +13,9 @@
 
 #include "ibex_OptimizerConfig.h"
 #include "ibex_CovOptimData.h"
-//#include "ibex_ExtendedSystem.h"
 
 #include <utility>
-//#include "ibex_NormalizedSystem.h"
+
 namespace ibex {
 
 /**
@@ -144,8 +143,7 @@ public:
 	Status optimize(const char* cov_file, double obj_init_bound=POS_INFINITY);
 
   
-        /** IpoptPreprocessing; */
-  //         void  ipopt_preprocessing(System& sys, const System& normsys, const ExtendedSystem & extsys);
+
 	/* =========================== Output ============================= */
 
 	/**
@@ -420,7 +418,7 @@ protected:
         void init_pseudocosts(const Cell& c);
         void update_pseudocosts(const Cell& c, double ymin, double diam, int var, bool direction);
         void update_pseudocosts_score(int var);
-
+        void pseudocosts_initialization();
 	/*=======================================================================================================*/
 	/*                                Functions to manage the extended CSP                                   */
 	/*=======================================================================================================*/
@@ -487,15 +485,14 @@ protected:
 	CovOptimData* cov;
 
         /**  
-	 * \brief Check the solution returned by ipopt
-         * return its objective value if it is feasible 
+	 * \brief The data structure for storing the pseudocosts
 	 */
-    //        double check_ipopt_solution(LoupFinder& loup_finder, Vector& v);
-  std::vector<int> bisection_count_left;
-  std::vector<double> bisection_pseudocosts_left;
-  std::vector<int> bisection_count_right;
-  std::vector<double> bisection_pseudocosts_right;
-  std::vector<double> bisection_pseudocosts_score;
+
+        std::vector<int> bisection_count_left;
+        std::vector<double> bisection_pseudocosts_left;
+        std::vector<int> bisection_count_right;
+        std::vector<double> bisection_pseudocosts_right;
+        std::vector<double> bisection_pseudocosts_score;
  
 };
 

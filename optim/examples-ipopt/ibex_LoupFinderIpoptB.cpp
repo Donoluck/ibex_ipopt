@@ -1,12 +1,23 @@
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <stdio.h>
-#include "ibex_LoupFinderIpoptB.h"
-#include "ibex_DefaultOptimizerConfig.h"
-#include "ibex.h"
+//============================================================================
+//                                  I B E X
+// File        : ibex_LoupFinderIpoptB.cpp
+// Author      : Bertrand Neveu
+// Copyright   : IMT Atlantique (France)
+// License     : See the LICENSE file
+// Created     : Aug 03, 2023
+// Last update : Mar 07, 2024
+//============================================================================
 
-#include "ibex_NormalizedSystem.h"
+
+
+
+
+#include <stdio.h>
+#include <limits>
+#include "ibex_LoupFinderIpoptB.h"
+
+
+
 #include <cassert>
 
 using namespace Ipopt;
@@ -15,7 +26,8 @@ using namespace std;
 
 namespace ibex {
   double expansion_precisionB=1.e-6;
-
+  double ipopt_diam=1.e8;
+  
   LoupFinderIpoptB::LoupFinderIpoptB(const System& sys,const System& normsys, const ExtendedSystem& extsys) : sys(sys), normsys(normsys), extsys(extsys), solution(sys.nb_var), the_box(sys.box), ipopt_box(sys.box) {
 	try {
 		df = new Function(*sys.goal,Function::DIFF);
@@ -79,12 +91,17 @@ namespace ibex {
       double newloup=false;
       IntervalVector loup_point0=loup_point;
       if (recursive_call){
-	ipopt_calls++;
-	if(ipopt_calls%ipopt_frequency==0 || ipopt_calls==10 || ipopt_calls==20  || ipopt_calls==50 || force ){
+	ipopt_calls++;  // at first call, ipopt_calls=0
+	if (
+	    (!sys.minlp ||box.max_diam()<= ipopt_diam)
+	    &&
+	    (ipopt_calls%ipopt_frequency==0 || ipopt_calls==10 || ipopt_calls==20  || ipopt_calls==50 || (force && box.max_diam()<= ipopt_diam)
+	     //|| sys.minlp && all_integer_variables_fixed(box))
+	     )){
 	
 	  //	  cout << "nb_cells " <<  optimizer->get_nb_cells() << endl;
 	  ApplicationReturnStatus status = app->OptimizeTNLP(this);
-	  force=0;
+	  force=0;  // after call , force is reset to 0
 	  //	  cout << " status " << status << endl;
 	  //	  if (status == Solve_Succeeded) {
 	  //        	std::cout << std::endl << std::endl << "*** The problem solved!" << std::endl;
@@ -100,7 +117,7 @@ namespace ibex {
 		  { 
 		    loup_point0=solution;
 		    if (optimizer->trace) 
-		    cout << "*** ipopt      " ;
+		      cout << "*** ipopt      " ;
 		  }
 
 	    if (sys.get_integer_variables()->size() < sys.nb_var){
@@ -130,8 +147,17 @@ namespace ibex {
 
 }
 
-
-
+  bool  LoupFinderIpoptB::all_integer_variables_fixed(const IntervalVector & box)
+  { 
+    BitSet& b = *(sys.get_integer_variables());
+    for (int i=0; i< box.size(); i++)
+      {if (b[i] && box[i].lb() != box[i].ub())
+	  return false;
+      }
+    cout << "all integer fixed" << endl;
+    return true;
+  }
+      
     bool LoupFinderIpoptB::get_nlp_info(int& n, int& m, int& nnz_jac_g,
 					int& nnz_h_lag, IndexStyleEnum& index_style)
     {
@@ -483,7 +509,7 @@ namespace ibex {
       recursive_call=false;
       IntervalVector box = sys.box;
       double eps=expansion_precisionB;
-      //      if (sys.minlp) eps=0.01;
+
       IntervalVector boxsol(v.size());
       for ( int i=0; i< v.size() ; i++){
 	double epsi = eps;
@@ -499,7 +525,7 @@ namespace ibex {
       opt.set_uplo(optimizer->get_uplo());
       opt.set_loup(optimizer->get_loup());
       opt.timeout=1;
-      //      cout << " boxsol " << boxsol << endl;
+      //  cout << " boxsol " << boxsol << endl;
       opt.optimize(boxsol);
       recursive_call=true;
       correction_nodes+=opt.get_nb_cells();

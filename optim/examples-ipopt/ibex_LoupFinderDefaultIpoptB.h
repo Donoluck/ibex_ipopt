@@ -14,6 +14,11 @@
 #include "ibex_LoupFinderIpoptB.h"
 #include "ibex_System.h"
 #include "ibex_LoupFinderXTaylor.h"
+#include "ibex_LoupFinderProbing.h"
+#include "ibex_LoupFinderIpopt.h"
+#include "ibex_LoupFinderInHC4.h"
+#include "ibex_LoupFinderFwdBwd.h"
+
 
 namespace ibex {
 
@@ -49,7 +54,7 @@ public:
 	 *                2/ generates symbolically components of the main function (heavy)
 	 *
 	 */
-  LoupFinderDefaultIpoptB( System& sys, const System& normsys, const ExtendedSystem& extsys, bool inHC4=true, bool integeroblective=false);
+  LoupFinderDefaultIpoptB( System& sys, const System& normsys, const ExtendedSystem& extsys, bool inHC4=true, bool xtaylor=true, bool integerobjective=false);
 
 	/**
 	 * \brief Delete this.
@@ -99,7 +104,7 @@ public:
         System& sys;
         const System& normsys;
         const ExtendedSystem& extsys;
-
+        bool xtaylor = true;
 };
 
 inline std::pair<IntervalVector, double> LoupFinderDefaultIpoptB::find(const IntervalVector& box, const IntervalVector& loup_point, double loup) {

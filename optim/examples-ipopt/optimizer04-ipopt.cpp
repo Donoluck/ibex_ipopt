@@ -191,8 +191,8 @@ int main(int argc, char** argv){
 	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),true,prec,true);
 	else if (bisection== "minlplargestfirstnoobj")
 	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,prec);
-
-
+	else if (bisection== "minlplargestfirstpseudocostnoobj")
+	  bs= new MinlpLargestFirst(ext_sys,ext_sys.goal_var(),false,prec,true);
 	else if (bisection=="smearsum") 
 	  bs = new SmearSum(ext_sys,prec,*bs1,true);
 	else if (bisection== "smearsumnoobj")
@@ -212,7 +212,7 @@ int main(int argc, char** argv){
 	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,true,true);
 	else if (bisection=="minlpsmearsumrelnoobj")
 	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,false);
-	else if (bisection=="minlpsmearsumrelnoobjpseudocost")
+	else if (bisection=="minlpsmearsumrelpseudocostnoobj")
 	  bs = new MinlpSmearSumRelative(ext_sys,prec,*bs1,false,true);
 	else if (bisection=="minlpsmearsum")
           bs = new MinlpSmearSum(ext_sys,prec,*bs1,true);
@@ -253,8 +253,8 @@ int main(int argc, char** argv){
 	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcCompo hc4integ (integ, hc4, integ);
 	// hc4 inside acid and 3bcid : incremental propagation beginning with the shaved variable
-	CtcHC4 hc44cid(ext_sys.ctrs,0.1,true);
-	//	CtcHC4 hc44cid(ext_sys.ctrs,0.01,true);
+	 CtcHC4 hc44cid(ext_sys.ctrs,0.1,true);
+	//CtcHC4 hc44cid(ext_sys.ctrs,0.01,true);
 	// hc4 inside xnewton loop 
 	CtcHC4 hc44xn (ext_sys.ctrs,0.01,false);
 
@@ -392,9 +392,9 @@ int main(int argc, char** argv){
 	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel" || bisection=="lsmearmg" ||bisection =="minlpsmearsumrel" ||bisection =="minlpsmearsum" || bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection =="minlpsmearsumnoobj" || bisection == "minlpsmearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj" || bisection =="minlpsmearsumpseudocost" ||  bisection =="minlpsmearsumpseudocostnoobj" ||  bisection =="minlpsmearsumrelpseudocost" ||  bisection =="minlpsmearsumrelpseudocostnoobj" )
 
 	  delete bs1;
-	
-	//	delete loupfinder;  // error with this delete in case of ipoptxninhc4
 
+	if (!(loupfindermethod == "ipoptxn" || loupfindermethod =="ipoptxninhc4" || loupfindermethod =="ipoptprob" )) // error with this delete with ipopt in ~TNLPAdapter 
+	  delete loupfinder;  
 	delete buffer;
 	if (linearrelaxation=="compo" || linearrelaxation=="art"|| linearrelaxation=="xn" || linearrelaxation=="xnart") {
 		delete lr;
