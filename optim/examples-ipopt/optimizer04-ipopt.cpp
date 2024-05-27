@@ -112,9 +112,23 @@ int main(int argc, char** argv){
 	//	if (sys->minlp)	cout << " integer variables " << *(sys->get_integer_variables()) << endl;
 
 	ExtendedSystem ext_sys(*sys,tolerance,true);
-	NormalizedSystem norm_sys(*sys,tolerance,true);
+	
+	NormalizedSystem * norm_sys;
+        int leq=0;
+	for (int j=0; j < sys->nb_ctr; j++){
+	  if (sys->ops[j] == LEQ)
+	    leq++;
+	}
+	//	if (leq==sys->nb_ctr)  cout << "only leq " << endl;
+	if (leq==sys->nb_ctr)
+	  norm_sys=(NormalizedSystem*)sys;
+	else
+	  norm_sys= new NormalizedSystem (*sys,tolerance,true);
+	sys->tolerance=tolerance;
+	
+	//	NormalizedSystem norm_sys(*sys,tolerance,true);
 
-	//	sys->tolerance=tolerance;
+
 
 	//	cout << *sys << endl;
 	
@@ -125,19 +139,19 @@ int main(int argc, char** argv){
 
 	LoupFinder* loupfinder;
 	if (loupfindermethod=="ipoptxninhc4")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,true,true,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,true,true,integerobjective);
 	else if (loupfindermethod=="ipoptxn")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,false,true,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,false,true,integerobjective);
 	else if (loupfindermethod=="ipoptprob")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,false,false,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,false,false,integerobjective);
 	else if (loupfindermethod=="xninhc4")
-	  loupfinder = new LoupFinderDefault (norm_sys,true,integerobjective);
+	  loupfinder = new LoupFinderDefault (*norm_sys,true,integerobjective);
 	else if (loupfindermethod=="xn")
-	  loupfinder = new LoupFinderDefault (norm_sys,false,integerobjective);
+	  loupfinder = new LoupFinderDefault (*norm_sys,false,integerobjective);
 	else if (loupfindermethod=="prob")
-	  loupfinder = new LoupFinderProbing (norm_sys);
+	  loupfinder = new LoupFinderProbing (*norm_sys);
 	else if (loupfindermethod=="inhc4")
-	  loupfinder = new LoupFinderInHC4 (norm_sys);
+	  loupfinder = new LoupFinderInHC4 (*norm_sys);
 	else
 	  {cout << loupfindermethod <<  " is not an implemented  feasible point finding method "  << endl; return -1;}
 
@@ -337,7 +351,7 @@ int main(int argc, char** argv){
 	    //&& loupfindermethod != "ipoptxninhc4" && loupfindermethod != "ipoptxn" ){  
 	    )
 	  {
-	  Ctc* ctckkt = new CtcKuhnTucker(norm_sys, true);
+	  Ctc* ctckkt = new CtcKuhnTucker(*norm_sys, true);
 	  ctcxn = new CtcCompo (*ctcxn , *ctckkt, integ);
 	  }
 
@@ -353,7 +367,7 @@ int main(int argc, char** argv){
 	//integer objective
 	loupfinder->integerobj=integerobjective;
 	o.integerobj=integerobjective;
-
+	 o.polytope_hull=cxn_poly;
 	// ipopt preprocessing
 
 	if (loupfindermethod=="ipoptxninhc4" || loupfindermethod=="ipoptxn" ||loupfindermethod=="ipoptprob" ){

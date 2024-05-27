@@ -64,10 +64,11 @@ namespace ibex {
     const IntervalVector& box=c.box;
     double max_pseudo_cost=0.0;
     double integer_epsilon=1.e-4;
+    //    cout << " relax_sol " << c.relax_sol << endl;
     BitSet& b= *(sys.get_integer_variables());
     for (int i =0; i< box.size()-1; i++){
       if (b[i]
-	  
+	  	  
 	  	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
 		      ( c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
 	    &&
@@ -81,7 +82,7 @@ namespace ibex {
 	  var=i;}
     }
     if (var==c.bisected_var) var=-1;
-    cout << "pseudo cost var " << var << endl;
+    //    cout << "pseudo cost var " << var << endl;
     return var;
    }
   

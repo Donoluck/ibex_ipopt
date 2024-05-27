@@ -219,9 +219,11 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	    c.box[goal_var]=integer( c.box[goal_var]);
 	    if (c.box[goal_var].is_empty()) {delete&c ; return;}
 	  }
+	  
 	  if (polytope_hull)
 	    for (int i=0;i<c.box.size();i++)
 	      c.relax_sol[i]=polytope_hull->relax_sol[i];
+	  
 	  buffer.push(&c);
        }
   }
@@ -297,9 +299,9 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	// - the extended box has no bisectable domains (if prec=0 or <1 ulp)
 	if (((tmp_box.diam().max()-eps_x.max())<0 && y.diam() <=abs_eps_f)
 	    || (!c.box.is_bisectable())) {
-	  cout << tmp_box.max_diam() <<  " eps_x.max() " << eps_x.max() << endl;
-	  cout << "  box  " << c.box << endl;
-	  cout << " is_bisectable : " << c.box.is_bisectable() << endl;
+	  //	  cout << tmp_box.max_diam() <<  " eps_x.max() " << eps_x.max() << endl;
+	  //	  cout << "  box  " << c.box << endl;
+	  //	  cout << " is_bisectable : " << c.box.is_bisectable() << endl;
 	  if (tmp_box.diam().max()>0) // there is an eps box only if max diam is positive
 	    update_uplo_of_epsboxes(y.lb());
 	  c.box.set_empty();
