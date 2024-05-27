@@ -34,10 +34,11 @@ void Bsc::add_property(const IntervalVector& init_box, BoxProperties& map) {
 
 }
   
-  void Bsc::set_pseudo_costs(std::vector<double>* pseudocosts){
+void Bsc::set_pseudo_costs(std::vector<double>* pseudocosts){
     pseudo_costs=pseudocosts;
-  }
-  
+}
+
+ 
 pair<IntervalVector,IntervalVector> Bsc::bisect(const IntervalVector& box) {
 	Cell cell(box);
 	pair<Cell*,Cell*> p=bisect(cell);

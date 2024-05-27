@@ -101,6 +101,8 @@ public:
 	 * Cell depth (0 if root node).
 	 */
 	unsigned int depth;
+
+        Vector relax_sol;
 };
 
 /**

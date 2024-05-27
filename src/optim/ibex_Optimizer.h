@@ -13,6 +13,7 @@
 
 #include "ibex_OptimizerConfig.h"
 #include "ibex_CovOptimData.h"
+#include "ibex_CtcPolytopeHull.h"
 
 #include <utility>
 
@@ -334,10 +335,8 @@ public:
 	 */
         bool integerobj=false;
 
-  /*
-        double preprocampltime=0.0;   // time due to ampl in preprocessing
-        double preprocipopttime=0.0; //  time due to ipopt in preprocessing
-  */
+  
+        CtcPolytopeHull* polytope_hull= nullptr;
   
 protected:
         /** \brief Initialize the optimizer from a single box.
@@ -493,7 +492,8 @@ protected:
         std::vector<int> bisection_count_right;
         std::vector<double> bisection_pseudocosts_right;
         std::vector<double> bisection_pseudocosts_score;
- 
+
+
 };
 
 inline Optimizer::Status Optimizer::get_status() const { return status; }

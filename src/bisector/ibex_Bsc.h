@@ -125,11 +125,16 @@ public:
          * \brief  set the pseudocosts pointer (called by Optimizer)
 	 */
         void set_pseudo_costs(std::vector<double>* pseudocosts);
+
+
+
+
         
 protected:
   /** The pseudocosts used by MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
   */
         std::vector<double>* pseudo_costs=nullptr;
+
 
 
 private:

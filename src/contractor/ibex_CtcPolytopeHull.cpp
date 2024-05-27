@@ -26,7 +26,7 @@ CtcPolytopeHull::CtcPolytopeHull(Linearizer& lr, int max_iter, int time_out, dou
 		Ctc(lr.nb_var()), lr(lr),
 		mylinearsolver(nb_var, LPSolver::Mode::Certified, eps, time_out, max_iter),
 		contracted_vars(BitSet::all(nb_var)), own_lr(false), primal_sols(2*nb_var, nb_var),
-		primal_sol_found(2*nb_var) {
+		primal_sol_found(2*nb_var),relax_sol(nb_var) {
 
 }
 
@@ -34,7 +34,7 @@ CtcPolytopeHull::CtcPolytopeHull(const Matrix& A, const Vector& b, int max_iter,
 		Ctc(A.nb_cols()), lr(*new LinearizerFixed(A,b)),
 		mylinearsolver(nb_var, LPSolver::Mode::Certified, eps, time_out, max_iter),
 		contracted_vars(BitSet::all(nb_var)), own_lr(true), primal_sols(2*nb_var, nb_var),
-		primal_sol_found(2*nb_var) {
+		primal_sol_found(2*nb_var),relax_sol(nb_var) {
 
 }
 
@@ -79,7 +79,15 @@ void CtcPolytopeHull::contract(IntervalVector& box, ContractContext& context) {
 	}
 
 	context.prop.update(BoxEvent(box,BoxEvent::CONTRACT));
-
+	try {
+	  //  cout << " relax point " << arg_min(box.size()-1,1) << endl;
+	for(int i=0;i<nb_var;i++)
+	  relax_sol[i]=arg_min(box.size()-1,1)[i];
+	} 
+	catch (Exception& e){
+	  //	  cout << " no relax point " << endl;
+	  relax_sol[nb_var-1]=DBL_MAX;
+	}
 }
 
 void CtcPolytopeHull::set_contracted_vars(const BitSet& vars) {

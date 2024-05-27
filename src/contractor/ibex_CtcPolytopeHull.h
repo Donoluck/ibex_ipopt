@@ -107,6 +107,8 @@ public:
 	 */
 	const Vector& arg_min(int i, bool left);
 
+        Vector relax_sol;
+  
 protected:
 
 	/**
@@ -134,6 +136,8 @@ protected:
 	 */
 	BitSet contracted_vars;
 
+  
+
 private:
 	bool own_lr; // for memory cleanup
 
@@ -149,6 +153,8 @@ private:
 	 *  solution has been found.
 	 */
 	BitSet primal_sol_found;
+
+
 };
 
 /*================================== inline implementations ========================================*/
