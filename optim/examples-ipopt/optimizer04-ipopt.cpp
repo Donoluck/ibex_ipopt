@@ -112,23 +112,9 @@ int main(int argc, char** argv){
 	//	if (sys->minlp)	cout << " integer variables " << *(sys->get_integer_variables()) << endl;
 
 	ExtendedSystem ext_sys(*sys,tolerance,true);
-	
-	NormalizedSystem * norm_sys;
-        int leq=0;
-	for (int j=0; j < sys->nb_ctr; j++){
-	  if (sys->ops[j] == LEQ)
-	    leq++;
-	}
-	//	if (leq==sys->nb_ctr)  cout << "only leq " << endl;
-	if (leq==sys->nb_ctr)
-	  norm_sys=(NormalizedSystem*)sys;
-	else
-	  norm_sys= new NormalizedSystem (*sys,tolerance,true);
-	sys->tolerance=tolerance;
-	
-	//	NormalizedSystem norm_sys(*sys,tolerance,true);
+	NormalizedSystem norm_sys(*sys,tolerance,true);
 
-
+	//	sys->tolerance=tolerance;
 
 	//	cout << *sys << endl;
 	
@@ -139,19 +125,19 @@ int main(int argc, char** argv){
 
 	LoupFinder* loupfinder;
 	if (loupfindermethod=="ipoptxninhc4")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,true,true,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,true,true,integerobjective);
 	else if (loupfindermethod=="ipoptxn")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,false,true,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,false,true,integerobjective);
 	else if (loupfindermethod=="ipoptprob")
-	  loupfinder = new LoupFinderDefaultIpoptB (*sys,*norm_sys,ext_sys,false,false,integerobjective);
+	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,false,false,integerobjective);
 	else if (loupfindermethod=="xninhc4")
-	  loupfinder = new LoupFinderDefault (*norm_sys,true,integerobjective);
+	  loupfinder = new LoupFinderDefault (norm_sys,true,integerobjective);
 	else if (loupfindermethod=="xn")
-	  loupfinder = new LoupFinderDefault (*norm_sys,false,integerobjective);
+	  loupfinder = new LoupFinderDefault (norm_sys,false,integerobjective);
 	else if (loupfindermethod=="prob")
-	  loupfinder = new LoupFinderProbing (*norm_sys);
+	  loupfinder = new LoupFinderProbing (norm_sys);
 	else if (loupfindermethod=="inhc4")
-	  loupfinder = new LoupFinderInHC4 (*norm_sys);
+	  loupfinder = new LoupFinderInHC4 (norm_sys);
 	else
 	  {cout << loupfindermethod <<  " is not an implemented  feasible point finding method "  << endl; return -1;}
 
@@ -267,8 +253,8 @@ int main(int argc, char** argv){
 	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcCompo hc4integ (integ, hc4, integ);
 	// hc4 inside acid and 3bcid : incremental propagation beginning with the shaved variable
-	 CtcHC4 hc44cid(ext_sys.ctrs,0.1,true);
-	//CtcHC4 hc44cid(ext_sys.ctrs,0.01,true);
+	CtcHC4 hc44cid(ext_sys.ctrs,0.1,true);
+	//	CtcHC4 hc44cid(ext_sys.ctrs,0.01,true);
 	// hc4 inside xnewton loop 
 	CtcHC4 hc44xn (ext_sys.ctrs,0.01,false);
 
@@ -351,7 +337,7 @@ int main(int argc, char** argv){
 	    //&& loupfindermethod != "ipoptxninhc4" && loupfindermethod != "ipoptxn" ){  
 	    )
 	  {
-	  Ctc* ctckkt = new CtcKuhnTucker(*norm_sys, true);
+	  Ctc* ctckkt = new CtcKuhnTucker(norm_sys, true);
 	  ctcxn = new CtcCompo (*ctcxn , *ctckkt, integ);
 	  }
 
@@ -367,7 +353,7 @@ int main(int argc, char** argv){
 	//integer objective
 	loupfinder->integerobj=integerobjective;
 	o.integerobj=integerobjective;
-	 o.polytope_hull=cxn_poly;
+	o.polytope_hull=cxn_poly;
 	// ipopt preprocessing
 
 	if (loupfindermethod=="ipoptxninhc4" || loupfindermethod=="ipoptxn" ||loupfindermethod=="ipoptprob" ){
@@ -406,9 +392,9 @@ int main(int argc, char** argv){
 	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel" || bisection=="lsmearmg" ||bisection =="minlpsmearsumrel" ||bisection =="minlpsmearsum" || bisection=="lsmearnoobj" || bisection=="smearsumnoobj" || bisection=="smearmaxnoobj" || bisection=="smearsumrelnoobj" || bisection =="minlpsmearsumnoobj" || bisection == "minlpsmearsumrelnoobj" || bisection=="smearmaxrelnoobj" || bisection=="lsmearmgnoobj" || bisection =="minlpsmearsumpseudocost" ||  bisection =="minlpsmearsumpseudocostnoobj" ||  bisection =="minlpsmearsumrelpseudocost" ||  bisection =="minlpsmearsumrelpseudocostnoobj" )
 
 	  delete bs1;
+	
+	//	delete loupfinder;  // error with this delete in case of ipoptxninhc4
 
-	if (!(loupfindermethod == "ipoptxn" || loupfindermethod =="ipoptxninhc4" || loupfindermethod =="ipoptprob" )) // error with this delete with ipopt in ~TNLPAdapter 
-	  delete loupfinder;  
 	delete buffer;
 	if (linearrelaxation=="compo" || linearrelaxation=="art"|| linearrelaxation=="xn" || linearrelaxation=="xnart") {
 		delete lr;
