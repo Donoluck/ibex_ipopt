@@ -52,7 +52,7 @@ public:
 	 *
 	 * called by Bsc::bisect(...)
 	 */
-  int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const;
+  int var_to_bisect(IntervalMatrix& J, const Cell& cell) const;
 
 	  
 };

@@ -110,11 +110,12 @@ MinlpLSmear::~MinlpLSmear() {
 }
 
 
-int MinlpLSmear::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
+int MinlpLSmear::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
+  const IntervalVector & box=cell.box;
   int lvar = -1;
     BitSet& b= *(sys.get_integer_variables());
 	if (box.is_unbounded()) {
-		return MinlpSmearSumRelative::var_to_bisect(J, box);
+		return MinlpSmearSumRelative::var_to_bisect(J, cell);
 	}
 	//Linearization
 	LPSolver::Status stat = LPSolver::Status::Unknown;
@@ -196,7 +197,7 @@ int MinlpLSmear::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) con
 	}
 	if (lvar==-1) {
 	  //	  std::cout << "ssr " << std::endl;
-	  lvar=MinlpSmearSumRelative::var_to_bisect(J, box);
+	  lvar=MinlpSmearSumRelative::var_to_bisect(J, cell);
 	}
 	//	std::cout << "lsmear " << lvar << std::endl;
 	return lvar;

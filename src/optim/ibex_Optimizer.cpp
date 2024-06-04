@@ -219,7 +219,6 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	    c.box[goal_var]=integer( c.box[goal_var]);
 	    if (c.box[goal_var].is_empty()) {delete&c ; return;}
 	  }
-	  
 	  if (polytope_hull)
 	    for (int i=0;i<c.box.size();i++)
 	      c.relax_sol[i]=polytope_hull->relax_sol[i];

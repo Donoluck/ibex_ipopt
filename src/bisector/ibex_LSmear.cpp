@@ -110,11 +110,12 @@ LSmear::~LSmear() {
 }
 
 
-int LSmear::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
+int LSmear::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
+  const IntervalVector& box=cell.box;
   int lvar = -1;
 
 	if (box.is_unbounded()) {
-		return SmearSumRelative::var_to_bisect(J, box);
+		return SmearSumRelative::var_to_bisect(J, cell);
 	}
 	//Linearization
 	LPSolver::Status stat = LPSolver::Status::Unknown;
@@ -164,7 +165,7 @@ int LSmear::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
 	}
 	if (lvar==-1) {
 	  //	  std::cout << "ssr " << std::endl;
-	  lvar=SmearSumRelative::var_to_bisect(J, box);
+	  lvar=SmearSumRelative::var_to_bisect(J, cell);
 	}
 	//	std::cout << "lsmear " << lvar << std::endl;
 	return lvar;

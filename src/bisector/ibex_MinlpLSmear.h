@@ -69,7 +69,7 @@ public :
 	/**
 	 * \brief Returns the variable to bisect.
 	 */
-	virtual int var_to_bisect(IntervalMatrix& J,const IntervalVector& box) const;
+	virtual int var_to_bisect(IntervalMatrix& J,const Cell& cell) const;
 
 	/**
 	 * \brief Computes the dual solution of the linear program mid(J).x<=0

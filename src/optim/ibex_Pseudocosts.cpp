@@ -80,7 +80,7 @@ see Achterberg thesis
 2 a weighted sum (1/6; 5/6) for max and min left and right pseudocosts
 3 the average of left and right pseudocost
   */
-  
+
   void Optimizer::update_pseudocosts_score(int var){
   	if (var  != -1){
 	  double epsilon=1.e-6;
@@ -91,7 +91,7 @@ see Achterberg thesis
   }
  
  
-  /*
+  /*  
   
 void Optimizer::update_pseudocosts_score(int var){
   	if (var  != -1){
@@ -102,7 +102,7 @@ void Optimizer::update_pseudocosts_score(int var){
 	    }
 }
   
-  
+
   
 void Optimizer::update_pseudocosts_score(int var){
        if (var  != -1 && bisection_count_right[var]+bisection_count_left[var] >0)
@@ -111,5 +111,5 @@ void Optimizer::update_pseudocosts_score(int var){
 	    +bisection_pseudocosts_left[var]*bisection_count_left[var])/
 	   (bisection_count_right[var]+bisection_count_left[var]);
 }
-  */
+  */  
 }

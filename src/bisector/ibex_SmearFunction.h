@@ -74,7 +74,7 @@ public:
 	 *
 	 * \param J the jacobian matrix J
 	 */
-	virtual int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const=0;
+	virtual int var_to_bisect(IntervalMatrix& J, const Cell& cell) const=0;
 
 	/**
 	 * \brief Add backtrackable data 
@@ -142,7 +142,7 @@ public :
 	 *
 	 * \param J the jacobian matrix J
 	 */
-	int var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const;
+	int var_to_bisect(IntervalMatrix& J, const Cell& cell) const;
 };
 
 
@@ -186,7 +186,7 @@ public :
 	 *
 	 * \param J the jacobian matrix J
 	 */
-	int var_to_bisect(IntervalMatrix& J, const IntervalVector& box ) const;
+	int var_to_bisect(IntervalMatrix& J, const Cell& cell ) const;
 };
 
 
@@ -229,7 +229,7 @@ public :
 	 *
 	 * \param J the jacobian matrix J
 	 */
-	int var_to_bisect(IntervalMatrix & J, const IntervalVector& box ) const;
+	int var_to_bisect(IntervalMatrix & J, const Cell& cell ) const;
 
 };
 
@@ -262,7 +262,7 @@ public :
 	 * Returns the variable to bisect : the variable i with the greatest normalized  impact over the constraints fj :  Dfj/Dxi * Diam (xi) / NC(fj) , where NC(fj) = sum(i) Abs(Dfj/Dxi) * Diam(xi)
 	 * \param J the jacobian matrix J
 	 */
-	int var_to_bisect(IntervalMatrix & J, const IntervalVector& box ) const;
+	int var_to_bisect(IntervalMatrix & J, const Cell& cell ) const;
 };
 
 

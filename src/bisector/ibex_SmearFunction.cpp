@@ -64,24 +64,23 @@ namespace ibex {
     const IntervalVector& box=c.box;
     double max_pseudo_cost=0.0;
     double integer_epsilon=1.e-4;
-    //    cout << " relax_sol " << c.relax_sol << endl;
     BitSet& b= *(sys.get_integer_variables());
     for (int i =0; i< box.size()-1; i++){
       if (b[i]
-	  	  
+	  
 	  	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
 		      ( c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
 	    &&
 			std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_epsilon)
 		   )
-	  
+	  && (i!= c.bisected_var)
 	  &&
 	  
 	  (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
 	  max_pseudo_cost=(*pseudo_costs)[i];
 	  var=i;}
     }
-    if (var==c.bisected_var) var=-1;
+    //  if (var==c.bisected_var) var=-1;
     //    cout << "pseudo cost var " << var << endl;
     return var;
    }
@@ -108,7 +107,7 @@ namespace ibex {
 	}
       }
     
-      var = var_to_bisect (J,box);
+      var = var_to_bisect (J,cell);
     }	
     // in case of selected var with infinite domain, change to largestfirst bisection
     if (var == -1 || !(box[var].is_bisectable()))
@@ -122,7 +121,8 @@ namespace ibex {
 
 
   // computes the variable with the greatest maximal impact
-  int SmearMax::var_to_bisect (IntervalMatrix& J, const IntervalVector& box) const {
+  int SmearMax::var_to_bisect (IntervalMatrix& J, const Cell& cell) const {
+    const IntervalVector& box=cell.box;
 	double max_magn = NEG_INFINITY;
 	int var=-1;
 	for (int j=0; j<nbvars; j++) {
@@ -140,7 +140,8 @@ namespace ibex {
   }
 
   // computes the variable with the greatest  sum of impacts
-  int SmearSum::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
+  int SmearSum::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
+    const IntervalVector& box=cell.box;
     double max_magn = NEG_INFINITY;
     int var = -1;
     for (int j=0; j<nbvars; j++) {
@@ -159,7 +160,8 @@ namespace ibex {
     return var;
   }
   
-  int SmearSumRelative::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
+  int SmearSumRelative::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
+    const IntervalVector& box=cell.box;
     double max_magn = NEG_INFINITY;
     int var = -1;
     // the normalizing factor per constraint
@@ -194,8 +196,8 @@ namespace ibex {
     return var;
   }
 
-  int SmearMaxRelative::var_to_bisect(IntervalMatrix& J, const IntervalVector& box) const {
-
+  int SmearMaxRelative::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
+    const IntervalVector& box=cell.box;
     double max_magn = NEG_INFINITY;
     int var = -1;
 
