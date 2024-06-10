@@ -59,37 +59,14 @@ namespace ibex {
     else return true;
   }
   
-   int SmearFunction::pseudocost_int_var_to_bisect  (const Cell & c) const{
-    int var=-1;
-    const IntervalVector& box=c.box;
-    double max_pseudo_cost=0.0;
-    double integer_epsilon=1.e-4;
-    BitSet& b= *(sys.get_integer_variables());
-    for (int i =0; i< box.size()-1; i++){
-      if (b[i]
-	  
-	  	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
-		      ( c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
-	    &&
-			std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_epsilon)
-		   )
-	  && (i!= c.bisected_var)
-	  &&
-	  
-	  (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
-	  max_pseudo_cost=(*pseudo_costs)[i];
-	  var=i;}
-    }
-    //  if (var==c.bisected_var) var=-1;
-    //    cout << "pseudo cost var " << var << endl;
-    return var;
-   }
+  
   
   BisectionPoint SmearFunction::choose_var(const Cell& cell) {
     int var=-1;
     const IntervalVector& box=cell.box;
+    const  BitSet& b= *(sys.get_integer_variables());
     if (pseudocost)
-      var= pseudocost_int_var_to_bisect (cell);
+      var= pseudocost_int_var_to_bisect (cell,b );
     if (var==-1){
 	    
       IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);

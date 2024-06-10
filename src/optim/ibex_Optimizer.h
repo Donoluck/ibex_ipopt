@@ -361,7 +361,7 @@ protected:
 	 * </ul>
 	 *
 	 */
-  void handle_cell(Cell& c, bool direction);
+        void handle_cell(Cell& c, bool direction);
 
 	/**
 	 * \brief Contract and bound procedure for processing a box.
@@ -374,7 +374,7 @@ protected:
 	 * </ul>
 	 *
 	 */
-  void contract_and_bound(Cell& c, bool direction);
+        void contract_and_bound(Cell& c, bool direction);
 
 	/**
 	 * \brief Contract : call the contractor 
@@ -414,6 +414,14 @@ protected:
 	 * \brief Check time is not out.
 	 */
 	void time_limit_check();
+
+        /* =======================================================================================================*/
+        /*                         Pseudocosts functions implemented in ibex_Pseudocosts.cpp                        */
+        /* =======================================================================================================*/
+  
+  
+  
+        double compute_diam_for_pseudocost(const Cell& c, bool direction);
         void init_pseudocosts(const Cell& c);
         void update_pseudocosts(const Cell& c, double ymin, double diam, int var, bool direction);
         void update_pseudocosts_score(int var);

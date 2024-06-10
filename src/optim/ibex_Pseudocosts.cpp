@@ -17,6 +17,34 @@ using namespace std;
 
 namespace ibex {
 
+  /* using the relaxation solution for computing the diameter of the current bisected var 
+(cf formula in Achterberg thesis  
+when the relaxation called (polytope_hull is not nullptr) on the previous box before bisection was successfull (diff of DBL_MAX) and the current diameter is < 1 ; indeed this formulation is not valid for integer variables with current domain greater than 1.
+)
+This diameter is only used for pseudocosts updating (next function) , and for integer variables : the condition 
+[c.bisected_var] is integer
+is not tested here (it is not known by Optimizer) 
+direction =1 ; left box, direction=0 : right box
+   */
+
+  double Optimizer:: compute_diam_for_pseudocost(const Cell& c, bool direction){
+    double integer_epsilon=1.e-4;
+    double diam=1;
+    if (c.box[c.bisected_var] != 1){
+      diam=c.box[c.bisected_var].diam();
+      if (diam<1 && polytope_hull && c.relax_sol[c.box.size()-1] != DBL_MAX ){
+	if (direction==1){
+	  diam=c.relax_sol[c.bisected_var] - std::floor(c.relax_sol[c.bisected_var]);}
+	else{
+	  diam=std::ceil (c.relax_sol[c.bisected_var]) - c.relax_sol[c.bisected_var];
+	}
+      }
+      
+      if (diam < integer_epsilon) diam=integer_epsilon;
+    }
+    return diam;
+  }
+
   void Optimizer::update_pseudocosts(const Cell& c, double ymin, double diam, int var,bool direction){
     double gain =c.box[goal_var].lb()-ymin;
     double pseudocost=gain/diam;
@@ -39,7 +67,7 @@ namespace ibex {
   }
 
 
-  /* initilization of pseudo costs by computing the effects of all variables;
+  /* initialization of pseudo costs by computing the effects of all variables;
   does not seem to improve : this function is not called 
   */
   

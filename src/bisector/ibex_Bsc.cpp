@@ -38,6 +38,28 @@ void Bsc::set_pseudo_costs(std::vector<double>* pseudocosts){
     pseudo_costs=pseudocosts;
 }
 
+  int Bsc::pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const{
+    int var=-1;
+    const IntervalVector& box=c.box;
+    double max_pseudo_cost=0.0;
+    double integer_epsilon=1.e-4;
+    for (int i =0; i< box.size()-1; i++){
+      if (b[i]
+	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
+	      (c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
+	       &&
+	       std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_epsilon)
+	      )
+	  && (i!= c.bisected_var)
+	  && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)
+	  ){
+	max_pseudo_cost=(*pseudo_costs)[i];
+	var=i;}
+    }
+    //  if (var==c.bisected_var) var=-1;
+    //    cout << "pseudo cost var " << var << endl;
+    return var;
+   }
  
 pair<IntervalVector,IntervalVector> Bsc::bisect(const IntervalVector& box) {
 	Cell cell(box);
@@ -48,4 +70,6 @@ pair<IntervalVector,IntervalVector> Bsc::bisect(const IntervalVector& box) {
 	return boxes;
 }
 
+
+  
 } // end namespace ibex

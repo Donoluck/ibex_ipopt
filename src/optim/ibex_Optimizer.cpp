@@ -233,10 +233,8 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 
 	Interval& y=c.box[goal_var];
 	double ymin=y.lb();
-        double diam=0;
-	if (c.bisected_var !=-1)
-	  diam=c.box[c.bisected_var].diam();
-	if (diam==0) diam=1;
+        double diam= compute_diam_for_pseudocost(c,direction);   // for pseudocost
+	
 	//	cout << " box before contract " << c.box << endl;
 	double ymax;
 	if (loup==POS_INFINITY) ymax = POS_INFINITY;
@@ -486,7 +484,7 @@ Optimizer::Status Optimizer::optimize() {
 	timer.start();
 
 	update_uplo();
-	/*   doesnot work : init_pseudocosts doesnot improve the solving"
+	/*   does not work : init_pseudocosts does not improve the solving"
         if (!buffer.empty())
 	  init_pseudocosts(*(buffer.top()));
 	*/

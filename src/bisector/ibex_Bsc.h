@@ -12,7 +12,7 @@
 #define __IBEX_BISECTOR_H__
 
 #include "ibex_Cell.h"
-
+#include "ibex_BitSet.h"
 #include <utility>
 
 namespace ibex {
@@ -127,16 +127,21 @@ public:
         void set_pseudo_costs(std::vector<double>* pseudocosts);
 
 
-
-
-        
+         
 protected:
-  /** The pseudocosts used by MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
-  */
-        std::vector<double>* pseudo_costs=nullptr;
+       /** The pseudocosts used by MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
+       */
+       std::vector<double>* pseudo_costs=nullptr;
 
+      /*  Finding the variable with maximal pseudocost  (called by MinlpSmearSum, MinlpSmearSumRelative and MinlpLargestFirst) with a non integer current relaxation if this relaxation was successfull 
+       and not the current bisected variable.
+      */
+      int pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const;
 
+     /* Boolean indicating if one uses the pseudocost */
+      bool pseudocost=false;
 
+	  
 private:
 	/*
 	 * The precision values

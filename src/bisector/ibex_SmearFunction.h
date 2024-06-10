@@ -94,9 +94,8 @@ protected :
 	bool constraint_to_consider(int i, const IntervalVector & box) const;
 	bool goal_to_consider( const IntervalMatrix& J, int i) const;
         bool goal_to_bisect;
-        bool pseudocost=false; // boolean indicating if pesudocosts are taken into account for bisection
-  // return the integer variable with maximal pseudocost (for MinlpSmearSum and MinlpSmearSumRelative if 
-        int pseudocost_int_var_to_bisect  (const Cell & c) const;
+
+    
  private :
         bool lftodelete; // = true means that  default bisector has to be deleted by the destuctor when the it has been allocated by the constructor.
 	bool _goal_to_consider;
