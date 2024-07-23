@@ -29,20 +29,15 @@ namespace ibex {
   int MinlpSmearSum::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
     const  IntervalVector& box=cell.box;
     double max_magn = NEG_INFINITY;
-    double integer_epsilon=1.e-4;
+
     int var = -1;
     BitSet& b= *(sys.get_integer_variables());
-   
+    
     for (int j=0; j<nbvars; j++) {
       
-      if ((!too_small(box,j))&&  (j!= goal_var() && b[j] &&
-				  (cell.relax_sol[cell.box.size()-1] == DBL_MAX ||
-				   ( cell.relax_sol[j] - std::floor(cell.relax_sol[j]) > integer_epsilon
-				     &&
-				     std::ceil (cell.relax_sol[j]) - cell.relax_sol[j] > integer_epsilon)
-				   )
-
-				  )) {
+      if (b[j] && !(too_small(box,j)) &&
+          integer_relaxation_condition(cell,j) &&  j!= goal_var())
+	{
 
 	double sum_smear=0;
 	for (int i=0; i<sys.f_ctrs.image_dim(); i++) {
@@ -55,6 +50,7 @@ namespace ibex {
 	}
       }
     }
+    
     if (var==-1)
       {
 	max_magn = NEG_INFINITY;

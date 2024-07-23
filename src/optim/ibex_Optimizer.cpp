@@ -222,7 +222,8 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	  if (polytope_hull)
 	    for (int i=0;i<c.box.size();i++)
 	      c.relax_sol[i]=polytope_hull->relax_sol[i];
-	  
+	  else
+	    c.relax_sol[goal_var]=DBL_MAX;
 	  buffer.push(&c);
        }
   }

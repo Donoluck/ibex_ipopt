@@ -101,7 +101,9 @@ public:
 	 * Cell depth (0 if root node).
 	 */
 	unsigned int depth;
-
+        /** the solution given by the relaxation Polytopehull contractor ; in case of no relaxed solution found,
+            relax_sol(goal_var)=DBL_MAX : way to indicate that relax_sol cannot be used
+	 */
         Vector relax_sol;
 };
 

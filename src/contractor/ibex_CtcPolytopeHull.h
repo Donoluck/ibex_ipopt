@@ -100,13 +100,17 @@ public:
 	 * (resp. maximizing) the left (resp. right
 	 * bound) of the ith variable.
 	 * If no argmin were found for this LP problem
-	 * (the primal problem has failed), a Exception
+	 * (the primal problem has failed), an Exception
 	 * is thrown.
 	 *
 	 * \throw Exception
 	 */
 	const Vector& arg_min(int i, bool left);
 
+      /** 
+	  Only used in case of contractor of an Optimizer : the  solution of the minimization of the 
+          goal variable 
+      */
         Vector relax_sol;
   
 protected:

@@ -30,18 +30,21 @@ direction =1 ; left box, direction=0 : right box
   double Optimizer:: compute_diam_for_pseudocost(const Cell& c, bool direction){
     double integer_epsilon=1.e-4;
     double diam=1;
-    if (c.box[c.bisected_var] != 1){
-      diam=c.box[c.bisected_var].diam();
-      if (diam<1 && polytope_hull && c.relax_sol[c.box.size()-1] != DBL_MAX ){
+    if (c.bisected_var != -1){
+      //      cout << " diam bisected var " << c.box[c.bisected_var].diam() << endl;
+      //      if (c.box[c.bisected_var].diam() != 1){
+      if (c.box[c.bisected_var].diam() <1 && polytope_hull && c.relax_sol[c.box.size()-1] != DBL_MAX ){
 	if (direction==1){
 	  diam=c.relax_sol[c.bisected_var] - std::floor(c.relax_sol[c.bisected_var]);}
 	else{
 	  diam=std::ceil (c.relax_sol[c.bisected_var]) - c.relax_sol[c.bisected_var];
 	}
+	if (diam < integer_epsilon) diam=integer_epsilon;	
       }
-      
-      if (diam < integer_epsilon) diam=integer_epsilon;
+      else if (c.box[c.bisected_var].diam() >1)
+	diam = c.box[c.bisected_var].diam();
     }
+	  
     return diam;
   }
 

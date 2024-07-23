@@ -24,62 +24,19 @@ namespace ibex {
 
   MinlpLargestFirst::MinlpLargestFirst(System& sys,int goal_var, bool choose_obj,const Vector& prec, bool ps, double ratio) :OptimLargestFirst(goal_var,choose_obj,prec, ratio), sys(sys) {pseudocost=ps;
 }
-  /*
- int MinlpLargestFirst::pseudocost_int_var_to_bisect  (const Cell & c) const{
-    int var=-1;
-    const IntervalVector& box=c.box;
-    double max_pseudo_cost=0;
-    BitSet& b= *(sys.get_integer_variables());
-    
-    for (int i =0; i< box.size()-1; i++){
-      if (b[i] && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
-	  max_pseudo_cost=(*pseudo_costs)[i];
-	  var=i;}
-    }
-    if (var==c.bisected_var) var=-1;
-    return var;
-   }
-  
- int MinlpLargestFirst::pseudocost_int_var_to_bisect  (const Cell & c) const{
-    int var=-1;
-    const IntervalVector& box=c.box;
-    double max_pseudo_cost=0.0;
-    double integer_epsilon=1.e-4;
-    const BitSet& b= *(sys.get_integer_variables());
-    for (int i =0; i< box.size()-1; i++){
-      if (b[i]
-	  && (i != c.bisected_var)
-	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
-		      ( c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
-			&&
-			std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_epsilon)
-		   )
-	  
-	  &&
-	  
-	  (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)){
-	  max_pseudo_cost=(*pseudo_costs)[i];
-	  var=i;}
-    }
-    //    cout << "pseudo cost var " << var << endl;
-    return var;
-   }
-  */
+ 
   int MinlpLargestFirst::find_largest_var(const Cell& cell, bool relaxvar, bool integervar, double& l){
     const  BitSet& b= *(sys.get_integer_variables());
     const IntervalVector& box=cell.box;
     int var=-1;
-    double integer_epsilon=1.e-4;
+
     for (int i=0; i< box.size(); i++){
 
-      if (i!= goal_var && (!integervar || b[i]) &&
-	  ( !relaxvar ||
-	    (cell.relax_sol[cell.box.size()-1] == DBL_MAX ||
-	     ( cell.relax_sol[i] - std::floor(cell.relax_sol[i]) > integer_epsilon
-	       &&
-	       std::ceil (cell.relax_sol[i]) - cell.relax_sol[i] > integer_epsilon)
-	     )
-	    )){
+      if (i!= goal_var &&
+	  (!integervar || b[i]) &&
+	  (!relaxvar ||
+	   integer_relaxation_condition(cell,i) )
+	  ){
 	if ( ! nobisectable (box,i)){
 	  if (var==-1) {
 	    var=i;

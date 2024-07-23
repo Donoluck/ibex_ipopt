@@ -20,14 +20,20 @@ namespace ibex {
 /**
  * \ingroup bisector
  *
- * \brief largest-first bisector.
+ * \brief Largest-first Minlp bisector, with possibly pseudo cost use
+ * If pseudocosts are used, first tries first to find an integer variable with maximum pseudocost, then an integer variable
+ * with a non integer relaxation, then an integer variable with largest domain, then a variable with largest domain.
  *
  */
 class MinlpLargestFirst : public OptimLargestFirst {
 public:
 
 	/**
-	 * \brief Create a bisector with largest-first heuristic for a MINLP problem : it try to select  first among the integer variables (objective excluded) and if no integer is bisectable, it selects among the real variable with biggest domain; the conditions for selecting the objective are the same as OptimLargestFirst.
+	 * \brief Create a bisector with largest-first heuristic for a MINLP problem with possibly pseudo cost use
+: it try to select  first among the integer variables (objective excluded).
+If pseudocosts are used, first tries first to find an integer variable with maximum pseudocost, then an integer variable
+ * with a non integer relaxation if relaxations are used, then an integer variable with largest domain, 
+ and if no integer variable is bisectable, it selects among the real variables the variable with biggest domain; the conditions for selecting the objective are the same as OptimLargestFirst.
 	 *
          * \param sys              - the system (to know the integer variables)
          * \param goal_var         - integer indicating the variable representing the objective
@@ -69,7 +75,7 @@ public:
  
 
 
-  /* Finding the variable with largest domain (with no integer in relaxed solution if relaxvar=true)
+  /* Finding the variable with largest domain (with no integer value in relaxed solution if relaxvar=true)
      integer if integervar=true */
     int find_largest_var(const Cell& cell, bool relaxvar, bool integervar, double& l);
 };

@@ -34,22 +34,29 @@ void Bsc::add_property(const IntervalVector& init_box, BoxProperties& map) {
 
 }
   
-void Bsc::set_pseudo_costs(std::vector<double>* pseudocosts){
+void Bsc::set_pseudo_costs(vector<double>* pseudocosts){
     pseudo_costs=pseudocosts;
 }
 
+  bool Bsc::integer_relaxation_condition(const Cell & c, int i) const{
+    double integer_tolerance=1.e-4;
+    return
+      c.relax_sol[c.box.size()-1] == DBL_MAX ||
+      (c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_tolerance
+       &&
+       std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_tolerance)
+      ;
+  }
+  
   int Bsc::pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const{
     int var=-1;
     const IntervalVector& box=c.box;
     double max_pseudo_cost=0.0;
-    double integer_epsilon=1.e-4;
+
+   
     for (int i =0; i< box.size()-1; i++){
       if (b[i]
-	  && (c.relax_sol[c.box.size()-1] == DBL_MAX ||
-	      (c.relax_sol[i] - std::floor(c.relax_sol[i]) > integer_epsilon
-	       &&
-	       std::ceil (c.relax_sol[i]) - c.relax_sol[i] > integer_epsilon)
-	      )
+	  && integer_relaxation_condition(c,i)
 	  && (i!= c.bisected_var)
 	  && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)
 	  ){

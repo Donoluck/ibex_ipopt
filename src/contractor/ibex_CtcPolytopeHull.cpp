@@ -80,12 +80,16 @@ void CtcPolytopeHull::contract(IntervalVector& box, ContractContext& context) {
 
 	context.prop.update(BoxEvent(box,BoxEvent::CONTRACT));
 	try {
-	  //  cout << " relax point " << arg_min(box.size()-1,1) << endl;
-	for(int i=0;i<nb_var;i++)
-	  relax_sol[i]=arg_min(box.size()-1,1)[i];
+	  //  cout << " relax point " << arg_min(box.size()-1,1)
+	  // only used in case of optimization ( polytopehull is a contractor of Optimizer)
+	  // relax sol is the solution given the minimization of the goal var  arg_min(nb_var-1,1)
+	  const Vector& v=arg_min(nb_var-1,1);
+	  for(int i=0;i<nb_var;i++)
+	    relax_sol[i]=v[i];
 	} 
 	catch (Exception& e){
 	  //	  cout << " no relax point " << endl;
+	  // in case of no relaxation point found, relax_sol[nb_var-1] is set to DBL_MAX.
 	  relax_sol[nb_var-1]=DBL_MAX;
 	}
 }

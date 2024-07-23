@@ -133,13 +133,16 @@ protected:
        */
        std::vector<double>* pseudo_costs=nullptr;
 
-      /*  Finding the variable with maximal pseudocost  (called by MinlpSmearSum, MinlpSmearSumRelative and MinlpLargestFirst) with a non integer current relaxation if this relaxation was successfull 
+      /*  Finding the integer variable with maximal pseudocost  (called by MinlpSmearSum, MinlpSmearSumRelative and MinlpLargestFirst) with a non integer current relaxation if this relaxation was successfull or used
        and not the current bisected variable.
       */
       int pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const;
 
+     /* Boolean returning true if the relaxation condition does not apply or if the variable i has non integer relaxation */
+      bool integer_relaxation_condition( const Cell & c, int i) const;
      /* Boolean indicating if one uses the pseudocost */
       bool pseudocost=false;
+       
 
 	  
 private:
