@@ -214,7 +214,6 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	 delete &c;
        }
        else {
-	  
 	  if (integerobj) {
 	    c.box[goal_var]=integer( c.box[goal_var]);
 	    if (c.box[goal_var].is_empty()) {delete&c ; return;}

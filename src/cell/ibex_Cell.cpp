@@ -44,8 +44,6 @@ pair<Cell*,Cell*> Cell::bisect(const BisectionPoint& pt) const {
 		cright = new Cell(b2, pt.var, depth+1);
 	}
 
-	cleft->relax_sol=relax_sol;
-	cright->relax_sol=relax_sol;
 	prop.update_bisect(Bisection(box, pt, cleft->box, cright->box), cleft->prop, cright->prop);
 
 	return pair<Cell*,Cell*>(cleft,cright);

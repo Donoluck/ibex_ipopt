@@ -8,7 +8,7 @@
 
 /* code to manage pseudocosts representing the effect of a variable bisection wrt the lower bound of the objective : 
 is used in Minlp bisection strategies with pseudocosts
-code added in bisectors MinlpLargestFirst and SmearFunction
+code added in bisectors MinlpLargestFirst and MinlpSmearFunction
 */
 
 #include "ibex_Optimizer.h"

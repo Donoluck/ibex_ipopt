@@ -52,7 +52,6 @@ void Bsc::set_pseudo_costs(vector<double>* pseudocosts){
     int var=-1;
     const IntervalVector& box=c.box;
     double max_pseudo_cost=0.0;
-
    
     for (int i =0; i< box.size()-1; i++){
       if (b[i]

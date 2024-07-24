@@ -129,7 +129,7 @@ public:
 
          
 protected:
-       /** The pseudocosts used by MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
+       /** The pseudocosts used by MinlpLargestFirst, MinlpSmearSum and MinlpSmearSumRelative if pseudocost is true
        */
        std::vector<double>* pseudo_costs=nullptr;
 
