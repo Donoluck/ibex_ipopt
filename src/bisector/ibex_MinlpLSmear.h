@@ -9,7 +9,7 @@
 #ifndef __IBEX_MINLPLSMEAR__
 #define __IBEX_MINLPLSMEAR__
 
-#include "ibex_SmearFunction.h"
+#include "ibex_MinlpSmearFunction.h"
 #include "ibex_MinlpSmearSumRelative.h"
 #include "ibex_LargestFirst.h"
 #include "ibex_LPSolver.h"

@@ -17,10 +17,10 @@ using namespace std;
 namespace ibex {
 
  
-  MinlpSmearSum::MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {
+  MinlpSmearSum::MinlpSmearSum(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : MinlpSmearFunction(sys,prec, lf,gb,ps)  {
 
 }
-  MinlpSmearSum::MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb,bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {
+  MinlpSmearSum::MinlpSmearSum(System& sys,  const Vector & prec,   LargestFirst& lf, bool gb,bool ps) : MinlpSmearFunction(sys,prec, lf,gb,ps)  {
 
     }
 

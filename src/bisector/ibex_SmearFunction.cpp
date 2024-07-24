@@ -64,28 +64,25 @@ namespace ibex {
   BisectionPoint SmearFunction::choose_var(const Cell& cell) {
     int var=-1;
     const IntervalVector& box=cell.box;
-    const  BitSet& b= *(sys.get_integer_variables());
-    if (pseudocost)
-      var= pseudocost_int_var_to_bisect (cell,b );
-    if (var==-1){
-	    
-      IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);
 
-      sys.f_ctrs.jacobian(box,J);
+   	    
+    IntervalMatrix J(sys.f_ctrs.image_dim(), sys.nb_var);
+
+    sys.f_ctrs.jacobian(box,J);
     // in case of infinite derivatives  changing to largestfirst  bisection
 
-      for (int i=0; i<sys.f_ctrs.image_dim(); i++){
-	for (int j=0; j<sys.nb_var; j++)
-	  if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY )) {// cout << "lf " << endl ; 
-	    return lf->choose_var(cell);}
+    for (int i=0; i<sys.f_ctrs.image_dim(); i++){
+      for (int j=0; j<sys.nb_var; j++)
+	if (J[i][j].mag() == POS_INFINITY ||((J[i][j].mag() ==0) && box[j].diam()== POS_INFINITY )) {// cout << "lf " << endl ; 
+	  return lf->choose_var(cell);}
       // check if the goal is to be considered
 	if (i==goal_ctr()){
 	  _goal_to_consider=goal_to_consider(J,i);
 	}
-      }
+    }
     
-      var = var_to_bisect (J,cell);
-    }	
+    var = var_to_bisect (J,cell);
+  
     // in case of selected var with infinite domain, change to largestfirst bisection
     if (var == -1 || !(box[var].is_bisectable()))
       {// cout << "appel lf" << endl;

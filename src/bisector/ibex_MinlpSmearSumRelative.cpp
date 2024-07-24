@@ -1,6 +1,6 @@
 //============================================================================
 //                                  I B E X                                   
-// File        : ibex_MinlpLargestFirst.cpp
+// File        : ibex_MinlpSmearSumRelative.cpp
 // Author      : Bertrand Neveu
 // Copyright   : IMT Atlantique (France)
 // License     : See the LICENSE file
@@ -17,11 +17,11 @@ using namespace std;
 namespace ibex {
 
 
-  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : SmearFunction(sys,prec, lf,gb,ps)  {}
+  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,  double prec,   LargestFirst& lf, bool gb, bool ps) : MinlpSmearFunction(sys,prec, lf,gb,ps)  {}
 
 
   
-  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb,bool ps) : SmearFunction (sys,prec, lf, gb,ps)  {}
+  MinlpSmearSumRelative::MinlpSmearSumRelative(System& sys,const Vector& prec,LargestFirst& lf, bool gb,bool ps) : MinlpSmearFunction (sys,prec, lf, gb,ps)  {}
  
   int MinlpSmearSumRelative::var_to_bisect(IntervalMatrix& J, const Cell& cell) const {
     const IntervalVector& box=cell.box; 

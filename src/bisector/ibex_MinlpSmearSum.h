@@ -12,7 +12,7 @@
 #define __IBEX_MINLP_SMEARSUM_H__
 
 #include "ibex_Bsc.h"
-#include "ibex_SmearFunction.h"
+#include "ibex_MinlpSmearFunction.h"
 #include "ibex_System.h"
 #include "ibex_LargestFirst.h"
 
@@ -24,7 +24,7 @@ namespace ibex {
  * \brief smear sum bisector for minlp
  *
  */
-class MinlpSmearSum : public SmearFunction {
+class MinlpSmearSum : public MinlpSmearFunction {
 public:
 
 	/**
