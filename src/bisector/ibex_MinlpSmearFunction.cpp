@@ -28,9 +28,10 @@ namespace ibex {
     int var=-1;
     const IntervalVector& box=cell.box;
     const  BitSet& b= *(sys.get_integer_variables());
+
     if (pseudocost)
       var= pseudocost_int_var_to_bisect (cell,b );
-    if (var=-1)
+    if (var==-1)
       return SmearFunction::choose_var(cell);
     else   
       return BisectionPoint(var,lf->ratio,true);
