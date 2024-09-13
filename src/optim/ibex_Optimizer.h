@@ -421,10 +421,10 @@ protected:
   
   
   
-        double compute_diam_for_pseudocost(const Cell& c, bool direction);
+        double compute_diam_for_pseudocost(const Cell& c, bool direction, int var);
         void init_pseudocosts(const Cell& c);
         void update_pseudocosts(const Cell& c, double ymin, double diam, int var, bool direction);
-        void update_pseudocosts_score(int var);
+        void update_pseudocosts_score(const Cell& c);
         void pseudocosts_initialization();
 	/*=======================================================================================================*/
 	/*                                Functions to manage the extended CSP                                   */

@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <limits>
 #include "ibex_LoupFinderIpoptB.h"
-
+#include "ibex_Random.h"
 
 
 #include <cassert>
@@ -27,7 +27,7 @@ using namespace std;
 namespace ibex {
   double expansion_precisionB=1.e-6;
   double ipopt_diam=1.e8;
-  
+  double recursivecall_maxtime=1.0;  
   LoupFinderIpoptB::LoupFinderIpoptB(const System& sys,const System& normsys, const ExtendedSystem& extsys) : sys(sys), normsys(normsys), extsys(extsys), solution(sys.nb_var), the_box(sys.box), ipopt_box(sys.box) {
 	try {
 		df = new Function(*sys.goal,Function::DIFF);
@@ -245,6 +245,21 @@ namespace ibex {
 	//	ibex::Vector v = the_box.random();
 	ibex::Vector v = the_box.mid();
 	//	cout << " force " << force << endl;
+
+	// making integer the starting point of integer variables (seems useless)
+	/*
+	BitSet& b = *(sys.get_integer_variables());
+	for (int i =0;i<n;i++){
+	  if (b[i]){
+	    if (RNG::rand() %2 == 0 &&
+		std::floor(v[i]) >= the_box[i].lb())
+	      v[i]=std::floor(v[i]);
+	    else if (std::ceil(v[i]) <= the_box[i].ub())
+	      v[i]=std::ceil(v[i]);
+	    cout << i << " v[i] " << v[i] << endl;
+	  }
+	}
+	*/
 	if (force)  v=solution;
 
 	//	cout << " v " << v << endl;
@@ -524,7 +539,7 @@ namespace ibex {
 
       opt.set_uplo(optimizer->get_uplo());
       opt.set_loup(optimizer->get_loup());
-      opt.timeout=1;
+      opt.timeout=recursivecall_maxtime;
       //  cout << " boxsol " << boxsol << endl;
       opt.optimize(boxsol);
       recursive_call=true;

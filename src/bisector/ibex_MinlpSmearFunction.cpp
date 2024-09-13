@@ -28,9 +28,12 @@ namespace ibex {
     int var=-1;
     const IntervalVector& box=cell.box;
     const  BitSet& b= *(sys.get_integer_variables());
-
     if (pseudocost)
       var= pseudocost_int_var_to_bisect (cell,b );
+    /*  pseudocosts do not improve for continuous variables
+    if (pseudocost && var==-1)
+      var=pseudocost_var_to_bisect(cell);
+    */
     if (var==-1)
       return SmearFunction::choose_var(cell);
     else   

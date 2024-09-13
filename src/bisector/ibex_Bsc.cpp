@@ -51,22 +51,44 @@ void Bsc::set_pseudo_costs(vector<double>* pseudocosts){
   int Bsc::pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const{
     int var=-1;
     const IntervalVector& box=c.box;
+    double minimal_pseudo_cost= 1.e-12;  
     double max_pseudo_cost=0.0;
-   
+
     for (int i =0; i< box.size()-1; i++){
       if (b[i]
 	  && integer_relaxation_condition(c,i)
 	  && (i!= c.bisected_var)
 	  && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)
+	  && ((*pseudo_costs)[i] > min_pseudo_cost) 
 	  ){
 	max_pseudo_cost=(*pseudo_costs)[i];
 	var=i;}
     }
-    //  if (var==c.bisected_var) var=-1;
+    //    cout << "pseudo cost var " << var << endl;
+    return var;
+   }
+
+
+ int Bsc::pseudocost_var_to_bisect  (const Cell & c) const{
+    int var=-1;
+    const IntervalVector& box=c.box;
+    double minimal_pseudo_cost= 1.e-12;// ( epsilon*epsilon in ibex_PseudoCost.cpp avec epsilon=1e-6)
+    double max_pseudo_cost=0.0;
+   
+    for (int i =0; i< box.size()-1; i++){
+      if ((i!= c.bisected_var)
+	  && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)
+	  && ((*pseudo_costs)[i] > minimal_pseudo_cost)
+	  ){
+	max_pseudo_cost=(*pseudo_costs)[i];
+	var=i;}
+    }
     //    cout << "pseudo cost var " << var << endl;
     return var;
    }
  
+
+  
 pair<IntervalVector,IntervalVector> Bsc::bisect(const IntervalVector& box) {
 	Cell cell(box);
 	pair<Cell*,Cell*> p=bisect(cell);

@@ -74,10 +74,14 @@ namespace ibex {
     if (var!=-1)
       { return BisectionPoint(var,ratio,true);  // if an integer variable was found return it
     }
-    else{
-      l=0.0;
-      var=find_largest_var(cell,false,false,l);
-    }
+    /*  pseudocost does not improve solving for continuous variables
+    if (var==-1 && pseudocost)
+	var= pseudocost_var_to_bisect (cell);
+    */
+    if (var==-1)
+      {l=0.0;
+	var=find_largest_var(cell,false,false,l);
+      }
     if ((choose_obj == true)
 	&&  !(nobisectable (box,goal_var))
 	&& (l < box[goal_var].diam())

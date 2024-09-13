@@ -138,6 +138,9 @@ protected:
       */
       int pseudocost_int_var_to_bisect  (const Cell & c, const BitSet& b) const;
 
+
+      int pseudocost_var_to_bisect  (const Cell & c) const;
+
      /* Boolean returning true if the relaxation condition does not apply or if the variable i has non integer relaxation */
       bool integer_relaxation_condition( const Cell & c, int i) const;
      /* Boolean indicating if one uses the pseudocost */

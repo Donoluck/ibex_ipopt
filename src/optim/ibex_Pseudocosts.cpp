@@ -27,23 +27,27 @@ is not tested here (it is not known by Optimizer)
 direction =1 ; left box, direction=0 : right box
    */
 
-  double Optimizer:: compute_diam_for_pseudocost(const Cell& c, bool direction){
+  double Optimizer:: compute_diam_for_pseudocost(const Cell& c, bool direction, int var){
     double integer_epsilon=1.e-4;
     double diam=1;
-    if (c.bisected_var != -1){
+
+
+     if (var != -1){
+       //       diam= c.box[var].diam();
+   
       //      cout << " diam bisected var " << c.box[c.bisected_var].diam() << endl;
       //      if (c.box[c.bisected_var].diam() != 1){
-      if (c.box[c.bisected_var].diam() <1 && polytope_hull && c.relax_sol[c.box.size()-1] != DBL_MAX ){
-	if (direction==1){
-	  diam=c.relax_sol[c.bisected_var] - std::floor(c.relax_sol[c.bisected_var]);}
-	else{
-	  diam=std::ceil (c.relax_sol[c.bisected_var]) - c.relax_sol[c.bisected_var];
-	}
-	if (diam < integer_epsilon) diam=integer_epsilon;	
-      }
-      else if (c.box[c.bisected_var].diam() >1)
-	diam = c.box[c.bisected_var].diam();
-    }
+       if (c.box[var].diam() <1 && polytope_hull && c.relax_sol[goal_var] != DBL_MAX ){
+	 if (direction==1){
+	   diam=c.relax_sol[var] - std::floor(c.relax_sol[var]);}
+	 else{
+	   diam=std::ceil (c.relax_sol[var]) - c.relax_sol[var];
+	 }
+	 if (diam < integer_epsilon) diam=integer_epsilon;	
+       }
+       else if (c.box[var].diam() >1)
+	diam = c.box[var].diam();
+     }
 	  
     return diam;
   }
@@ -112,7 +116,8 @@ see Achterberg thesis
 3 the average of left and right pseudocost
   */
 
-  void Optimizer::update_pseudocosts_score(int var){
+  /*  
+  void Optimizer::update_pseudocosts_score0(int var){
   	if (var  != -1){
 	  double epsilon=1.e-6;
 	  bisection_pseudocosts_score[var]=
@@ -120,27 +125,60 @@ see Achterberg thesis
 	    std::max(epsilon,bisection_pseudocosts_right[var]);
 	}
   }
- 
+  */
+  void Optimizer::update_pseudocosts_score(const Cell& cell){
+    if (cell.bisected_var != -1)
+      {
+	for (int var=0; var< n; var++){
+	  double diam0=1;
+	  double diam1=1;
+	  double epsilon=1.e-6;
+          diam0=compute_diam_for_pseudocost(cell, 1, var);
+	  diam1=compute_diam_for_pseudocost(cell, 0, var);
+	  bisection_pseudocosts_score[var]=
+	    std::max(epsilon,bisection_pseudocosts_left[var]*diam0)*
+	    std::max(epsilon,bisection_pseudocosts_right[var]*diam1);
+	}
+      }
+  }
+  
  
   /*  
   
-void Optimizer::update_pseudocosts_score(int var){
-  	if (var  != -1){
+void Optimizer::update_pseudocosts_score(const Cell& cell){
+      if (cell.bisected_var != -1) {
 	  double mu=1.0/6.0;
-	  bisection_pseudocosts_score[var]=
-	    mu* std::max(bisection_pseudocosts_right[var],bisection_pseudocosts_left[var])  +
-	    (1-mu)* std::min(bisection_pseudocosts_right[var],bisection_pseudocosts_left[var]) ;
-	    }
-}
-  
+          for (int var=0; var< n; var++){
+              double diam0=1;
+              double diam1=1;
+	      diam0=compute_diam_for_pseudocost(cell, 1, var);
+	      diam1=compute_diam_for_pseudocost(cell, 0, var);
 
-  
-void Optimizer::update_pseudocosts_score(int var){
-       if (var  != -1 && bisection_count_right[var]+bisection_count_left[var] >0)
-	 bisection_pseudocosts_score[var]=
-	   (bisection_pseudocosts_right[var]*bisection_count_right[var]
-	    +bisection_pseudocosts_left[var]*bisection_count_left[var])/
-	   (bisection_count_right[var]+bisection_count_left[var]);
+	      bisection_pseudocosts_score[var]=
+	      mu* std::max(bisection_pseudocosts_right[var]*diam1,bisection_pseudocosts_left[var]*diam0)  +
+	      (1-mu)* std::min(bisection_pseudocosts_right[var]*diam1,bisection_pseudocosts_left[var]*diam0) ;
+	      }
+	      }
 }
+  
+void Optimizer::update_pseudocosts_score(const Cell& cell){
+      if (cell.bisected_var != -1) {
+	  double mu=1.0/6.0;
+          for (int var=0; var< n; var++){
+              double diam0=1;
+              double diam1=1;
+	      diam0=compute_diam_for_pseudocost(cell, 1, var);
+	      diam1=compute_diam_for_pseudocost(cell, 0, var);
+
+	      bisection_pseudocosts_score[var]=
+
+	      (bisection_pseudocosts_right[var]*diam1*bisection_count_right[var]
+	      +bisection_pseudocosts_left[var]*diam0*bisection_count_left[var])/
+	      (bisection_count_right[var]+bisection_count_left[var]);
+	      }
+	}
+}
+
+
   */  
 }

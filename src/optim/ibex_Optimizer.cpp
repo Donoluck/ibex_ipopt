@@ -233,7 +233,7 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 
 	Interval& y=c.box[goal_var];
 	double ymin=y.lb();
-        double diam= compute_diam_for_pseudocost(c,direction);   // for pseudocost
+        double diam= compute_diam_for_pseudocost(c,direction,c.bisected_var);   // for pseudocost
 	
 	//	cout << " box before contract " << c.box << endl;
 	double ymax;
@@ -495,30 +495,28 @@ Optimizer::Status Optimizer::optimize() {
 			loup_changed=false;
 			// for double heap , choose randomly the buffer : top  has to be called before pop
 			Cell *c = buffer.top();
-			
+			update_pseudocosts_score(*c);
 			if (trace >= 2) cout << " current box " << c->box << endl;
 
 			try {
-			  //			  cout << " before bisection " << endl;
-                       	        bsc.set_pseudo_costs (&bisection_pseudocosts_score);
+			        bsc.set_pseudo_costs (&bisection_pseudocosts_score);
 				pair<Cell*,Cell*> new_cells=bsc.bisect(*c);
 				buffer.pop();
 				delete c; // deletes the cell.
-				//				cout << " after bisection" << c->box << endl;
+
 				nb_cells+=1;  // counting the cells handled ( in previous versions nb_cells was the number of cells put into the buffer after being handled)
+
 				int var=(new_cells.first)->bisected_var;
-				handle_cell(*(new_cells.first), true);
-				
-				//				cout << "bis var " << (new_cells.first)->bisected_var << endl;
-				nb_cells+=1;  
-				handle_cell(*(new_cells.second), false);
+				//	cout << "bisected var " << var << endl;
+				Cell& cell1=*(new_cells.first);
+				handle_cell(cell1, true);
+				nb_cells+=1;
+				Cell& cell2=*(new_cells.second);
+				handle_cell(cell2, false);
 
 				if (uplo_of_epsboxes == NEG_INFINITY) {
 					break;
 				}
-				
-                                update_pseudocosts_score(var);
-
 				if (loup_changed) {
 					// In case of a new upper bound (loup_changed == true), all the boxes
 					// with a lower bound greater than (loup - goal_prec) are removed and deleted.
