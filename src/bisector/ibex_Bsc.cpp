@@ -59,7 +59,7 @@ void Bsc::set_pseudo_costs(vector<double>* pseudocosts){
 	  && integer_relaxation_condition(c,i)
 	  && (i!= c.bisected_var)
 	  && (*pseudo_costs)[i] > max_pseudo_cost && !too_small(box,i)
-	  && ((*pseudo_costs)[i] > min_pseudo_cost) 
+	  && ((*pseudo_costs)[i] > minimal_pseudo_cost) 
 	  ){
 	max_pseudo_cost=(*pseudo_costs)[i];
 	var=i;}

@@ -2,15 +2,16 @@ Appel de Ipopt pour obtenir des points réalisables (minima locaux).
 C'est un algorithme cher, à utiliser en complément des algorithmes
 de recherche de point réalisable d'Ibex.
 
-Pour cela, 2 stratégies ont été implantées dans LoupFinderDefaultIpoptB
-ipoptxn ; appel de probing et inxtaylor avant éventuel appel de ipopt
+Pour cela, 3 stratégies ont été implantées dans LoupFinderDefaultIpoptB
+ipoptxn : appel de probing et inxtaylor avant éventuel appel de ipopt
 ipoptxninhc4 : appel de inhc4 et inxtaylor avant éventuel appel de ipopt
+ipoptprob : appel de probing  avant éventuel appel de ipopt
 
 Cet appel à Ipopt a lieu quand un nouveau meilleur point réalisable a été trouvé ou tous les n appels.
 
 Paramétrage
 
-- fréquence d'appel n : ipopt est lancé tous les n appels au loup finder ou quand un nouveau meilleur point réalisable a été trouvé par un autre algorithme de LoupFinderDefaultIpopt.
+- fréquence d'appel n : ipopt est lancé tous les n appels au loup finder et pour nappel=0,nappel=10,nappel=20 et nappel=50 ou quand un nouveau meilleur point réalisable a été trouvé par un autre algorithme de LoupFinderDefaultIpopt.
 
 - problème quadratique : une optimisation en temps de calcul est faite dans le cas d'un problème QP
 d'optimisation avec objectif quadratique et contraintes linéaires : le calcul du lagrangien n'est fait
@@ -45,10 +46,11 @@ quand les problèmes de dépendance avec Ipopt auront été réglés.
 
 Ces méthodes peuvent être mises dans l'optimiseur générique optimizeripopt dans optim/examples-ipopt
 avec le paramètre loupfinder à
- - ipoptxn : appel de ipopt, xtaylor et probing
- - ipoptxninhc4 appel de ipopt, xtaylor et inhc4
+ - ipoptxn : appel de probing, xtaylor et ipopt
+ - ipoptxninhc4 appel de iunhc4, xtaylor et ipopt
+ - ipoptprob : appel de probing et ipopt
 
-Dans la ligne de commande, il faut ajoute après ipoptxn et ipoptxninhc4 2 paramètres
+Dans la ligne de commande, il faut ajouter après ipoptxn et ipoptxninhc4 2 paramètres
  - la fréquence d'appels
  - le fait d'avoir un problème QP. (1 pour QP, 0 sinon)
 
