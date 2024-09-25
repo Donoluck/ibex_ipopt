@@ -18,8 +18,8 @@ using namespace std;
 namespace ibex {
 
   /* using the relaxation solution for computing the diameter of the current bisected var 
-(cf formula in Achterberg thesis  
-when the relaxation called (polytope_hull is not nullptr) on the previous box before bisection was successfull (diff of DBL_MAX) and the current diameter is < 1 ; indeed this formulation is not valid for integer variables with current domain greater than 1.
+(cf formula in Achterberg thesis )
+when the relaxation is called (polytope_hull is not nullptr) on the previous box before bisection and when it was successfull (diff of DBL_MAX) and the current diameter is < 1 ; indeed this formulation is not valid for integer variables with current domain greater than 1.
 )
 This diameter is only used for pseudocosts updating (next function) , and for integer variables : the condition 
 [c.bisected_var] is integer
@@ -75,7 +75,7 @@ direction =1 ; left box, direction=0 : right box
 
 
   /* initialization of pseudo costs by computing the effects of all variables;
-  does not seem to improve : this function is not called 
+  does not seem to improve the solving process: this function is not called 
   */
   
   void Optimizer::init_pseudocosts(const Cell& c){
@@ -133,11 +133,11 @@ see Achterberg thesis
 	  double diam0=1;
 	  double diam1=1;
 	  double epsilon=1.e-6;
-          diam0=compute_diam_for_pseudocost(cell, 1, var);
-	  diam1=compute_diam_for_pseudocost(cell, 0, var);
+          diam1=compute_diam_for_pseudocost(cell, 1, var);
+	  diam0=compute_diam_for_pseudocost(cell, 0, var);
 	  bisection_pseudocosts_score[var]=
-	    std::max(epsilon,bisection_pseudocosts_left[var]*diam0)*
-	    std::max(epsilon,bisection_pseudocosts_right[var]*diam1);
+	    std::max(epsilon,bisection_pseudocosts_left[var]*diam1)*
+	    std::max(epsilon,bisection_pseudocosts_right[var]*diam0);
 	}
       }
   }
@@ -151,12 +151,12 @@ void Optimizer::update_pseudocosts_score(const Cell& cell){
           for (int var=0; var< n; var++){
               double diam0=1;
               double diam1=1;
-	      diam0=compute_diam_for_pseudocost(cell, 1, var);
-	      diam1=compute_diam_for_pseudocost(cell, 0, var);
+	      diam1=compute_diam_for_pseudocost(cell, 1, var);
+	      diam0=compute_diam_for_pseudocost(cell, 0, var);
 
 	      bisection_pseudocosts_score[var]=
-	      mu* std::max(bisection_pseudocosts_right[var]*diam1,bisection_pseudocosts_left[var]*diam0)  +
-	      (1-mu)* std::min(bisection_pseudocosts_right[var]*diam1,bisection_pseudocosts_left[var]*diam0) ;
+	      mu* std::max(bisection_pseudocosts_right[var]*diam0,bisection_pseudocosts_left[var]*diam1)  +
+	      (1-mu)* std::min(bisection_pseudocosts_right[var]*diam0,bisection_pseudocosts_left[var]*diam1) ;
 	      }
 	      }
 }
@@ -167,13 +167,13 @@ void Optimizer::update_pseudocosts_score(const Cell& cell){
           for (int var=0; var< n; var++){
               double diam0=1;
               double diam1=1;
-	      diam0=compute_diam_for_pseudocost(cell, 1, var);
-	      diam1=compute_diam_for_pseudocost(cell, 0, var);
+	      diam1=compute_diam_for_pseudocost(cell, 1, var);
+	      diam0=compute_diam_for_pseudocost(cell, 0, var);
 
 	      bisection_pseudocosts_score[var]=
 
-	      (bisection_pseudocosts_right[var]*diam1*bisection_count_right[var]
-	      +bisection_pseudocosts_left[var]*diam0*bisection_count_left[var])/
+	      (bisection_pseudocosts_right[var]*diam0*bisection_count_right[var]
+	      +bisection_pseudocosts_left[var]*diam1*bisection_count_left[var])/
 	      (bisection_count_right[var]+bisection_count_left[var]);
 	      }
 	}

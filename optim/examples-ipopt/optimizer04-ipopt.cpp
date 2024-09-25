@@ -36,12 +36,12 @@ int main(int argc, char** argv){
 	try {
 	  Timer timer;
 	timer.start();
-	if (argc<13) {
-		cerr << "usage: optimizer04int filename filtering linear_relaxation bisection upperbounding [freq qp] strategy [beamsize] integerobj prec goal_prec tolerance timelimit randomseed"  << endl;
+	if (argc<14) {
+		cerr << "usage: optimizer04int filename filtering linear_relaxation bisection upperbounding [freq qp] strategy [beamsize] userelax integerobj prec goal_prec tolerance timelimit randomseed"  << endl;
 		exit(1);
 	}
 	  
-      	System * sys;
+      	System * sys= nullptr;
 	#ifdef __IBEX_AMPL_INTERFACE_H__
 	std::size_t found = string(argv[1]).find(".nl");
 	if (found!=std::string::npos){
@@ -70,14 +70,6 @@ int main(int argc, char** argv){
  	    sys->box[i] = Interval(sys->box[i].lb(),initbox_limit);
 	}
 	
-	/*
-	for (int i=0; i< sys->box.size(); i++){
-	  if (sys->box[i].lb() == -forced_initbox_limit)
-	    sys->box[i]= Interval(NEG_INFINITY, sys->box[i].ub()) ;
-	  if (sys->box[i].ub() == forced_initbox_limit)
- 	    sys->box[i] = Interval(sys->box[i].lb(),POS_INFINITY);
-	}
-	*/
 	
 	string filtering = argv[2];
 	string linearrelaxation= argv[3];
@@ -94,7 +86,7 @@ int main(int argc, char** argv){
 
 	int beamsize;
 	if (strategy=="bs" || strategy== "beamsearch") {beamsize=atoi(argv[nbinput++]);}
-
+	int userelax= atoi(argv[nbinput++]);
 	int integerobjective= atoi(argv[nbinput++]);
 	double prec= atof(argv[nbinput++]);
 	double goalprec= atof (argv[nbinput++]);
@@ -123,7 +115,7 @@ int main(int argc, char** argv){
 	//	cout << "ext_sys" << ext_sys << endl;
 	
 
-	LoupFinder* loupfinder;
+	LoupFinder* loupfinder = nullptr;
 	if (loupfindermethod=="ipoptxninhc4")
 	  loupfinder = new LoupFinderDefaultIpoptB (*sys,norm_sys,ext_sys,true,true,integerobjective);
 	else if (loupfindermethod=="ipoptxn")
@@ -166,8 +158,8 @@ int main(int argc, char** argv){
 	// Build the bisection heuristic
 	// --------------------------
 
-	Bsc * bs;
-	OptimLargestFirst * bs1;
+	Bsc * bs = nullptr;
+	OptimLargestFirst * bs1= nullptr;
 
 	if  (bisection=="lsmear" || bisection=="smearsum" || bisection=="smearmax" || bisection=="smearsumrel" || bisection=="smearmaxrel"  || bisection=="lsmearmg" || bisection=="lsmearss" || bisection=="lsmearmgss")
 	  bs1=  new OptimLargestFirst(ext_sys.goal_var(),true,prec);
@@ -231,9 +223,6 @@ int main(int argc, char** argv){
 	else if (bisection=="lsmearmg"|| bisection=="lsmearmgnoobj")
 	  bs = new LSmear(ext_sys,prec,*bs1);
 
-
-
-	
 	else if (bisection=="minlplsmearmg")
 	  bs = new MinlpLSmear(ext_sys,prec,*bs1,true );
         else if  (bisection=="minlplsmearmgnoobj")
@@ -249,7 +238,6 @@ int main(int argc, char** argv){
 	CtcInteger integ (ext_sys.nb_var,*(ext_sys.get_integer_variables()));
 
 	// the first contractor called
-	//	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcHC4 hc4(ext_sys.ctrs,0.01,true);
 	CtcCompo hc4integ (integ, hc4, integ);
 	// hc4 inside acid and 3bcid : incremental propagation beginning with the shaved variable
@@ -270,7 +258,7 @@ int main(int argc, char** argv){
 
       
 
-	Ctc* ctc;
+	Ctc* ctc = nullptr;
 	if (filtering == "hc4")
 	  ctc= &hc4integ;
 	else if
@@ -281,8 +269,8 @@ int main(int argc, char** argv){
 	  ctc= &hc43bcidhc4;
 	else {cout << filtering <<  " is not an implemented  contraction  mode "  << endl; return -1;}
 
-	Linearizer* lr;
-	Linearizer* lr1;
+	Linearizer* lr = nullptr;
+	Linearizer* lr1= nullptr;
 
 
 
@@ -303,10 +291,10 @@ int main(int argc, char** argv){
 
 	// fixpoint linear relaxation , hc4  with default fix point ratio 0.2
 	//	CtcFixPoint* cxn;
-	Ctc* cxn;
-	CtcPolytopeHull* cxn_poly;
-	CtcPolytopeHull* cxn_poly1;
-	CtcCompo* cxn_compo;
+	Ctc* cxn = nullptr;
+	CtcPolytopeHull* cxn_poly= nullptr;
+	CtcPolytopeHull* cxn_poly1 = nullptr;
+	CtcCompo* cxn_compo = nullptr;
 	if (linearrelaxation=="compo" || linearrelaxation=="art"|| linearrelaxation=="xn")
           {
 		cxn_poly = new CtcPolytopeHull(*lr);
@@ -327,7 +315,7 @@ int main(int argc, char** argv){
 	  }
 
 	//  the actual contractor  ctc + linear relaxation 
-	Ctc* ctcxn;
+	Ctc* ctcxn = nullptr;
 	if (linearrelaxation=="compo" || linearrelaxation=="art"|| linearrelaxation=="xn" || linearrelaxation=="xnart") 
           ctcxn= new CtcCompo  (*ctc, *cxn, integ); 
 	
@@ -353,8 +341,10 @@ int main(int argc, char** argv){
 	//integer objective
 	loupfinder->integerobj=integerobjective;
 	o.integerobj=integerobjective;
-	o.polytope_hull=cxn_poly;
-	// ipopt preprocessing
+	// when userelax=1 the solution of the last relaxation is used in the minlp bisection strategy
+	if (userelax) o.polytope_hull=cxn_poly;
+
+	// ipopt : initialization of ipopt with the optimizer (for recursive calls)
 
 	if (loupfindermethod=="ipoptxninhc4" || loupfindermethod=="ipoptxn" ||loupfindermethod=="ipoptprob" ){
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.optimizer= &o;
@@ -393,7 +383,7 @@ int main(int argc, char** argv){
 
 	  delete bs1;
 	
-	//	delete loupfinder;  // error with this delete in case of ipoptxninhc4
+	// delete loupfinder;  // error with this delete in case of loupfinder using ipopt
 
 	delete buffer;
 	if (linearrelaxation=="compo" || linearrelaxation=="art"|| linearrelaxation=="xn" || linearrelaxation=="xnart") {
