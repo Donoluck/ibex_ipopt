@@ -14,6 +14,7 @@
 #include "ibex_Cell.h"
 #include "ibex_BitSet.h"
 #include <utility>
+#include <cfloat>
 
 namespace ibex {
 

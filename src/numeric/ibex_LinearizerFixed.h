@@ -11,6 +11,7 @@
 #define __IBEX_LINEARIZER_FIXED_H__
 
 #include "ibex_Linearizer.h"
+#include <cfloat>
 
 namespace ibex {
 
