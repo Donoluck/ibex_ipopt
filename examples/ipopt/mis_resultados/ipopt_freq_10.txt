@@ -1,0 +1,77 @@
+fin lecture parametres 
+file ../../benchs/optim/medium/ex2_1_8.bch
+ sys.box ([0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100])
+ presolve time 0.05137900000000002
+
+******************************************************************************
+This program contains Ipopt, a library for large-scale nonlinear optimization.
+ Ipopt is released as open source code under the Eclipse Public License (EPL).
+         For more information visit http://projects.coin-or.org/Ipopt
+******************************************************************************
+
+ correction nodes 0 correction_time 0.010379
+new loup after correction 15989.99998356602
+*** ipopt+corr                     [32m loup= 15989.99998356602[0m
+ root time 0.04598600000000002
+[33m uplo= -15566.80033924737[0m
+[33m uplo= -9543.000052660067[0m
+[33m uplo= -1366.247389474143[0m
+ correction nodes 0 correction_time 0.01980199999999996
+new loup after correction 15638.99998167603
+*** ipopt+corr                     [32m loup= 15638.99998167603[0m
+[33m uplo= 163.7052326590002[0m
+[33m uplo= 2148.389465594732[0m
+[33m uplo= 6444.056732901134[0m
+ correction nodes 0 correction_time 0.02699499999999997
+new loup after correction 15638.99998167602
+*** ipopt+corr                     [32m loup= 15638.99998167602[0m
+ correction nodes 0 correction_time 0.03414399999999993
+ correction nodes 0 correction_time 0.04136399999999993
+ correction nodes 0 correction_time 0.04848599999999978
+ correction nodes 0 correction_time 0.05562699999999963
+[33m uplo= 6542.348958262434[0m
+[33m uplo= 6847.397196543994[0m
+[33m uplo= 7181.769318747568[0m
+[33m uplo= 7378.310731441248[0m
+[33m uplo= 7889.362689760873[0m
+[33m uplo= 8583.487164251472[0m
+[33m uplo= 9959.068364592228[0m
+[33m uplo= 10581.77415730688[0m
+[33m uplo= 10581.77415730688[0m
+ correction nodes 0 correction_time 0.06296899999999914
+[33m uplo= 10581.77415730689[0m
+[33m uplo= 10597.89687817636[0m
+[33m uplo= 10660.35819153994[0m
+[33m uplo= 10835.74112760803[0m
+[33m uplo= 11001.63220157172[0m
+[33m uplo= 11252.98129808448[0m
+[33m uplo= 11297.8006776124[0m
+[33m uplo= 11322.75994123975[0m
+[33m uplo= 11343.6671758654[0m
+[33m uplo= 11548.17956215739[0m
+[33m uplo= 11604.35312391249[0m
+[33m uplo= 11901.22123232473[0m
+[33m uplo= 12857.51874073005[0m
+ correction nodes 0 correction_time 0.07017199999999966
+ correction nodes 0 correction_time 0.07744899999999808
+[33m uplo= 12957.48596792066[0m
+[33m uplo= 14109.17826161278[0m
+[33m uplo= 14797.59099809829[0m
+                    [32m loup= 15638.99998167602[0m
+ correction nodes 0 correction_time 0.08457999999999741
+[33m uplo= 15638.98434269168[0m
+[32m optimization successful!
+[0m
+ f* in	[15638.98434269168,15638.99998167602]
+	(best bound)
+
+ x* =	(6.000000000000002 ; 1.999999990999998 ; 0 ; 0 ; 0 ; 2.999999982000006 ; 0 ; 21.000000009 ; 20.000000009 ; 0 ; 0 ; 0 ; 0 ; 24.00000000900001 ; 0 ; 0 ; 2.999999982000004 ; 0 ; 13.000000009 ; 0 ; 0 ; 12.000000009 ; 0 ; 0)
+	(best feasible point)
+
+ relative precision on f*:	9.999999998024861e-07[32m [passed] [0m
+ absolute precision on f*:	0.01563898433960276
+ cpu time used:			13.31894200000001s
+ number of cells:		1328
+
+0 ; 13.37032100000001 ; 1329
+ correction nodes 0 correction time 0.08457999999999741
