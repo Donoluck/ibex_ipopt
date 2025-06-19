@@ -1,0 +1,124 @@
+fin lecture parametres 
+file ../../benchs/optim/medium/ex2_1_8.bch
+ sys.box ([0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100] ; [0, 100])
+ presolve time 0.05119900000000001
+
+******************************************************************************
+This program contains Ipopt, a library for large-scale nonlinear optimization.
+ Ipopt is released as open source code under the Eclipse Public License (EPL).
+         For more information visit http://projects.coin-or.org/Ipopt
+******************************************************************************
+
+ correction nodes 0 correction_time 0.003006999999999996
+new loup after correction 15989.99998356603
+*** ipopt+corr                     [32m loup= 15989.99998356603[0m
+ root time 0.02868100000000002
+[33m uplo= -60298.00007006606[0m
+[33m uplo= -25968.40724142441[0m
+[33m uplo= -22144.94884013444[0m
+[33m uplo= -17471.8330163356[0m
+[33m uplo= -12798.71719253676[0m
+[33m uplo= -10228.50348944739[0m
+ correction nodes 0 correction_time 0.004604000000000067
+new loup after correction 15638.99998167603
+*** ipopt+corr                     [32m loup= 15638.99998167603[0m
+[33m uplo= -7087.131185671511[0m
+ correction nodes 0 correction_time 0.006191999999999546
+new loup after correction 15638.99998167603
+*** ipopt+corr                     [32m loup= 15638.99998167603[0m
+ correction nodes 0 correction_time 0.007785999999998975
+new loup after correction 15638.99998167603
+*** ipopt+corr                     [32m loup= 15638.99998167603[0m
+[33m uplo= -4984.22906496203[0m
+[33m uplo= -3827.632898571816[0m
+[33m uplo= -2414.015361872667[0m
+ correction nodes 0 correction_time 0.009988999999999596
+ correction nodes 0 correction_time 0.01220499999999937
+ correction nodes 0 correction_time 0.01589299999999884
+[33m uplo= -1257.419195482453[0m
+[33m uplo= 156.198341216697[0m
+ correction nodes 0 correction_time 0.01811199999999904
+new loup after correction 15638.99998167603
+*** ipopt+corr                     [32m loup= 15638.99998167603[0m
+ correction nodes 0 correction_time 0.02035199999999595
+ correction nodes 0 correction_time 0.02267299999999796
+[33m uplo= 1569.815877915848[0m
+ correction nodes 0 correction_time 0.02470299999998861
+new loup after correction 15638.99998167602
+*** ipopt+corr                     [32m loup= 15638.99998167602[0m
+[33m uplo= 2347.30552310038[0m
+ correction nodes 0 correction_time 0.02692499999998479
+[33m uplo= 3297.570644992586[0m
+ correction nodes 0 correction_time 0.02915099999998507
+ correction nodes 0 correction_time 0.03164599999998121
+ correction nodes 0 correction_time 0.03343599999998094
+ correction nodes 0 correction_time 0.03475099999997202
+new loup after correction 15638.99998167602
+*** ipopt+corr                     [32m loup= 15638.99998167602[0m
+ correction nodes 0 correction_time 0.03603699999997947
+ correction nodes 0 correction_time 0.03762699999998677
+ correction nodes 0 correction_time 0.03921899999998903
+ correction nodes 0 correction_time 0.04082699999997932
+ correction nodes 0 correction_time 0.04242899999998475
+ correction nodes 0 correction_time 0.04417499999998189
+ correction nodes 0 correction_time 0.04588899999997455
+ correction nodes 0 correction_time 0.04838199999997574
+ correction nodes 0 correction_time 0.04986199999997656
+ correction nodes 0 correction_time 0.05132599999997513
+ correction nodes 0 correction_time 0.05305499999995835
+ correction nodes 0 correction_time 0.054760999999957
+ correction nodes 0 correction_time 0.05677399999996215
+ correction nodes 0 correction_time 0.05904299999996045
+ correction nodes 0 correction_time 0.06131499999995118
+ correction nodes 0 correction_time 0.06369599999996513
+ correction nodes 0 correction_time 0.06517799999997511
+[33m uplo= 4422.181968195417[0m
+ correction nodes 0 correction_time 0.06670499999997095
+ correction nodes 0 correction_time 0.06967099999995742
+ correction nodes 0 correction_time 0.07146799999996791
+ correction nodes 0 correction_time 0.07324899999996195
+ correction nodes 0 correction_time 0.07498199999996349
+ correction nodes 0 correction_time 0.07745799999996496
+ correction nodes 0 correction_time 0.07924999999995965
+ correction nodes 0 correction_time 0.08120399999997165
+ correction nodes 0 correction_time 0.08316699999996093
+ correction nodes 0 correction_time 0.08509599999995079
+ correction nodes 0 correction_time 0.08695899999993674
+[33m uplo= 5040.718195956974[0m
+[33m uplo= 5796.706918776653[0m
+ correction nodes 0 correction_time 0.08880399999991131
+ correction nodes 0 correction_time 0.09202599999993357
+ correction nodes 0 correction_time 0.09362499999996079
+ correction nodes 0 correction_time 0.09519699999994249
+ correction nodes 0 correction_time 0.09752899999993805
+ correction nodes 0 correction_time 0.09929399999991564
+ correction nodes 0 correction_time 0.1010869999999078
+ correction nodes 0 correction_time 0.1028019999999264
+ correction nodes 0 correction_time 0.10451499999995
+ correction nodes 0 correction_time 0.1062609999999472
+ correction nodes 0 correction_time 0.1080359999999563
+ correction nodes 0 correction_time 0.1098289999999485
+ correction nodes 0 correction_time 0.1116399999999521
+ correction nodes 0 correction_time 0.1135789999999451
+ correction nodes 0 correction_time 0.1155419999999628
+ correction nodes 0 correction_time 0.117472999999976
+ correction nodes 0 correction_time 0.1193929999999886
+ correction nodes 0 correction_time 0.1213469999999722
+ correction nodes 0 correction_time 0.1230939999999668
+ correction nodes 0 correction_time 0.1248049999999386
+ correction nodes 0 correction_time 0.1265329999999244
+ correction nodes 0 correction_time 0.1282409999999322
+ correction nodes 0 correction_time 0.1299549999999248
+ correction nodes 0 correction_time 0.1316929999999422
+ correction nodes 0 correction_time 0.1334039999999708
+ correction nodes 0 correction_time 0.1351360000000033
+ correction nodes 0 correction_time 0.1369040000000018
+ correction nodes 0 correction_time 0.1386840000000268
+ correction nodes 0 correction_time 0.1404570000000126
+ correction nodes 0 correction_time 0.1421600000000046
+ correction nodes 0 correction_time 0.1438979999999935
+ correction nodes 0 correction_time 0.145679999999985
+ correction nodes 0 correction_time 0.1474789999999904
+ correction nodes 0 correction_time 0.1492369999999857
+ correction nodes 0 correction_time 0.1506859999999653
+ correction nodes 0 correction_time 0.1524199999999643
