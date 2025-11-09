@@ -29,6 +29,8 @@ using namespace ibex;
 
 
 int main(int argc, char** argv){
+
+	// ----quiero ver si se aplican los cambios de ibex para ipopt ----
 	// ------------------------------------------------
 	// Parameterized Optimizer (with a system loaded from a file, and choice of contractor, linearization , bisector, and search strategy)
         // Load a problem to optimize (in format ampl .nl or minibex (.mbx or .bch ))
