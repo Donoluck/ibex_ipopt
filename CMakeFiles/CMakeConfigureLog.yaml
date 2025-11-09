@@ -1,0 +1,1980 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The system is: Linux - 6.11.0-26-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/research/optimizeripopt/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1cf9f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1cf9f.dir/build.make CMakeFiles/cmTC_1cf9f.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3'
+        Building CXX object CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_1cf9f.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccdH12qt.s
+        GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/13
+         /usr/include/x86_64-linux-gnu/c++/13
+         /usr/include/c++/13/backward
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: c81c05345ce537099dafd5580045814a
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/'
+         as -v --64 -o CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccdH12qt.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_1cf9f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cf9f.dir/link.txt --verbose=1
+        /usr/bin/c++  -v CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1cf9f 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1cf9f' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1cf9f.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdre6HK.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1cf9f /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1cf9f' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1cf9f.'
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/13]
+          add: [/usr/include/x86_64-linux-gnu/c++/13]
+          add: [/usr/include/c++/13/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/13] ==> [/usr/include/c++/13]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/13] ==> [/usr/include/x86_64-linux-gnu/c++/13]
+        collapse include dir [/usr/include/c++/13/backward] ==> [/usr/include/c++/13/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1cf9f/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_1cf9f.dir/build.make CMakeFiles/cmTC_1cf9f.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-lhxge3']
+        ignore line: [Building CXX object CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_1cf9f.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccdH12qt.s]
+        ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/13]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/13]
+        ignore line: [ /usr/include/c++/13/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: c81c05345ce537099dafd5580045814a]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccdH12qt.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_1cf9f]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cf9f.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1cf9f ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1cf9f' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1cf9f.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdre6HK.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1cf9f /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccdre6HK.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_1cf9f] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_1cf9f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/research/optimizeripopt/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c9bed/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c9bed.dir/build.make CMakeFiles/cmTC_c9bed.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx'
+        Building C object CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c9bed.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccqEEtfU.s
+        GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: 38987c28e967c64056a6454abdef726e
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/'
+         as -v --64 -o CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o /tmp/ccqEEtfU.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_c9bed
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c9bed.dir/link.txt --verbose=1
+        /usr/bin/cc  -v CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -o cmTC_c9bed 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c9bed' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c9bed.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZJsvrr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c9bed /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c9bed' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c9bed.'
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c9bed/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_c9bed.dir/build.make CMakeFiles/cmTC_c9bed.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-viD6dx']
+        ignore line: [Building C object CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c9bed.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccqEEtfU.s]
+        ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 38987c28e967c64056a6454abdef726e]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o /tmp/ccqEEtfU.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_c9bed]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c9bed.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -o cmTC_c9bed ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c9bed' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c9bed.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZJsvrr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c9bed /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccZJsvrr.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_c9bed] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_c9bed.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file dlfcn.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_DLFCN_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dd112/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_dd112.dir/build.make CMakeFiles/cmTC_dd112.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp'
+        Building C object CMakeFiles/cmTC_dd112.dir/HAVE_DLFCN_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_dd112.dir/HAVE_DLFCN_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp/HAVE_DLFCN_H.c
+        Linking C executable cmTC_dd112
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd112.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_dd112.dir/HAVE_DLFCN_H.c.o -o cmTC_dd112 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1rCxnp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file fenv.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_FENV_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9abf6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9abf6.dir/build.make CMakeFiles/cmTC_9abf6.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ'
+        Building C object CMakeFiles/cmTC_9abf6.dir/HAVE_FENV_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_9abf6.dir/HAVE_FENV_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ/HAVE_FENV_H.c
+        Linking C executable cmTC_9abf6
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9abf6.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_9abf6.dir/HAVE_FENV_H.c.o -o cmTC_9abf6 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-qf4aAJ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file inttypes.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_INTTYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df0bf/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_df0bf.dir/build.make CMakeFiles/cmTC_df0bf.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej'
+        Building C object CMakeFiles/cmTC_df0bf.dir/HAVE_INTTYPES_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_df0bf.dir/HAVE_INTTYPES_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej/HAVE_INTTYPES_H.c
+        Linking C executable cmTC_df0bf
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df0bf.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_df0bf.dir/HAVE_INTTYPES_H.c.o -o cmTC_df0bf 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-SYQOej'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file memory.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_MEMORY_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d7105/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d7105.dir/build.make CMakeFiles/cmTC_d7105.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7'
+        Building C object CMakeFiles/cmTC_d7105.dir/HAVE_MEMORY_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_d7105.dir/HAVE_MEMORY_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7/HAVE_MEMORY_H.c
+        Linking C executable cmTC_d7105
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d7105.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_d7105.dir/HAVE_MEMORY_H.c.o -o cmTC_d7105 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-GzjqS7'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file stdint.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_STDINT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_75ba0/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_75ba0.dir/build.make CMakeFiles/cmTC_75ba0.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa'
+        Building C object CMakeFiles/cmTC_75ba0.dir/HAVE_STDINT_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_75ba0.dir/HAVE_STDINT_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa/HAVE_STDINT_H.c
+        Linking C executable cmTC_75ba0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75ba0.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_75ba0.dir/HAVE_STDINT_H.c.o -o cmTC_75ba0 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-1bZAxa'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file stdlib.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_STDLIB_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_70a28/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_70a28.dir/build.make CMakeFiles/cmTC_70a28.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn'
+        Building C object CMakeFiles/cmTC_70a28.dir/HAVE_STDLIB_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_70a28.dir/HAVE_STDLIB_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn/HAVE_STDLIB_H.c
+        Linking C executable cmTC_70a28
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_70a28.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_70a28.dir/HAVE_STDLIB_H.c.o -o cmTC_70a28 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-3eSHNn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file strings.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_STRINGS_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7316f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7316f.dir/build.make CMakeFiles/cmTC_7316f.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW'
+        Building C object CMakeFiles/cmTC_7316f.dir/HAVE_STRINGS_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_7316f.dir/HAVE_STRINGS_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW/HAVE_STRINGS_H.c
+        Linking C executable cmTC_7316f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7316f.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_7316f.dir/HAVE_STRINGS_H.c.o -o cmTC_7316f 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-w3zpCW'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file string.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_STRING_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_36b73/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_36b73.dir/build.make CMakeFiles/cmTC_36b73.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3'
+        Building C object CMakeFiles/cmTC_36b73.dir/HAVE_STRING_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_36b73.dir/HAVE_STRING_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3/HAVE_STRING_H.c
+        Linking C executable cmTC_36b73
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36b73.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_36b73.dir/HAVE_STRING_H.c.o -o cmTC_36b73 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Vs12G3'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file sys/stat.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SYS_STAT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_eb977/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_eb977.dir/build.make CMakeFiles/cmTC_eb977.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej'
+        Building C object CMakeFiles/cmTC_eb977.dir/HAVE_SYS_STAT_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_eb977.dir/HAVE_SYS_STAT_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej/HAVE_SYS_STAT_H.c
+        Linking C executable cmTC_eb977
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eb977.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_eb977.dir/HAVE_SYS_STAT_H.c.o -o cmTC_eb977 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-kQRGej'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file sys/types.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SYS_TYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0b3bb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0b3bb.dir/build.make CMakeFiles/cmTC_0b3bb.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL'
+        Building C object CMakeFiles/cmTC_0b3bb.dir/HAVE_SYS_TYPES_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_0b3bb.dir/HAVE_SYS_TYPES_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL/HAVE_SYS_TYPES_H.c
+        Linking C executable cmTC_0b3bb
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b3bb.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_0b3bb.dir/HAVE_SYS_TYPES_H.c.o -o cmTC_0b3bb 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iZsskL'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/mathlib-2.1.0/CMakeLists.txt:26 (check_include_files)"
+    checks:
+      - "Looking for include file unistd.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_UNISTD_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dd6a5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_dd6a5.dir/build.make CMakeFiles/cmTC_dd6a5.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI'
+        Building C object CMakeFiles/cmTC_dd6a5.dir/HAVE_UNISTD_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_dd6a5.dir/HAVE_UNISTD_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI/HAVE_UNISTD_H.c
+        Linking C executable cmTC_dd6a5
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd6a5.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_dd6a5.dir/HAVE_UNISTD_H.c.o -o cmTC_dd6a5 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-RVoIkI'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:37 (check_include_files)"
+    checks:
+      - "Looking for include file clock.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_CLOCK_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_705f9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_705f9.dir/build.make CMakeFiles/cmTC_705f9.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd'
+        Building C object CMakeFiles/cmTC_705f9.dir/HAVE_CLOCK_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_705f9.dir/HAVE_CLOCK_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd/HAVE_CLOCK_H.c
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd/HAVE_CLOCK_H.c:2:10: fatal error: clock.h: No such file or directory
+            2 | #include <clock.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_705f9.dir/build.make:78: CMakeFiles/cmTC_705f9.dir/HAVE_CLOCK_H.c.o] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jvInvd'
+        gmake: *** [Makefile:127: cmTC_705f9/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:37 (check_include_files)"
+    checks:
+      - "Looking for include file float.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_FLOAT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0f6d2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0f6d2.dir/build.make CMakeFiles/cmTC_0f6d2.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA'
+        Building C object CMakeFiles/cmTC_0f6d2.dir/HAVE_FLOAT_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_0f6d2.dir/HAVE_FLOAT_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA/HAVE_FLOAT_H.c
+        Linking C executable cmTC_0f6d2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f6d2.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_0f6d2.dir/HAVE_FLOAT_H.c.o -o cmTC_0f6d2 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-e31cDA'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:37 (check_include_files)"
+    checks:
+      - "Looking for include file stddef.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_STDDEF_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3b822/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3b822.dir/build.make CMakeFiles/cmTC_3b822.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp'
+        Building C object CMakeFiles/cmTC_3b822.dir/HAVE_STDDEF_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_3b822.dir/HAVE_STDDEF_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp/HAVE_STDDEF_H.c
+        Linking C executable cmTC_3b822
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b822.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_3b822.dir/HAVE_STDDEF_H.c.o -o cmTC_3b822 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-BFVBUp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:37 (check_include_files)"
+    checks:
+      - "Looking for include file sys/resource.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SYS_RESOURCE_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e18be/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e18be.dir/build.make CMakeFiles/cmTC_e18be.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8'
+        Building C object CMakeFiles/cmTC_e18be.dir/HAVE_SYS_RESOURCE_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_e18be.dir/HAVE_SYS_RESOURCE_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8/HAVE_SYS_RESOURCE_H.c
+        Linking C executable cmTC_e18be
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e18be.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_e18be.dir/HAVE_SYS_RESOURCE_H.c.o -o cmTC_e18be 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-QZ9cM8'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:37 (check_include_files)"
+    checks:
+      - "Looking for include file sys/time.h"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SYS_TIME_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_95a1c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_95a1c.dir/build.make CMakeFiles/cmTC_95a1c.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl'
+        Building C object CMakeFiles/cmTC_95a1c.dir/HAVE_SYS_TIME_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_95a1c.dir/HAVE_SYS_TIME_H.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl/HAVE_SYS_TIME_H.c
+        Linking C executable cmTC_95a1c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_95a1c.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_95a1c.dir/HAVE_SYS_TIME_H.c.o -o cmTC_95a1c 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-imEuyl'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:42 (check_symbol_exists)"
+    checks:
+      - "Looking for getrusage"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "GETRUSAGE_IN_HEADER"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0ac66/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0ac66.dir/build.make CMakeFiles/cmTC_0ac66.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns'
+        Building C object CMakeFiles/cmTC_0ac66.dir/CheckSymbolExists.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_0ac66.dir/CheckSymbolExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns/CheckSymbolExists.c
+        Linking C executable cmTC_0ac66
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ac66.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_0ac66.dir/CheckSymbolExists.c.o -o cmTC_0ac66 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-ge6gns'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake:89 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:49 (check_include_file_cxx)"
+    checks:
+      - "Looking for C++ include cassert"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_CASSERT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f5bad/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f5bad.dir/build.make CMakeFiles/cmTC_f5bad.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE'
+        Building CXX object CMakeFiles/cmTC_f5bad.dir/CheckIncludeFile.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_f5bad.dir/CheckIncludeFile.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE/CheckIncludeFile.cxx
+        Linking CXX executable cmTC_f5bad
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5bad.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_f5bad.dir/CheckIncludeFile.cxx.o -o cmTC_f5bad 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-fnj6iE'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake:89 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:50 (check_include_file_cxx)"
+    checks:
+      - "Looking for C++ include limits"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_LIMITS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8dab5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8dab5.dir/build.make CMakeFiles/cmTC_8dab5.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4'
+        Building CXX object CMakeFiles/cmTC_8dab5.dir/CheckIncludeFile.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_8dab5.dir/CheckIncludeFile.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4/CheckIncludeFile.cxx
+        Linking CXX executable cmTC_8dab5
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8dab5.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_8dab5.dir/CheckIncludeFile.cxx.o -o cmTC_8dab5 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-sJ6NC4'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for fesetround"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_FESETROUND"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1e19/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d1e19.dir/build.make CMakeFiles/cmTC_d1e19.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS'
+        Building C object CMakeFiles/cmTC_d1e19.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fesetround -o CMakeFiles/cmTC_d1e19.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘fesetround’; expected ‘int(int)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        Linking C executable cmTC_d1e19
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1e19.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=fesetround CMakeFiles/cmTC_d1e19.dir/CheckFunctionExists.c.o -o cmTC_d1e19 
+        /usr/bin/ld: CMakeFiles/cmTC_d1e19.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `fesetround'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_d1e19.dir/build.make:99: cmTC_d1e19] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-wpVrRS'
+        gmake: *** [Makefile:127: cmTC_d1e19/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for floor"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_FLOOR"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a7a9f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a7a9f.dir/build.make CMakeFiles/cmTC_a7a9f.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh'
+        Building C object CMakeFiles/cmTC_a7a9f.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=floor -o CMakeFiles/cmTC_a7a9f.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘floor’; expected ‘double(double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh/CheckFunctionExists.c:1:1: note: ‘floor’ is declared in header ‘<math.h>’
+          +++ |+#include <math.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_a7a9f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7a9f.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=floor CMakeFiles/cmTC_a7a9f.dir/CheckFunctionExists.c.o -o cmTC_a7a9f 
+        /usr/bin/ld: CMakeFiles/cmTC_a7a9f.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `floor'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_a7a9f.dir/build.make:99: cmTC_a7a9f] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-AwP4Wh'
+        gmake: *** [Makefile:127: cmTC_a7a9f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for localeconv"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_LOCALECONV"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_885cd/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_885cd.dir/build.make CMakeFiles/cmTC_885cd.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt'
+        Building C object CMakeFiles/cmTC_885cd.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=localeconv -o CMakeFiles/cmTC_885cd.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt/CheckFunctionExists.c
+        Linking C executable cmTC_885cd
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_885cd.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=localeconv CMakeFiles/cmTC_885cd.dir/CheckFunctionExists.c.o -o cmTC_885cd 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-UiFcTt'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for memset"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_MEMSET"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e1598/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e1598.dir/build.make CMakeFiles/cmTC_e1598.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib'
+        Building C object CMakeFiles/cmTC_e1598.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=memset -o CMakeFiles/cmTC_e1598.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘memset’; expected ‘void *(void *, int,  long unsigned int)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib/CheckFunctionExists.c:1:1: note: ‘memset’ is declared in header ‘<string.h>’
+          +++ |+#include <string.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_e1598
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e1598.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=memset CMakeFiles/cmTC_e1598.dir/CheckFunctionExists.c.o -o cmTC_e1598 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-crGmib'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for pow"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_POW"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a395c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a395c.dir/build.make CMakeFiles/cmTC_a395c.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA'
+        Building C object CMakeFiles/cmTC_a395c.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pow -o CMakeFiles/cmTC_a395c.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘pow’; expected ‘double(double,  double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA/CheckFunctionExists.c:1:1: note: ‘pow’ is declared in header ‘<math.h>’
+          +++ |+#include <math.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_a395c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a395c.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pow CMakeFiles/cmTC_a395c.dir/CheckFunctionExists.c.o -o cmTC_a395c 
+        /usr/bin/ld: CMakeFiles/cmTC_a395c.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `pow'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_a395c.dir/build.make:99: cmTC_a395c] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-t4fOjA'
+        gmake: *** [Makefile:127: cmTC_a395c/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for sqrt"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SQRT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5c603/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5c603.dir/build.make CMakeFiles/cmTC_5c603.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc'
+        Building C object CMakeFiles/cmTC_5c603.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sqrt -o CMakeFiles/cmTC_5c603.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘sqrt’; expected ‘double(double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc/CheckFunctionExists.c:1:1: note: ‘sqrt’ is declared in header ‘<math.h>’
+          +++ |+#include <math.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_5c603
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5c603.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sqrt CMakeFiles/cmTC_5c603.dir/CheckFunctionExists.c.o -o cmTC_5c603 
+        /usr/bin/ld: CMakeFiles/cmTC_5c603.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `sqrt'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_5c603.dir/build.make:99: cmTC_5c603] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Mn2BJc'
+        gmake: *** [Makefile:127: cmTC_5c603/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for getrusage"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_GETRUSAGE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_52185/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_52185.dir/build.make CMakeFiles/cmTC_52185.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT'
+        Building C object CMakeFiles/cmTC_52185.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=getrusage -o CMakeFiles/cmTC_52185.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT/CheckFunctionExists.c
+        Linking C executable cmTC_52185
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52185.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=getrusage CMakeFiles/cmTC_52185.dir/CheckFunctionExists.c.o -o cmTC_52185 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-niuwJT'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for clock"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_CLOCK"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ec04d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ec04d.dir/build.make CMakeFiles/cmTC_ec04d.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V'
+        Building C object CMakeFiles/cmTC_ec04d.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=clock -o CMakeFiles/cmTC_ec04d.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V/CheckFunctionExists.c
+        Linking C executable cmTC_ec04d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ec04d.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=clock CMakeFiles/cmTC_ec04d.dir/CheckFunctionExists.c.o -o cmTC_ec04d 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-9uuv6V'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for __signbit"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE___SIGNBIT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e8f1b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e8f1b.dir/build.make CMakeFiles/cmTC_e8f1b.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V'
+        Building C object CMakeFiles/cmTC_e8f1b.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=__signbit -o CMakeFiles/cmTC_e8f1b.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V/CheckFunctionExists.c
+        Linking C executable cmTC_e8f1b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e8f1b.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=__signbit CMakeFiles/cmTC_e8f1b.dir/CheckFunctionExists.c.o -o cmTC_e8f1b 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-IP272V'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for round"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_ROUND"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1155a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1155a.dir/build.make CMakeFiles/cmTC_1155a.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs'
+        Building C object CMakeFiles/cmTC_1155a.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=round -o CMakeFiles/cmTC_1155a.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘round’; expected ‘double(double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs/CheckFunctionExists.c:1:1: note: ‘round’ is declared in header ‘<math.h>’
+          +++ |+#include <math.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_1155a
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1155a.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=round CMakeFiles/cmTC_1155a.dir/CheckFunctionExists.c.o -o cmTC_1155a 
+        /usr/bin/ld: CMakeFiles/cmTC_1155a.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `round'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_1155a.dir/build.make:99: cmTC_1155a] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-p0IYxs'
+        gmake: *** [Makefile:127: cmTC_1155a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for rint"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_RINT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0752d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0752d.dir/build.make CMakeFiles/cmTC_0752d.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq'
+        Building C object CMakeFiles/cmTC_0752d.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=rint -o CMakeFiles/cmTC_0752d.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘rint’; expected ‘double(double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq/CheckFunctionExists.c:1:1: note: ‘rint’ is declared in header ‘<math.h>’
+          +++ |+#include <math.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_0752d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0752d.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=rint CMakeFiles/cmTC_0752d.dir/CheckFunctionExists.c.o -o cmTC_0752d 
+        /usr/bin/ld: CMakeFiles/cmTC_0752d.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `rint'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_0752d.dir/build.make:99: cmTC_0752d] Error 1
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jkbTdq'
+        gmake: *** [Makefile:127: cmTC_0752d/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for finite"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_FINITE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_70ad2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_70ad2.dir/build.make CMakeFiles/cmTC_70ad2.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63'
+        Building C object CMakeFiles/cmTC_70ad2.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=finite -o CMakeFiles/cmTC_70ad2.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘finite’; expected ‘int(double)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        Linking C executable cmTC_70ad2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_70ad2.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=finite CMakeFiles/cmTC_70ad2.dir/CheckFunctionExists.c.o -o cmTC_70ad2 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-gVdb63'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for malloc"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_MALLOC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4631f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4631f.dir/build.make CMakeFiles/cmTC_4631f.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn'
+        Building C object CMakeFiles/cmTC_4631f.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=malloc -o CMakeFiles/cmTC_4631f.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘malloc’; expected ‘void *(long unsigned int)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn/CheckFunctionExists.c:1:1: note: ‘malloc’ is declared in header ‘<stdlib.h>’
+          +++ |+#include <stdlib.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_4631f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4631f.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=malloc CMakeFiles/cmTC_4631f.dir/CheckFunctionExists.c.o -o cmTC_4631f 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-tGNKRn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:57 (check_function_exists)"
+    checks:
+      - "Looking for realloc"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_REALLOC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1ed19/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1ed19.dir/build.make CMakeFiles/cmTC_1ed19.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT'
+        Building C object CMakeFiles/cmTC_1ed19.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=realloc -o CMakeFiles/cmTC_1ed19.dir/CheckFunctionExists.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘realloc’; expected ‘void *(void *, long unsigned int)’ [-Wbuiltin-declaration-mismatch]
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT/CheckFunctionExists.c:1:1: note: ‘realloc’ is declared in header ‘<stdlib.h>’
+          +++ |+#include <stdlib.h>
+            1 | #ifdef CHECK_FUNCTION_EXISTS
+        Linking C executable cmTC_1ed19
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ed19.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=realloc CMakeFiles/cmTC_1ed19.dir/CheckFunctionExists.c.o -o cmTC_1ed19 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yALbAT'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:100 (try_run)"
+    directories:
+      source: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+      binary: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "SSE_COMPILE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_72944/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_72944.dir/build.make CMakeFiles/cmTC_72944.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_72944.dir/test_sse.cpp.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_72944.dir/test_sse.cpp.o -c /home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0/test_sse.cpp
+        Linking CXX executable cmTC_72944
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_72944.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_72944.dir/test_sse.cpp.o -o cmTC_72944 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "SSE_RUN"
+      cached: true
+      stdout: |
+        HAVE_SSE2=true
+        HAVE_SSE3=true
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:150 (CHECK_TYPE_SIZE)"
+    checks:
+      - "Check size of int"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SIZEOF_INT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_99daf/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_99daf.dir/build.make CMakeFiles/cmTC_99daf.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M'
+        Building C object CMakeFiles/cmTC_99daf.dir/SIZEOF_INT.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_99daf.dir/SIZEOF_INT.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M/SIZEOF_INT.c
+        Linking C executable cmTC_99daf
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_99daf.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_99daf.dir/SIZEOF_INT.c.o -o cmTC_99daf 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-7lqA0M'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:151 (CHECK_TYPE_SIZE)"
+    checks:
+      - "Check size of long"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SIZEOF_LONG"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_070eb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_070eb.dir/build.make CMakeFiles/cmTC_070eb.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa'
+        Building C object CMakeFiles/cmTC_070eb.dir/SIZEOF_LONG.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_070eb.dir/SIZEOF_LONG.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa/SIZEOF_LONG.c
+        Linking C executable cmTC_070eb
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_070eb.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_070eb.dir/SIZEOF_LONG.c.o -o cmTC_070eb 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-6hbGHa'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:152 (CHECK_TYPE_SIZE)"
+    checks:
+      - "Check size of long long int"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_SIZEOF_LONG_LONG_INT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a785d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a785d.dir/build.make CMakeFiles/cmTC_a785d.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK'
+        Building C object CMakeFiles/cmTC_a785d.dir/SIZEOF_LONG_LONG_INT.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_a785d.dir/SIZEOF_LONG_LONG_INT.c.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK/SIZEOF_LONG_LONG_INT.c
+        Linking C executable cmTC_a785d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a785d.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_a785d.dir/SIZEOF_LONG_LONG_INT.c.o -o cmTC_a785d 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-iCiCKK'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:155 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_VISI_1"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_VISI_1"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bb899/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bb899.dir/build.make CMakeFiles/cmTC_bb899.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ'
+        Building CXX object CMakeFiles/cmTC_bb899.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORTS_VISI_1  -fvisibility-inlines-hidden -o CMakeFiles/cmTC_bb899.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ/src.cxx
+        Linking CXX executable cmTC_bb899
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb899.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_bb899.dir/src.cxx.o -o cmTC_bb899 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-cfeRYZ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:156 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_VISI_2"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_VISI_2"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_33793/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_33793.dir/build.make CMakeFiles/cmTC_33793.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn'
+        Building CXX object CMakeFiles/cmTC_33793.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORTS_VISI_2  -fvisibility=hidden -o CMakeFiles/cmTC_33793.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn/src.cxx
+        Linking CXX executable cmTC_33793
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33793.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_33793.dir/src.cxx.o -o cmTC_33793 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-2hB8cn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:163 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_FUNROLL_LOOPS"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_FUNROLL_LOOPS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_99b78/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_99b78.dir/build.make CMakeFiles/cmTC_99b78.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP'
+        Building CXX object CMakeFiles/cmTC_99b78.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORTS_FUNROLL_LOOPS  -funroll-loops -o CMakeFiles/cmTC_99b78.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP/src.cxx
+        Linking CXX executable cmTC_99b78
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_99b78.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_99b78.dir/src.cxx.o -o cmTC_99b78 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-yRmTiP'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:167 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_OMIT"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_OMIT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_55b83/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_55b83.dir/build.make CMakeFiles/cmTC_55b83.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7'
+        Building CXX object CMakeFiles/cmTC_55b83.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORTS_OMIT  -fomit-frame-pointer -o CMakeFiles/cmTC_55b83.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7/src.cxx
+        Linking CXX executable cmTC_55b83
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_55b83.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_55b83.dir/src.cxx.o -o cmTC_55b83 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-pAaUz7'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:171 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_OPTIM"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_OPTIM"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_22433/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_22433.dir/build.make CMakeFiles/cmTC_22433.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh'
+        Building CXX object CMakeFiles/cmTC_22433.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORTS_OPTIM  -fexpensive-optimizations -o CMakeFiles/cmTC_22433.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh/src.cxx
+        Linking CXX executable cmTC_22433
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22433.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_22433.dir/src.cxx.o -o cmTC_22433 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-jtsKmh'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:175 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test HAVE_ROUNDING_MATH_OPTION"
+    directories:
+      source: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y"
+      binary: "/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "HAVE_ROUNDING_MATH_OPTION"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df987/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_df987.dir/build.make CMakeFiles/cmTC_df987.dir/build
+        gmake[1]: Entering directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y'
+        Building CXX object CMakeFiles/cmTC_df987.dir/src.cxx.o
+        /usr/bin/c++ -DHAVE_ROUNDING_MATH_OPTION  -frounding-math -o CMakeFiles/cmTC_df987.dir/src.cxx.o -c /home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y/src.cxx
+        Linking CXX executable cmTC_df987
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df987.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_df987.dir/src.cxx.o -o cmTC_df987 
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/CMakeFiles/CMakeScratch/TryCompile-Eex26Y'
+        
+      exitCode: 0
+...

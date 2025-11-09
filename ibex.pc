@@ -1,0 +1,10 @@
+prefix=/usr/local
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: ibex
+Description: A C++ library for interval-based algorithm design
+Url: http://www.ibex-lib.org/
+Version: 2.8.9.1
+Cflags: -I${includedir} -I${includedir}/ibex -I${includedir}/ibex/3rd -I${includedir}/ibex/3rd -I${includedir}/ibex/3rd -I${includedir}/ibex/3rd -I${includedir}/ibex/3rd/soplex
+Libs: -L${libdir} -libex -L${libdir}/ibex/3rd -lgaol -lgdtoa -lultim -lsoplex

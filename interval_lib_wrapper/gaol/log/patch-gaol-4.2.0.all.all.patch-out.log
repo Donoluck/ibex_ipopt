@@ -1,0 +1,12 @@
+patching file gaol/gaol_interval.cpp
+patching file gaol/gaol_allocator.h
+patching file gaol/gaol_double_op_apmathlib.h
+patching file gaol/gaol_double_op_crlibm.h
+patching file gaol/gaol_double_op_m.h
+patching file gaol/gaol_interval2f.cpp
+patching file gaol/gaol_interval2f.h
+patching file gaol/gaol_interval.h
+patching file gaol/gaol_interval_sse.cpp
+patching file gaol/gaol_port.h
+patching file gdtoa/dtoa.c
+patching file gaol/gaol_interval_parser.cpp

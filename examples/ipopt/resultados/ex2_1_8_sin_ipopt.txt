@@ -1,2 +1,0 @@
-fin lecture parametres 
-acidhc4 is not an implemented  node selection strategy 
