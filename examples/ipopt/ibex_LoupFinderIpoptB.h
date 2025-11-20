@@ -42,6 +42,7 @@ namespace ibex {
     class LoupFinderIpoptB: public TNLP, public LoupFinder  {
 
     private:
+      int max_iter_per_call = 5; // por defecto: 5 iteraciones por llamada
       SmartPtr<Ipopt::IpoptApplication> app;
       /** \brief the current box
        */
@@ -62,6 +63,8 @@ namespace ibex {
 
       double optimalValue = POS_INFINITY;
 
+      void set_max_iter_per_call(int n) { max_iter_per_call = (n > 0 ? n : 1); }
+
         
       Vector solution;
 
@@ -77,8 +80,9 @@ namespace ibex {
       bool recursive_call=true; // boolean to prevent double recursion of optimizer and double call of Ipopt ; when true, the optimizer can be recursevely called, and Ipopt will not be called.
       int ipopt_frequency=100; // frequency of Ipopt calls in number of loup finder calls.
 
-      int correction_nodes=0;  // additional nodes for correcting the point given by ipopt
-      double correction_time=0.0; // additional time for correcting the point given by ipopt
+      std::size_t correction_nodes = 0;   // número de nodos usados en correcciones
+      double      correction_time  = 0.0; // tiempo total de corrección
+
 
       void correct_ipopt_sol (Vector&v, double& loup);
       bool all_integer_variables_fixed(const IntervalVector & box);

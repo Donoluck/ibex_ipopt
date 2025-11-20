@@ -1978,3 +1978,126 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:100 (try_run)"
+    directories:
+      source: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+      binary: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "SSE_COMPILE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_035e0/fast
+        gmake[1]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_035e0.dir/build.make CMakeFiles/cmTC_035e0.dir/build
+        gmake[2]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_035e0.dir/test_sse.cpp.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_035e0.dir/test_sse.cpp.o -c /home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0/test_sse.cpp
+        Linking CXX executable cmTC_035e0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_035e0.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_035e0.dir/test_sse.cpp.o -o cmTC_035e0 
+        gmake[2]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "SSE_RUN"
+      cached: true
+      stdout: |
+        HAVE_SSE2=true
+        HAVE_SSE3=true
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:100 (try_run)"
+    directories:
+      source: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+      binary: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "SSE_COMPILE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1a912/fast
+        gmake[1]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1a912.dir/build.make CMakeFiles/cmTC_1a912.dir/build
+        gmake[2]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_1a912.dir/test_sse.cpp.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_1a912.dir/test_sse.cpp.o -c /home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0/test_sse.cpp
+        Linking CXX executable cmTC_1a912
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a912.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_1a912.dir/test_sse.cpp.o -o cmTC_1a912 
+        gmake[2]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "SSE_RUN"
+      cached: true
+      stdout: |
+        HAVE_SSE2=true
+        HAVE_SSE3=true
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "interval_lib_wrapper/gaol/gaol-4.2.0/CMakeLists.txt:100 (try_run)"
+    directories:
+      source: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+      binary: "/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/research/optimizeripopt/cmake.utils"
+    buildResult:
+      variable: "SSE_COMPILE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_86d2f/fast
+        gmake[1]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_86d2f.dir/build.make CMakeFiles/cmTC_86d2f.dir/build
+        gmake[2]: Entering directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_86d2f.dir/test_sse.cpp.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_86d2f.dir/test_sse.cpp.o -c /home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0/test_sse.cpp
+        Linking CXX executable cmTC_86d2f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86d2f.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_86d2f.dir/test_sse.cpp.o -o cmTC_86d2f 
+        gmake[2]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        gmake[1]: Leaving directory '/home/research/optimizeripopt/interval_lib_wrapper/gaol/gaol-4.2.0-build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "SSE_RUN"
+      cached: true
+      stdout: |
+        HAVE_SSE2=true
+        HAVE_SSE3=true
+      exitCode: 0
+...

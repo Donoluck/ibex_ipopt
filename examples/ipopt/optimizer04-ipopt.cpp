@@ -353,6 +353,7 @@ int main(int argc, char** argv){
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.optimizer= &o;
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.ipopt_frequency= ipoptfrequency;
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.set_quadratic(ipoptquadratic);
+	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.set_max_iter_per_call(3); // <-- prueba con 3–5
 	}
 	
 	// the allowed time for search
@@ -377,6 +378,11 @@ int main(int argc, char** argv){
         if (loupfindermethod == "ipoptxn" || loupfindermethod =="ipoptxninhc4" || loupfindermethod =="ipoptprob" ){
 	  cout << " correction nodes " << ((LoupFinderDefaultIpoptB*)loupfinder)->finder_ipopt.correction_nodes << " correction time " << ((LoupFinderDefaultIpoptB*)loupfinder)->finder_ipopt.correction_time << endl;
 	}
+	cout << "loup updates: " << o.get_loup_updates()
+     << " (de ellos, " << o.get_loup_updates_ipopt()
+     << " provenientes de Ipopt)" << endl;
+
+
 	//	if (filtering == "acidhc4"  )
 	//cout    << " nbcidvar " <<  acidhc4.nbvar_stat() << endl;
 

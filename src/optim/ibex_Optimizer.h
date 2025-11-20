@@ -337,8 +337,29 @@ public:
 
   
         CtcPolytopeHull* polytope_hull= nullptr;
+
+	    /**
+     * \brief Get the number of loup updates.
+     */
+    int get_loup_updates() const { return loup_updates; }
+
+    /**
+     * \brief Get the number of loup updates from IPOPT.
+     */
+    int get_loup_updates_ipopt() const { return loup_updates_ipopt; }
+
+    /**
+     * \brief Increment the count of loup updates from IPOPT.
+     */
+    void inc_loup_updates_ipopt() { ++loup_updates_ipopt; }
   
 protected:
+
+	    /** Number of loup updates. */
+    int loup_updates;
+
+    /** Number of loup updates from IPOPT. */
+    int loup_updates_ipopt;
         /** \brief Initialize the optimizer from a single box.
 	 */
 	void start(const IntervalVector& init_box, double obj_init_bound=POS_INFINITY);

@@ -16,6 +16,8 @@
 #include <limits>
 #include "ibex_LoupFinderIpoptB.h"
 #include "ibex_Random.h"
+#include <algorithm> // para std::min/std::max
+
 
 
 #include <cassert>
@@ -28,124 +30,168 @@ namespace ibex {
   double expansion_precisionB=1.e-6;
   double ipopt_diam=1.e8;
   double recursivecall_maxtime=1.0;  
-  LoupFinderIpoptB::LoupFinderIpoptB(const System& sys,const System& normsys, const ExtendedSystem& extsys) : sys(sys), normsys(normsys), extsys(extsys), solution(sys.nb_var), the_box(sys.box), ipopt_box(sys.box) {
-	try {
-		df = new Function(*sys.goal,Function::DIFF);
-		//                cout << " nb ctr " << sys.nb_ctr << endl;
-		if (sys.nb_ctr>0) {
-			dg = new Function*[sys.f_ctrs.image_dim()];
+LoupFinderIpoptB::LoupFinderIpoptB(const System& sys,
+                                   const System& normsys,
+                                   const ExtendedSystem& extsys)
+  : sys(sys),
+    normsys(normsys),
+    extsys(extsys),
+    solution(sys.nb_var),
+    the_box(sys.box),
+    ipopt_box(sys.box),
+    optimizer(nullptr),     // muy importante
+    recursive_call(true),
+    ipopt_frequency(100),
+    correction_nodes(0),    // empezamos en 0
+    correction_time(0.0),
+    ipopt_calls(-1)         // antes de la primera llamada
+{
+    try {
+        df = new Function(*sys.goal, Function::DIFF);
 
-			for (int i=0; i<sys.f_ctrs.image_dim(); i++) {
-				dg[i] = new Function(sys.f_ctrs[i], Function::DIFF);
-			}
-		} else {
-			dg = NULL;
-		}
+        if (sys.nb_ctr > 0) {
+            dg = new Function*[sys.f_ctrs.image_dim()];
+            for (int i = 0; i < sys.f_ctrs.image_dim(); i++) {
+                dg[i] = new Function(sys.f_ctrs[i], Function::DIFF);
+            }
+        } else {
+            dg = NULL;
+        }
 
-	}
-	catch(Exception&) {
-		//TODO: replace with ExprDiffException.
-		// Currently, DimException is also sometimes raised.
-		cerr << "Warning: symbolic differentiation has failed ==> ipopt hessian disabled" << endl;
-		df = NULL;
-		dg = NULL;
-	}
-	//	cout << " fin initialisation gradients " << endl;
-      //The IpOPT initialization should be here
-      app = IpoptApplicationFactory();
-      app->RethrowNonIpoptException(true);
-     
+    } catch (Exception&) {
+        //TODO: replace with ExprDiffException.
+        // Currently, DimException is also sometimes raised.
+        cerr << "Warning: symbolic differentiation has failed ==> ipopt hessian disabled" << endl;
+        df = NULL;
+        dg = NULL;
+    }
 
-      // Change some options
-      // Note: The following choices are only examples, they might not be
-      // suitable for your optimization problem.
-      
-      //      app->Options()->SetNumericValue("tol", 1e-8);
-      //      app->Options()->SetNumericValue("constr_viol_tol", 1e-10);
-      // app->Options()->SetStringValue("mu_strategy", "adaptive");
-      app->Options()->SetStringValue("output_file", "ipopt.out");
-      app->Options()->SetIntegerValue("print_level",0);
-      app->Options()->SetIntegerValue("max_iter",1000);
-      app->Options()->SetStringValue("linear_solver","mumps");
-      // Initialize the IpoptApplication and process the options
-      
-      ApplicationReturnStatus status;
-      status = app->Initialize();
-      //      cout << "initialisation ipopt " << endl;
-      if (status != Solve_Succeeded) {
-      	std::cout << std::endl << std::endl << "*** Error during initialization!" << std::endl;
-      	exit(0);
-      }
-      }
+    // Inicialización de Ipopt
+    app = IpoptApplicationFactory();
+    app->RethrowNonIpoptException(true);
+
+    // Opciones por defecto (puedes ajustarlas luego)
+    app->Options()->SetStringValue("output_file", "ipopt.out");
+    app->Options()->SetIntegerValue("print_level", 0);
+    app->Options()->SetIntegerValue("max_iter", 1000);
+    app->Options()->SetStringValue("linear_solver", "mumps");
+
+    ApplicationReturnStatus status = app->Initialize();
+    if (status != Solve_Succeeded) {
+        std::cout << std::endl << std::endl
+                  << "*** Error during initialization!" << std::endl;
+        exit(0);
+    }
+}
+
 
     LoupFinderIpoptB::~LoupFinderIpoptB()
     {}
 
+    std::pair<IntervalVector, double>
+LoupFinderIpoptB::find(const IntervalVector& box,
+                       const IntervalVector& loup_point,
+                       double loup) {
 
-    std::pair<IntervalVector, double> LoupFinderIpoptB::find(const IntervalVector& box, const IntervalVector& loup_point, double loup) {
-      double loup0=loup;
-      if (ipopt_calls== -1) ipopt_box=box;  // initialization of ipopt_box before first call.
-      if (sys.minlp) ipopt_box=box;  // in case of Minlp, ipopt is run with the current box.
- 
-      the_box  = box;
-      double newloup=false;
-      IntervalVector loup_point0=loup_point;
-      if (recursive_call){
-	ipopt_calls++;  // at first call, ipopt_calls=0
-	if (
-	    (!sys.minlp ||box.max_diam()<= ipopt_diam)
-	    &&
-	    (ipopt_calls%ipopt_frequency==0 || ipopt_calls==10 || ipopt_calls==20  || ipopt_calls==50 || (force && box.max_diam()<= ipopt_diam)
-	     //|| sys.minlp && all_integer_variables_fixed(box))
-	     )){
-	
-	  //	  cout << "nb_cells " <<  optimizer->get_nb_cells() << endl;
-	  ApplicationReturnStatus status = app->OptimizeTNLP(this);
-	  force=0;  // after call , force is reset to 0
-	  //	  cout << " status " << status << endl;
-	  //	  if (status == Solve_Succeeded) {
-	  //        	std::cout << std::endl << std::endl << "*** The problem solved!" << std::endl;
-	  //	  cout << " optimal_value ipopt "<< optimalValue << endl;
-	  //	  cout << " solution ipopt " << solution << endl;
-	  if( optimalValue< loup){
-	    
-	    for (int i=0; i< box.size(); i++) {
-	      bound_check_i(sys,solution,i);
-	    }
-	    //	    cout << " pt avant check "  << solution << endl;
-	    if (check(normsys,solution,loup,false))
-		  { 
-		    loup_point0=solution;
-		    if (optimizer->trace) 
-		      cout << "*** ipopt      " ;
-		  }
+  double loup0 = loup;
 
-	    if (sys.get_integer_variables()->size() < sys.nb_var){
-	    //	    else if (optimalValue< loup && sys.get_integer_variables()->size() < sys.nb_var){
-	      //	      cout << " solution " << solution << endl;
-	      //	      cout << " optimal value " << optimalValue << " loup " << loup << endl;
-		  double ipoptloup=POS_INFINITY;
-		  correct_ipopt_sol(solution, ipoptloup);
-		  if (ipoptloup < loup)
-		    {
-		      loup_point0=solution;
-		      loup=ipoptloup;
-		      if (optimizer->trace)
-			cout << "*** ipopt+corr " ;
-		      newloup=true;
-		    }
-	    }
-	  }
-	}
-	
+  // Inicializar ipopt_box
+  if (ipopt_calls == -1) ipopt_box = box;   // antes de la primera llamada
+  if (sys.minlp)          ipopt_box = box;  // en MINLP, correr con la caja actual
+
+  the_box = box;
+  double newloup = false;
+  IntervalVector loup_point0 = loup_point;
+
+  if (recursive_call) {
+    ipopt_calls++;
+
+// --- Telemetría de buckets (opcional)
+static size_t cnt_big = 0, cnt_mid = 0, cnt_small = 0;
+
+// 1) Calcula diam y bucket
+const double diam = box.max_diam();
+const char* bucket = nullptr;
+
+// 2) Parámetros base
+int    it         = max_iter_per_call;   // si no tienes miembro, usa 5
+double acc_tol    = 1e-3;
+double acc_constr = 1e-3;
+double max_cpu    = 0.04;
+
+// PROPUESTA MÁS AGRESIVA:
+if (diam > 25.0) {  // ↑ Permite cajas más grandes
+    throw NotFound();
+} else if (diam > 10.0) {  // ↑ Umbral más alto
+    bucket = "MID";
+    it = 8;        // ↑ Más iteraciones
+    acc_tol = 1e-4; // ↑ Mayor precisión
+    max_cpu = 0.1;  // ↑ Más tiempo
+} else {
+    bucket = "SMALL"; 
+    it = 12;        // ↑ Más iteraciones  
+    acc_tol = 1e-5; // ↑ Mayor precisión
+    max_cpu = 0.15; // ↑ Más tiempo
+}
+
+// 4) Opciones de Ipopt para esta llamada
+app->Options()->SetIntegerValue("max_iter", it);
+app->Options()->SetStringValue("acceptable_termination", "yes");
+app->Options()->SetNumericValue("acceptable_tol", acc_tol);
+app->Options()->SetNumericValue("acceptable_constr_viol_tol", acc_constr);
+app->Options()->SetStringValue("hessian_approximation", "limited-memory");
+app->Options()->SetNumericValue("max_cpu_time", max_cpu);
+app->Options()->SetStringValue("warm_start_init_point", "no"); // no inicializas z/λ
+
+// 5) Log de control
+std::cout << "[LFP] IPOPT call #" << ipopt_calls
+          << " diam=" << diam
+          << " bucket=" << bucket
+          << " it=" << it
+          << " acc=" << acc_tol
+          << " cpu=" << max_cpu << std::endl;
+
+
+    // Ejecutar Ipopt
+    ApplicationReturnStatus status = app->OptimizeTNLP(this);
+    force = 0;
+
+    // Si Ipopt mejoró el loup, verificar y (si procede) corregir
+    if (optimalValue < loup) {
+      for (int i = 0; i < box.size(); i++) {
+        bound_check_i(sys, solution, i);
       }
-        
-      if (loup < loup0)
-	return std::make_pair(loup_point0, loup);
-      else  throw NotFound();
+      if (check(normsys, solution, loup, false)) {
+        loup_point0 = solution;
+        if (optimizer->trace) std::cout << "*** ipopt      ";
+      }
 
+      // Si hay variables continuas, intentar corrección rápida
+      if (sys.get_integer_variables()->size() < sys.nb_var) {
+        double ipoptloup = POS_INFINITY;
+        correct_ipopt_sol(solution, ipoptloup);
+        if (ipoptloup < loup) {
+          loup_point0 = solution;
+          loup        = ipoptloup;
+          if (optimizer->trace) std::cout << "*** ipopt+corr ";
+          newloup = true;
+        }
+      }
+    }
+  }
+
+  if (loup < loup0) {
+    // Contamos que esta mejora de loup vino del LoupFinder Ipopt
+    if (optimizer) {
+      optimizer->inc_loup_updates_ipopt();
+    }
+    return std::make_pair(loup_point0, loup);
+  } else {
+    throw NotFound();
+  }
 
 }
+
 
   bool  LoupFinderIpoptB::all_integer_variables_fixed(const IntervalVector & box)
   { 
@@ -518,44 +564,41 @@ namespace ibex {
     if (quadra) app->Options()->SetStringValue("hessian_constant", "yes");
   }
   
-  void LoupFinderIpoptB::correct_ipopt_sol (Vector&v, double& loup){
-    if (recursive_call){
-      
-      recursive_call=false;
-      IntervalVector box = sys.box;
-      double eps=expansion_precisionB;
+void LoupFinderIpoptB::correct_ipopt_sol(Vector& v, double& loup) {
+  // Si no se permite llamada recursiva, no hacemos nada
+  if (!recursive_call)
+    return;
 
-      IntervalVector boxsol(v.size());
-      for ( int i=0; i< v.size() ; i++){
-	double epsi = eps;
-	if (fabs(v[i])>1) epsi= eps*fabs(v[i]);
-	boxsol[i]= sys.box[i] & Interval(v[i]- epsi, v[i]+ epsi);
-      }
-      CellHeap buffer(extsys);
+  // Ajustar el punto a las cotas del sistema normalizado
+  sysbound(v);  // usa bound_check(normsys, v)
 
-      Optimizer opt(sys.nb_var,optimizer->ctc,optimizer->bsc,optimizer->loup_finder,buffer,extsys.goal_var(),optimizer->eps_x[0],optimizer->rel_eps_f, optimizer->abs_eps_f);
+  // Verificamos si el punto está dentro de la región factible
+  if (!is_inner(v)) {
+    // No es factible: no proponemos mejora
+    loup = POS_INFINITY;
+    return;
+  }
 
-      opt.integerobj=optimizer->integerobj;
+  // Punto factible: calculamos una cota superior del objetivo
+  double val = goal_ub(v);  // usa goal_ub0(normsys, v)
 
-      opt.set_uplo(optimizer->get_uplo());
-      opt.set_loup(optimizer->get_loup());
-      opt.timeout=recursivecall_maxtime;
-      //  cout << " boxsol " << boxsol << endl;
-      opt.optimize(boxsol);
-      recursive_call=true;
-      correction_nodes+=opt.get_nb_cells();
-      correction_time+=opt.get_time();
-      if (optimizer->trace)
-	cout << " correction nodes " << correction_nodes << " correction_time " << correction_time << endl;
-      if (opt.get_loup() < optimizer->get_loup()){
-	if (optimizer->trace)
-	  cout << "new loup after correction " << opt.get_loup() << endl;
-	loup= opt.get_loup();
-	v = opt.get_loup_point().mid();
-      }
-    
-    }
+  // Actualizamos el loup local si realmente mejora
+  if (val < loup) {
+    loup = val;
+  }
+
+  // Estadísticas simples de corrección
+  correction_nodes += 1;
+  // correction_time se puede dejar en 0 (la corrección es casi instantánea)
+
+  if (optimizer && optimizer->trace) {
+    std::cout << " correction nodes " << correction_nodes
+              << " correction_time " << correction_time << std::endl;
+  }
 }
+
+
+
 
 
 }
