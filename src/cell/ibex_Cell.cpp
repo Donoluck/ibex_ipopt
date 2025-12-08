@@ -18,11 +18,27 @@ using namespace std;
 
 namespace ibex {
 
-  Cell::Cell(const IntervalVector& box, int var, unsigned int depth, int var_to_bisect) : box(box), prop(this->box), bisected_var(var), depth(depth), var_to_bisect(var_to_bisect), relax_sol(box.size()) {
+  Cell::Cell(const IntervalVector& box, int var, unsigned int depth, int var_to_bisect) : box(box), prop(this->box), 
+  bisected_var(var), 
+  depth(depth), 
+  var_to_bisect(var_to_bisect), 
+  relax_sol(box.size()),
+    ipopt_score(0.0),
+    ipopt_recent_success(false),
+    ipopt_success_count(0),
+        ipopt_best_point(box.size()) {        // CORREGIDO: Constructor con tamaño
+    // Inicializar ipopt_best_point a valores por defecto
+    for (int i = 0; i < box.size(); i++) {
+        ipopt_best_point[i] = 0.0;
+    } 
 
 }
 
-  Cell::Cell(const Cell& e) : box(e.box), prop(this->box, e.prop), bisected_var(e.bisected_var), depth(e.depth), relax_sol(e.relax_sol)  {
+  Cell::Cell(const Cell& e) : box(e.box), prop(this->box, e.prop), bisected_var(e.bisected_var), depth(e.depth), relax_sol(e.relax_sol),
+    ipopt_score(e.ipopt_score),
+    ipopt_recent_success(e.ipopt_recent_success),
+    ipopt_success_count(e.ipopt_success_count),
+    ipopt_best_point(e.ipopt_best_point)  {
 
 }
 

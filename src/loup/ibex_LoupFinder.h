@@ -35,6 +35,17 @@ namespace ibex {
 class LoupFinder {
 public:
 
+	enum FinderType {
+			STANDARD,
+			IPOPT,
+			DEFAULT,
+			PROBING,
+			INHC4
+		};
+    
+    virtual FinderType get_type() const { return STANDARD; }
+    virtual bool is_ipopt() const { return false; }
+
 	/**
 	 * \brief Raised when no loup is found.
 	 */

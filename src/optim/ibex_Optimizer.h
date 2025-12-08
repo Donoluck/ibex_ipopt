@@ -19,6 +19,8 @@
 
 namespace ibex {
 
+	class LoupFinderIpoptB;
+
 /**
  * \defgroup optim IbexOpt
  */
@@ -341,25 +343,54 @@ public:
 	    /**
      * \brief Get the number of loup updates.
      */
-    int get_loup_updates() const { return loup_updates; }
+    long long get_loup_updates() const { return loup_updates; }
 
     /**
      * \brief Get the number of loup updates from IPOPT.
      */
-    int get_loup_updates_ipopt() const { return loup_updates_ipopt; }
+    long long get_loup_updates_ipopt() const { return loup_updates_ipopt; }
+
+	    // Definir IpoptSuccess como struct público para fácil acceso
+    struct IpoptSuccess {
+        Vector point;            // Punto donde Ipopt tuvo éxito
+        double loup_value;       // Valor de loup encontrado
+        int cell_count;          // Número de celdas procesadas cuando ocurrió
+        double timestamp;        // Tiempo cuando ocurrió
+        
+        // Constructor para facilitar creación
+        IpoptSuccess(const Vector& p, double lv, int cc, double ts) 
+            : point(p), loup_value(lv), cell_count(cc), timestamp(ts) {}
+    };
 
     /**
      * \brief Increment the count of loup updates from IPOPT.
      */
     void inc_loup_updates_ipopt() { ++loup_updates_ipopt; }
+
+	    // Método para registrar éxito de Ipopt
+    void record_ipopt_success(const Vector& point, double loup_value);
+    
+    // Método para calcular bonus basado en historial de Ipopt
+    double compute_ipopt_bonus(const IntervalVector& box) const;
+    
+    // Método para propagar score de Ipopt a celdas hijas
+    void propagate_ipopt_score(Cell& parent, Cell& child1, Cell& child2);
+    
+    // Getter para historial (debug)
+    const std::vector<IpoptSuccess>& get_ipopt_history() const { return ipopt_success_history; }
+
+private:
+    // Historial de éxitos de Ipopt
+    std::vector<IpoptSuccess> ipopt_success_history;
+    static const int MAX_IPOPT_HISTORY = 50;
   
 protected:
 
 	    /** Number of loup updates. */
-    int loup_updates;
+    long long loup_updates;
 
     /** Number of loup updates from IPOPT. */
-    int loup_updates_ipopt;
+    long long loup_updates_ipopt;
         /** \brief Initialize the optimizer from a single box.
 	 */
 	void start(const IntervalVector& init_box, double obj_init_bound=POS_INFINITY);

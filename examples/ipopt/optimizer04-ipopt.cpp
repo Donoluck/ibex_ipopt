@@ -353,7 +353,6 @@ int main(int argc, char** argv){
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.optimizer= &o;
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.ipopt_frequency= ipoptfrequency;
 	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.set_quadratic(ipoptquadratic);
-	  ((LoupFinderDefaultIpoptB*) loupfinder)->finder_ipopt.set_max_iter_per_call(3); // <-- prueba con 3–5
 	}
 	
 	// the allowed time for search

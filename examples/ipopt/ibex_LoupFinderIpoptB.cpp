@@ -114,7 +114,7 @@ const double diam = box.max_diam();
 const char* bucket = nullptr;
 
 // 2) Parámetros base
-int    it         = max_iter_per_call;   // si no tienes miembro, usa 5
+int    it         = 5;   // si no tienes miembro, usa 5
 double acc_tol    = 1e-3;
 double acc_constr = 1e-3;
 double max_cpu    = 0.04;
@@ -122,14 +122,14 @@ double max_cpu    = 0.04;
 // PROPUESTA MÁS AGRESIVA:
 if (diam > 25.0) {  // ↑ Permite cajas más grandes
     throw NotFound();
-} else if (diam > 10.0) {  // ↑ Umbral más alto
+} else if (diam > 10.0) {  // ↑ Umbral más alto 
     bucket = "MID";
-    it = 8;        // ↑ Más iteraciones
+    it = 12;        // ↑ Más iteraciones
     acc_tol = 1e-4; // ↑ Mayor precisión
     max_cpu = 0.1;  // ↑ Más tiempo
 } else {
     bucket = "SMALL"; 
-    it = 12;        // ↑ Más iteraciones  
+    it = 16;        // ↑ Más iteraciones  
     acc_tol = 1e-5; // ↑ Mayor precisión
     max_cpu = 0.15; // ↑ Más tiempo
 }
@@ -142,15 +142,6 @@ app->Options()->SetNumericValue("acceptable_constr_viol_tol", acc_constr);
 app->Options()->SetStringValue("hessian_approximation", "limited-memory");
 app->Options()->SetNumericValue("max_cpu_time", max_cpu);
 app->Options()->SetStringValue("warm_start_init_point", "no"); // no inicializas z/λ
-
-// 5) Log de control
-std::cout << "[LFP] IPOPT call #" << ipopt_calls
-          << " diam=" << diam
-          << " bucket=" << bucket
-          << " it=" << it
-          << " acc=" << acc_tol
-          << " cpu=" << max_cpu << std::endl;
-
 
     // Ejecutar Ipopt
     ApplicationReturnStatus status = app->OptimizeTNLP(this);
@@ -184,6 +175,10 @@ std::cout << "[LFP] IPOPT call #" << ipopt_calls
     // Contamos que esta mejora de loup vino del LoupFinder Ipopt
     if (optimizer) {
       optimizer->inc_loup_updates_ipopt();
+              if (optimizer->trace) {
+            std::cout << " [Ipopt success recorded! loup=" << loup 
+                      << ", point=" << solution << "]" << std::endl;
+        }
     }
     return std::make_pair(loup_point0, loup);
   } else {

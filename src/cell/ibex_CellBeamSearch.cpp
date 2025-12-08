@@ -53,10 +53,44 @@ void CellBeamSearch::push(Cell* cell) {
 	futurebuffer.push(cell);
 }
 
+// En ibex_CellBeamSearch.cpp, modificar cell_cost:
 double CellBeamSearch::cell_cost(const Cell& cell) const {
-	return cell.box[sys.goal_var()].lb();
+    // Costo original: lower bound del objetivo
+    double original_cost = cell.box[sys.goal_var()].lb();
+    
+    // DEBUG: Mostrar información de la celda
+    static int cell_count = 0;
+    if (cell_count++ % 100 == 0) {  // Cada 100 celdas
+        std::cout << "DEBUG Cell #" << cell_count 
+                  << " ipopt_score=" << cell.ipopt_score
+                  << " recent_success=" << cell.ipopt_recent_success
+                  << " count=" << cell.ipopt_success_count
+                  << " original_cost=" << original_cost << std::endl;
+    }
+    
+    // BONUS POR SCORE DE IPOPT
+    double ipopt_bonus = 0.0;
+    const double IPOPT_WEIGHT = 100.0;
+    
+    if (cell.ipopt_score > 0) {
+        double depth_factor = 1.0 / (1.0 + cell.depth * 0.05);
+        ipopt_bonus = cell.ipopt_score * IPOPT_WEIGHT * depth_factor;
+        
+        if (cell.ipopt_recent_success) {
+            ipopt_bonus *= 1.2;
+        }
+        
+        // DEBUG para celdas con bonus
+        if (ipopt_bonus > 0.1) {
+            std::cout << "DEBUG IPOPT BONUS: cell has ipopt_score=" << cell.ipopt_score
+                      << " bonus=" << ipopt_bonus
+                      << " adjusted_cost=" << (original_cost - ipopt_bonus) << std::endl;
+        }
+    }
+    
+    double depth_bias = cell.depth * 1e-12;
+    return original_cost - ipopt_bonus + depth_bias;
 }
-
 // returns the cell to handled
 Cell* CellBeamSearch::pop() {
 	if (! (currentbuffer.empty()) )

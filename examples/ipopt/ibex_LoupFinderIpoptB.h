@@ -6,7 +6,6 @@
 // License     : See the LICENSE file
 // Created     : Oct 26 2023
 // Last Update : Nov 3 2023
-
 //============================================================================
 
 #ifndef __IBEX_LOUP_FINDER_IPOPTB_H__
@@ -150,6 +149,30 @@ namespace ibex {
         void set_quadratic(bool quadratic); // in case of QP problems, the hessian is called once.
         bool force=false; // when true it forces Ipopt call, i.e. after a new loup is found by another loup finder.
       
+        /**
+         * \brief Override to identify this as an Ipopt finder.
+         * 
+         * Used by Optimizer to count Ipopt-specific successes.
+         */
+        virtual bool is_ipopt() const override { return true; }
+        
+        /**
+         * \brief Get the type of finder.
+         */
+        virtual FinderType get_type() const override { return IPOPT; }
+        
+        /**
+         * \brief Get the last solution found by Ipopt.
+         * 
+         * Useful for recording Ipopt success points.
+         */
+        const Vector& get_last_solution() const { return solution; }
+        
+        /**
+         * \brief Get the last objective value found by Ipopt.
+         */
+        double get_last_objective() const { return optimalValue; }
+
     private:
         /**@name Methods to block default compiler methods.
          * The compiler automatically generates the following three methods.

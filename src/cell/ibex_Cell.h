@@ -105,6 +105,11 @@ public:
             relax_sol(goal_var)=DBL_MAX : way to indicate that relax_sol cannot be used
 	 */
         Vector relax_sol;
+		// NUEVO: Score y estadísticas de Ipopt
+    double ipopt_score;           // Score acumulado de éxitos de Ipopt
+    bool ipopt_recent_success;    // Si Ipopt tuvo éxito recientemente en este nodo/padre
+    int ipopt_success_count;      // Contador de éxitos en este subárbol
+    Vector ipopt_best_point;      // Mejor punto encontrado por Ipopt
 };
 
 /**

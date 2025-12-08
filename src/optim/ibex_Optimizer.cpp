@@ -18,6 +18,9 @@
 #include <float.h>
 #include <stdlib.h>
 #include <iomanip>
+// Al principio de ibex_Optimizer.cpp:
+#include <cmath>    // Para std::sqrt, std::exp, std::fabs
+#include <vector>   // Para std::vector
 
 
 
@@ -44,44 +47,41 @@ void Optimizer::read_ext_box(const IntervalVector& ext_box, IntervalVector& box)
 	}
 }
 
-Optimizer::Optimizer(int n, Ctc& ctc, Bsc& bsc, LoupFinder& finder, CellBufferOptim& buffer,
-        int goal_var, double eps_x, double rel_eps_f, double abs_eps_f) : 
-        n(n), goal_var(goal_var),
-        ctc(ctc), bsc(bsc), loup_finder(finder), buffer(buffer),
-        eps_x(n,eps_x), rel_eps_f(rel_eps_f), abs_eps_f(abs_eps_f),
-        trace(0), timeout(-1), extended_COV(true), anticipated_upper_bounding(true),
-        status(SUCCESS),
-        uplo(NEG_INFINITY), uplo_of_epsboxes(POS_INFINITY), loup(POS_INFINITY),
-        loup_point(IntervalVector::empty(n)), initial_loup(POS_INFINITY), loup_changed(false),
-        time(0), nb_cells(0), cov(NULL),
-        // ✅ NUEVO: Inicializar contadores
-        loup_updates(0), loup_updates_ipopt(0) {
+  Optimizer::Optimizer(int n, Ctc& ctc, Bsc& bsc, LoupFinder& finder,
+		CellBufferOptim& buffer,
+	       int goal_var, double eps_x, double rel_eps_f, double abs_eps_f) :   n(n), goal_var(goal_var),
+										ctc(ctc), bsc(bsc), loup_finder(finder), buffer(buffer),
+											   eps_x(n,eps_x), rel_eps_f(rel_eps_f), abs_eps_f(abs_eps_f),
+										trace(0), timeout(-1), extended_COV(true), anticipated_upper_bounding(true),
+										status(SUCCESS),
+										uplo(NEG_INFINITY), uplo_of_epsboxes(POS_INFINITY), loup(POS_INFINITY),
+										loup_point(IntervalVector::empty(n)), initial_loup(POS_INFINITY), loup_changed(false),
+										time(0), nb_cells(0), cov(NULL),loup_updates(0), loup_updates_ipopt(0) {
     pseudocosts_initialization();
     if (trace) cout.precision(12);
 }
 
+
 Optimizer::Optimizer(OptimizerConfig& config) :
-    n(config.nb_var()),
-    goal_var(config.goal_var()),
-    ctc(config.get_ctc()),
-    bsc(config.get_bsc()),
-    loup_finder(config.get_loup_finder()),
-    integerobj(config.with_integerobj()),
-    buffer(config.get_cell_buffer()),
-    eps_x(config.get_eps_x()),
-    rel_eps_f(config.get_rel_eps_f()),
-    abs_eps_f(config.get_abs_eps_f()),
-    trace(config.get_trace()),
-    timeout(config.get_timeout()),
-    extended_COV(config.with_extended_cov()),
-    anticipated_upper_bounding(config.with_anticipated_upper_bounding()),
-    status(SUCCESS),
-    uplo(NEG_INFINITY), uplo_of_epsboxes(POS_INFINITY), loup(POS_INFINITY),
-    loup_point(IntervalVector::empty(config.nb_var())), initial_loup(POS_INFINITY), loup_changed(false),
-    time(0), nb_cells(0), cov(NULL),
-    // ✅ NUEVO: Inicializar contadores
-    loup_updates(0), loup_updates_ipopt(0) {
-    pseudocosts_initialization();
+		n           (config.nb_var()),
+		goal_var    (config.goal_var()),
+		ctc         (config.get_ctc()),
+		bsc         (config.get_bsc()),
+		loup_finder (config.get_loup_finder()),
+		integerobj  (config.with_integerobj()),
+		buffer      (config.get_cell_buffer()),
+		eps_x       (config.get_eps_x()),
+		rel_eps_f   (config.get_rel_eps_f()),
+		abs_eps_f   (config.get_abs_eps_f()),
+		trace       (config.get_trace()),
+		timeout     (config.get_timeout()),
+		extended_COV(config.with_extended_cov()),
+		anticipated_upper_bounding(config.with_anticipated_upper_bounding()),
+		status(SUCCESS),
+		uplo(NEG_INFINITY), uplo_of_epsboxes(POS_INFINITY), loup(POS_INFINITY),
+		loup_point(IntervalVector::empty(n)), initial_loup(POS_INFINITY), loup_changed(false),
+		time(0), nb_cells(0), cov(NULL),loup_updates(0), loup_updates_ipopt(0) {
+  pseudocosts_initialization();
 }
 
 Optimizer::~Optimizer() {
@@ -109,23 +109,56 @@ double Optimizer::compute_ymax() {
 		return loup;
 }
 
+// NO necesitas incluir ibex_LoupFinderIpoptB.h
+
 bool Optimizer::update_loup(const IntervalVector& box, BoxProperties& prop) {
+    double old_loup = loup;
 
-	try {
-		pair<IntervalVector,double> p=loup_finder.find(box,loup_point,loup,prop);
-	
-		  loup=p.second;
-		  loup_point=p.first;
-		  if (trace) {
-		    cout << "                    ";
-		    cout << "\033[32m loup= " << loup << "\033[0m" << endl;
-		  }
-		  return true;
+    try {
+        auto p = loup_finder.find(box, loup_point, loup, prop);
+        loup = p.second;
+        loup_point = p.first;
 
-	} catch(LoupFinder::NotFound&) {
-		return false;
-	}
+        if (loup < old_loup) {
+            loup_updates++;   // Contador general
+
+			            // DEBUG: Siempre mostrar cuando hay mejora
+            cout << " [LOUP UPDATE #" << loup_updates 
+                 << " improvement: " << (old_loup - loup) 
+                 << " new loup=" << loup << "]" << endl;
+            
+            // ¡NO necesita dynamic_cast! Usamos el método virtual
+            if (loup_finder.is_ipopt()) {
+                loup_updates_ipopt++;
+                
+                // Intentar obtener el punto solución específico de Ipopt
+                // Usamos loup_point por defecto, pero podríamos intentar
+                // obtener el punto específico si el finder lo proporciona
+                
+                if (!loup_point.is_empty()) {
+                    record_ipopt_success(loup_point.mid(), loup);
+                }
+                
+                if (trace) {
+                    cout << " [Ipopt improvement: " << (old_loup - loup) 
+                         << ", total Ipopt successes: " << loup_updates_ipopt << "]" << endl;
+                }
+            }
+        }
+
+        if (trace) {
+            cout << "                    ";
+            cout << "\033[32m loup= " << loup << "\033[0m" << endl;
+        }
+
+        return true;
+
+    } catch (LoupFinder::NotFound&) {
+        return false;
+    }
 }
+
+
 
 //bool Optimizer::update_entailed_ctr(const IntervalVector& box) {
 //	for (int j=0; j<m; j++) {
@@ -209,27 +242,48 @@ void Optimizer::update_uplo_of_epsboxes(double ymin) {
 	}
 }
 
-  void Optimizer::handle_cell(Cell& c, bool direction) {
-  //  cout << " before contraction " << c.box << endl;
-       contract_and_bound(c,direction);
-	//	cout << " after contraction " << c.box << endl;
-       if (c.box.is_empty()) {
-	 delete &c;
-       }
-       else {
-	  if (integerobj) {
-	    c.box[goal_var]=integer( c.box[goal_var]);
-	    if (c.box[goal_var].is_empty()) {delete&c ; return;}
-	  }
-	  if (polytope_hull)
-	    for (int i=0;i<c.box.size();i++)
-	      c.relax_sol[i]=polytope_hull->relax_sol[i];
-	  else
-	    c.relax_sol[goal_var]=DBL_MAX;
-	  buffer.push(&c);
-       }
-  }
-
+void Optimizer::handle_cell(Cell& c, bool direction) {
+    contract_and_bound(c, direction);
+    
+    if (c.box.is_empty()) {
+        delete &c;
+    } else {
+        if (integerobj) {
+            c.box[goal_var] = integer(c.box[goal_var]);
+            if (c.box[goal_var].is_empty()) {
+                delete &c;
+                return;
+            }
+        }
+        
+        // CALCULAR BONUS DE IPOPT PARA ESTA CELDA
+        IntervalVector tmp_box(n);
+        read_ext_box(c.box, tmp_box);
+        
+        double ipopt_bonus = compute_ipopt_bonus(tmp_box);
+        
+        // DEBUG
+        if (trace >= 2 && ipopt_bonus > 0) {
+            cout << " [Ipopt bonus for cell: " << ipopt_bonus 
+                 << ", old score: " << c.ipopt_score
+                 << ", new score: " << (c.ipopt_score + ipopt_bonus) << "]" << endl;
+        }
+        
+        c.ipopt_score += ipopt_bonus;
+        
+        if (ipopt_bonus > 0.01) {
+            c.ipopt_success_count++;
+            c.ipopt_recent_success = true;
+            
+            if (!loup_point.is_empty() && c.ipopt_best_point.size() == 0) {
+                c.ipopt_best_point = loup_point.mid();
+            }
+        }
+        
+        // Resto del código original...
+        buffer.push(&c);
+    }
+}
   void Optimizer::contract_and_bound(Cell& c, bool direction) {
 
 	/*======================== contract y with y<=loup ========================*/
@@ -727,6 +781,109 @@ void Optimizer::report() {
 	cout << endl << endl;
 }
 
+void Optimizer::record_ipopt_success(const Vector& point, double loup_value) {
+    IpoptSuccess success(point, loup_value, nb_cells, time);
+    
+    ipopt_success_history.push_back(success);
+    
+    // Limitar tamaño del historial
+    if (ipopt_success_history.size() > MAX_IPOPT_HISTORY) {
+        ipopt_success_history.erase(ipopt_success_history.begin());
+    }
+    
+    if (trace) {
+        cout << " [Ipopt success recorded: loup=" << loup_value 
+             << ", history size=" << ipopt_success_history.size() << "]" << endl;
+    }
+}
+
+double Optimizer::compute_ipopt_bonus(const IntervalVector& box) const {
+    if (ipopt_success_history.empty()) {
+        return 0.0;
+    }
+    
+    double total_bonus = 0.0;
+    Vector box_center = box.mid();
+    double box_diag = box.max_diam();
+    
+    // Si la caja es muy grande, reducir el bonus
+    if (box_diag > 100.0) {
+        return 0.0;  // No dar bonus en cajas muy grandes
+    }
+    
+    for (const auto& success : ipopt_success_history) {
+        // 1. Calcular qué tan cerca está el centro de la caja del punto de éxito
+        double squared_distance = 0.0;
+        bool inside_box = true;
+        
+        for (int i = 0; i < box_center.size(); i++) {
+            double diff = box_center[i] - success.point[i];
+            squared_distance += diff * diff;
+            
+            // Verificar si el punto está dentro de la caja
+            if (success.point[i] < box[i].lb() || success.point[i] > box[i].ub()) {
+                inside_box = false;
+            }
+        }
+        
+        double distance = std::sqrt(squared_distance);
+        
+        // 2. Bonus base por estar dentro de la caja
+        double base_bonus = inside_box ? 1.0 : 0.0;
+        
+        // 3. Bonus por distancia (inversamente proporcional)
+        double distance_bonus = 1.0 / (1.0 + distance);
+        
+        // 4. Bonus por calidad de la solución
+        double quality_bonus = 0.0;
+        if (initial_loup != POS_INFINITY && initial_loup != 0.0) {
+            // Normalizar mejora entre 0 y 1
+            double max_possible_improvement = std::fabs(initial_loup);
+            if (max_possible_improvement > 1e-10) {
+                double actual_improvement = initial_loup - success.loup_value;
+                if (actual_improvement > 0) {
+                    quality_bonus = actual_improvement / max_possible_improvement;
+                }
+            }
+        }
+        
+        // 5. Combinar todos los bonuses
+        double combined_bonus = (base_bonus * 0.5 + distance_bonus * 0.3 + quality_bonus * 0.2);
+        
+        // 6. Aplicar decaimiento temporal (éxitos recientes valen más)
+        double time_decay = 1.0;
+        if (time > 0) {
+            double time_since_success = time - success.timestamp;
+            if (time_since_success > 0) {
+                time_decay = 1.0 / (1.0 + time_since_success / 10.0); // Decae en 10 segundos
+            }
+        }
+        
+        total_bonus += combined_bonus * time_decay;
+    }
+    
+    // Limitar el bonus máximo
+    const double MAX_BONUS = 10.0;
+    return std::min(total_bonus, MAX_BONUS);
+}
+void Optimizer::propagate_ipopt_score(Cell& parent, Cell& child1, Cell& child2) {
+    const double DECAY_FACTOR = 0.6;  // 60% del score se hereda
+    
+    child1.ipopt_score = parent.ipopt_score * DECAY_FACTOR;
+    child2.ipopt_score = parent.ipopt_score * DECAY_FACTOR;
+    
+    child1.ipopt_success_count = parent.ipopt_success_count;
+    child2.ipopt_success_count = parent.ipopt_success_count;
+    
+    child1.ipopt_recent_success = false;
+    child2.ipopt_recent_success = false;
+    
+    // Copiar el mejor punto si existe
+    if (parent.ipopt_best_point.size() == parent.box.size() - 1) { // -1 porque box incluye variable objetivo
+        child1.ipopt_best_point = parent.ipopt_best_point;
+        child2.ipopt_best_point = parent.ipopt_best_point;
+    }
+}
 
 
 } // end namespace ibex
